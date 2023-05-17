@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-      <h1 className='color-red'>Final Fantasy XI</h1>
+      <h1 className='text-gray-400'>Final Fantasy XI</h1>
     </>
   )
 }
