@@ -3,5 +3,7 @@
 @tailwind utilities; 
 
 .nav__dropdown:hover .nav__dropdown-content{
-    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
