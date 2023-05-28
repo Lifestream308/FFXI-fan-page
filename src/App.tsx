@@ -1,5 +1,5 @@
 // import { useState } from 'react'
-import wallpaperB from '/images/wallpaperB.jpg'
+// import wallpaperB from 'images/wallpaperB.jpg'
 
 function App() {
 
@@ -45,7 +45,7 @@ function App() {
 
 
       <div className='w-full'>
-        <img src={ wallpaperB } alt="Final Fantasy XI Wallpaper" className='w-full h-auto' />
+        <img src="/images/wallpaperB.jpg" alt="Final Fantasy XI Wallpaper" className='w-full h-auto' />
       </div>
 
       <img src="https://d1lss44hh2trtw.cloudfront.net/assets/article/2021/03/23/final-fantasy-11-mobile-reboot-canceled-by-square-enix-nexon-over-quality-concerns_feature.jpg" alt="" />
