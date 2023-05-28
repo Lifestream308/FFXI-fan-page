@@ -1,4 +1,5 @@
 // import { useState } from 'react'
+import wallpaperB from '/images/wallpaperB.jpg'
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
       <header className='sticky top-0 bg-white'>
         <div className="flex px-24 justify-between items-center">
           <div className='flex'>
-            <img src="./images/icon1.jfif" alt="" className='inline-block h-8 self-end' />
+            <img src="/images/icon1.jfif" alt="" className='inline-block h-8 self-end' />
             <h1 className='text-3xl'>Final Fantasy XI</h1>
           </div>
           <nav className='flex text-lg'>
@@ -44,7 +45,7 @@ function App() {
 
 
       <div className='w-full'>
-        <img src="/images/wallpaperB.jpg" alt="Final Fantasy XI Wallpaper" className='w-full h-auto' />
+        <img src={ wallpaperB } alt="Final Fantasy XI Wallpaper" className='w-full h-auto' />
       </div>
 
       <img src="https://d1lss44hh2trtw.cloudfront.net/assets/article/2021/03/23/final-fantasy-11-mobile-reboot-canceled-by-square-enix-nexon-over-quality-concerns_feature.jpg" alt="" />
