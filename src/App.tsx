@@ -2,7 +2,7 @@
 
 function App() {
 
-  // test comment
+  const commentArray:string[] = ["Comment1", "Comment2", "Comment3"]
 //   const [count, setCount] = useState(0)
 
 //   let plus = () => {
@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-      <header className='sticky top-0 bg-white'>
+      <header className='sticky top-0 bg-white z-10'>
         <div className="flex px-24 justify-between items-center">
           <div className='flex'>
             <img src="/images/icon1.jfif" alt="" className='inline-block h-8 self-end' />
@@ -42,13 +42,33 @@ function App() {
         <hr />
       </header>
 
+      <main className="flex justify-center pt-12">
+        <div className="flex flex-col text-center pr-8">
+          <h2 className="text-3xl">Warrior</h2>
+          <div className="flex justify-center">
+            <img src="/images/realWarrior.webp" alt="Warrior Job" className="w-3/4 h-auto p-2 bg-gray-300 rounded-md" />
+          </div>
+        </div>
+        <div className="pl-8">
+          <h3 className="text-2xl">2 Hour Ability: Chainspell</h3>
+        </div>
+      </main>
 
-      <div className='w-full'>
+      <section className='w-full mt-20 relative'>
         <img src="/images/wallpaperB.jpg" alt="Final Fantasy XI Wallpaper" className='w-full h-auto' />
-      </div>
+        <div className="absolute top-12 left-12">
+          <p className="text-4xl">Released in 2002</p>
+        </div>
+      </section>
 
-      <img src="https://d1lss44hh2trtw.cloudfront.net/assets/article/2021/03/23/final-fantasy-11-mobile-reboot-canceled-by-square-enix-nexon-over-quality-concerns_feature.jpg" alt="" />
-
+      <section className="flex justify-center mt-20">
+        <div className="w-3/4 m-8">
+          <h2 className="text-2xl text-center">{commentArray.length} Comments</h2>
+          <hr />
+          <input type="text" placeholder="What do you think" className="px-2 py-1 w-full border-black rounded-md" />
+          {commentArray.map((comment) => <p>{comment}</p>)}
+        </div>
+      </section>
     </>
   )
 }
