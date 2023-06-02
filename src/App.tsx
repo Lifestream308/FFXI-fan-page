@@ -46,16 +46,17 @@ function App() {
       </header>
 
       <main className="flex justify-center pt-12 px-8">
-        <div className="flex flex-col text-center pr-8">
+        <div className="flex flex-col text-center pr-8 w-1/2">
           <h2 className="text-3xl">{jobs.war.name}</h2>
           <hr />
           <p>{jobs.war.description}</p>
           <div className="flex justify-center">
-            <img src="/images/realWarrior.webp" alt="Warrior Job" className="w-3/4 h-auto p-2 bg-gray-300 rounded-md" />
+            <img src="/images/realWarrior.webp" alt="Warrior Job" className="max-w-lg h-auto p-2 bg-gray-300 rounded-md" />
           </div>
         </div>
-        <div className="pl-8">
-          <h3 className="text-2xl">2 Hour Ability: Chainspell</h3>
+        <div className="pl-8 w-1/2">
+          <h3 className="text-2xl">2 Hour Ability: {jobs.war.twoHourAbility}</h3>
+          <p>{jobs.war.twoHourDescription}</p>
         </div>
       </main>
 
