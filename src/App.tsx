@@ -45,25 +45,28 @@ function App() {
         <hr />
       </header>
 
-      <main className="flex justify-center pt-12 px-8">
-        <div className="flex flex-col text-center pr-8 w-1/2">
-          <h2 className="text-3xl">{jobs.war.name}</h2>
+      <main className="flex flex-col justify-center pt-12 px-8 sm:flex-row">
+        <div className="flex flex-col text-center pr-8 sm:w-1/2">
+          <h2 className="text-3xl mb-3">{jobs.war.name}</h2>
           <hr />
-          <p>{jobs.war.description}</p>
+          <p className="mt-6 mb-6">{jobs.war.description}</p>
           <div className="flex justify-center">
-            <img src="/images/realWarrior.webp" alt="Warrior Job" className="max-w-lg h-auto p-2 bg-gray-300 rounded-md" />
+            <img src="/images/realWarrior.webp" alt="Warrior Job" className="mb-8 max-w-lg h-auto p-2 bg-gray-300 rounded-md" />
           </div>
         </div>
-        <div className="pl-8 w-1/2">
-          <h3 className="text-2xl">2 Hour Ability: {jobs.war.twoHourAbility}</h3>
+        <div className="pl-8 sm:w-1/2">
+          <h3 className="text-2xl mb-4">2 Hour Ability: {jobs.war.twoHourAbility}</h3>
           <p>{jobs.war.twoHourDescription}</p>
+          <h4 className="text-2xl mt-8 mb-4">{jobs.war.blurbTitle}</h4>
+          <p>{jobs.war.blurbDescription}</p>
         </div>
       </main>
 
       <section className='w-full mt-20 relative'>
         <img src="/images/wallpaperB.jpg" alt="Final Fantasy XI Wallpaper" className='w-full h-auto' />
-        <div className="absolute top-20 left-20">
+        <div className="absolute top-[15%] left-[12%] p-1 rounded-lg bg-slate-50 bg-opacity-50">
           <p className="text-4xl">Released in 2002</p>
+          <small>One of the longest running MMO's to date</small>
         </div>
       </section>
 
@@ -72,7 +75,7 @@ function App() {
           <h2 className="text-2xl text-center">{commentArray.length} Comments</h2>
           <hr />
           <p>Welcome to the comment section! Comments must be between 4-250 characters long. Drop a "Hello World" and thank you for stopping by.</p>
-          <input type="text" placeholder="What do you think" className="px-2 py-1 w-full border-black rounded-md" />
+          <input type="text" placeholder="What do you think?" className="px-2 py-1 w-full bg-slate-200 border-black rounded-md" />
           {commentArray.map((comment) => <p>{comment}</p>)}
         </div>
       </section>
