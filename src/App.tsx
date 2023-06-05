@@ -1,18 +1,32 @@
-// import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import jobs from "./jobs"
 import Header from "./components/Header"
 import BGSection from "./components/BGSection"
+import { db } from "./firebase-config"
+import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
+
+
+// don't forget to install firebase for other laptop. Use npm install so that it covers dotENV as well
 
 function App() {
 
-  console.log(jobs)
-
+  // console.log(jobs)
   const commentArray:string[] = ["Comment1", "Comment2", "Comment3"]
-//   const [count, setCount] = useState(0)
 
-//   let plus = () => {
-//   setCount((prev) => prev+1)
-// }
+  const [firebaseItemsDB, setFirebaseItemsDB] = useState([])
+  const commentsCollectionRef = collection(db, "commentsCollection")
+
+  const getComments = async () => {
+    const data = await getDocs(commentsCollectionRef);
+    let firebaseArray:any = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    setFirebaseItemsDB(firebaseArray);
+    console.log(firebaseArray)
+  }
+
+  useEffect(() => {
+    getComments()
+  }, [])
+
 
   return (
     <>
@@ -39,11 +53,11 @@ function App() {
 
       <section className="flex justify-center mt-6">
         <div className="w-3/4 m-8">
-          <h2 className="text-2xl text-center mb-6">{commentArray.length} Comments</h2>
+          <h2 className="text-2xl text-center">{commentArray.length} Comments</h2>
           <hr />
-          <p className="my-6">Welcome to the comment section! Comments must be between 4-250 characters long. Drop a "Hello World" and thank you for stopping by.</p>
+          <p>Welcome to the comment section! Comments must be between 4-250 characters long. Drop a "Hello World" and thank you for stopping by.</p>
           <input type="text" placeholder="What do you think?" className="px-2 py-1 w-full bg-slate-200 border-black rounded-md" />
-          {commentArray.map((comment) => <p className="mt-6">{comment}</p>)}
+          {commentArray.map((comment) => <p>{comment}</p>)}
         </div>
       </section>
     </>
