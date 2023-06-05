@@ -1,5 +1,7 @@
 // import { useState } from 'react'
 import jobs from "./jobs"
+import Header from "./components/Header"
+import BGSection from "./components/BGSection"
 
 function App() {
 
@@ -14,36 +16,7 @@ function App() {
 
   return (
     <>
-      <header className='sticky top-0 bg-white z-10'>
-        <div className="flex px-24 justify-between items-center">
-          <div className='flex'>
-            <img src="/images/icon1.jfif" alt="" className='inline-block h-8 self-end' />
-            <h1 className='text-3xl'>Final Fantasy XI</h1>
-          </div>
-          <nav className='flex text-lg'>
-            <a href="" className='p-4 hover:bg-gray-200 transition duration-300'>Project</a>
-            <a href="" className='p-4 hover:bg-gray-200 transition duration-300'>History</a>
-            <div className='nav__dropdown relative hover:bg-gray-200 transition duration-300'>
-              <button type='button' className='p-4'>Jobs</button>
-              <ul className='nav__dropdown-content absolute w-max bg-white shadow-md rounded-sm opacity-0 pointer-events-none -translate-y-3 transition'>
-                <li className='hover:bg-cyan-100'>
-                  <a href="" className='px-4 block hover:text-gray-500'>Warrior</a></li>
-                <li className='hover:bg-cyan-100'>
-                  <a href="" className='px-4 block hover:text-gray-500'>Thief</a></li>
-                <li className='hover:bg-cyan-100'>
-                  <a href="" className='px-4 block hover:text-gray-500'>Monk</a></li>
-                <li className='hover:bg-cyan-100'>
-                  <a href="" className='px-4 block hover:text-gray-500'>White Mage</a></li>
-                <li className='hover:bg-cyan-100'>
-                  <a href="" className='px-4 block hover:text-gray-500'>Black Mage</a></li>
-                <li className='hover:bg-cyan-100'>
-                  <a href="" className='px-4 block hover:text-gray-500'>Red Mage</a></li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-        <hr />
-      </header>
+      <Header />
 
       <main className="flex flex-col justify-center pt-12 px-8 sm:flex-row">
         <div className="flex flex-col text-center pr-8 sm:w-1/2">
@@ -58,25 +31,19 @@ function App() {
           <h3 className="text-2xl mb-4">2 Hour Ability: {jobs.war.twoHourAbility}</h3>
           <p>{jobs.war.twoHourDescription}</p>
           <h4 className="text-2xl mt-8 mb-4">{jobs.war.blurbTitle}</h4>
-          <p>{jobs.war.blurbDescription}</p>
+          {jobs.war.blurbDescription.split('\\n').map((line) => <p className="mb-2">{line}</p>)}
         </div>
       </main>
 
-      <section className='w-full mt-20 relative'>
-        <img src="/images/wallpaperB.jpg" alt="Final Fantasy XI Wallpaper" className='w-full h-auto' />
-        <div className="absolute top-[15%] left-[12%] p-1 rounded-lg bg-slate-50 bg-opacity-50">
-          <p className="text-4xl">Released in 2002</p>
-          <small>One of the longest running MMO's to date</small>
-        </div>
-      </section>
+      <BGSection />
 
-      <section className="flex justify-center mt-20">
+      <section className="flex justify-center mt-6">
         <div className="w-3/4 m-8">
-          <h2 className="text-2xl text-center">{commentArray.length} Comments</h2>
+          <h2 className="text-2xl text-center mb-6">{commentArray.length} Comments</h2>
           <hr />
-          <p>Welcome to the comment section! Comments must be between 4-250 characters long. Drop a "Hello World" and thank you for stopping by.</p>
+          <p className="my-6">Welcome to the comment section! Comments must be between 4-250 characters long. Drop a "Hello World" and thank you for stopping by.</p>
           <input type="text" placeholder="What do you think?" className="px-2 py-1 w-full bg-slate-200 border-black rounded-md" />
-          {commentArray.map((comment) => <p>{comment}</p>)}
+          {commentArray.map((comment) => <p className="mt-6">{comment}</p>)}
         </div>
       </section>
     </>
