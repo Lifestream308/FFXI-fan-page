@@ -1,6 +1,6 @@
 // import React from 'react'
 
-export default function Header() {
+export default function HeaderComponent() {
   return (
     <header className='sticky top-0 bg-white z-10'>
     <div className="flex px-24 justify-between items-center">
