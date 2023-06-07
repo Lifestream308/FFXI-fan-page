@@ -9,6 +9,8 @@ import JobComponent from './components/JobComponent';
 
 function App() {
 
+  const [selectedJob, setSelectedJob] = useState(jobs.war)
+
   const commentArray:string[] = ["Comment1", "Comment2", "Comment3"]
 
   const [firebaseItemsDB, setFirebaseItemsDB] = useState([])
@@ -27,9 +29,11 @@ function App() {
 
   return (
     <>
-      <HeaderComponent />
+      <HeaderComponent setSelectedJob={setSelectedJob} jobs={jobs} />
 
-      <JobComponent jobs={jobs} />
+      {/* do I need a useState for selectedJob? and job inside JobComponent will rerender onchange */}
+      {/* maybe add carousel wheel with selected job in bold big letters, next/prev in small text */}
+      <JobComponent job={selectedJob} />
 
       <BGSection />
 

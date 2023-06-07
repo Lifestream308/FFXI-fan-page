@@ -1,6 +1,6 @@
 // import React from 'react'
 
-export default function HeaderComponent() {
+export default function HeaderComponent({setSelectedJob, jobs}:any) {
   return (
     <header className='sticky top-0 bg-white z-10'>
     <div className="flex px-24 justify-between items-center">
@@ -14,18 +14,18 @@ export default function HeaderComponent() {
         <div className='nav__dropdown relative hover:bg-gray-200 transition duration-300'>
           <button type='button' className='p-4'>Jobs</button>
           <ul className='nav__dropdown-content absolute w-max bg-white shadow-md rounded-sm opacity-0 pointer-events-none -translate-y-3 transition'>
-            <li className='hover:bg-cyan-100'>
-              <a href="" className='px-4 block hover:text-gray-500'>Warrior</a></li>
-            <li className='hover:bg-cyan-100'>
-              <a href="" className='px-4 block hover:text-gray-500'>Thief</a></li>
-            <li className='hover:bg-cyan-100'>
-              <a href="" className='px-4 block hover:text-gray-500'>Monk</a></li>
-            <li className='hover:bg-cyan-100'>
-              <a href="" className='px-4 block hover:text-gray-500'>White Mage</a></li>
-            <li className='hover:bg-cyan-100'>
-              <a href="" className='px-4 block hover:text-gray-500'>Black Mage</a></li>
-            <li className='hover:bg-cyan-100'>
-              <a href="" className='px-4 block hover:text-gray-500'>Red Mage</a></li>
+            <li className='hover:bg-slate-200'>
+              <p className='px-4 block hover:text-gray-500 cursor-pointer' onClick={() => setSelectedJob(jobs.war)}>Warrior</p></li>
+            <li className='hover:bg-slate-200'>
+              <p className='px-4 block hover:text-gray-500 cursor-pointer' onClick={() => setSelectedJob(jobs.thf)}>Thief</p></li>
+            <li className='hover:bg-slate-200'>
+              <p className='px-4 block hover:text-gray-500 cursor-pointer' onClick={() => setSelectedJob(jobs.mnk)}>Monk</p></li>
+            <li className='hover:bg-slate-200'>
+              <p className='px-4 block hover:text-gray-500 cursor-pointer' onClick={() => setSelectedJob(jobs.whm)}>White Mage</p></li>
+            <li className='hover:bg-slate-200'>
+              <p className='px-4 block hover:text-gray-500 cursor-pointer' onClick={() => setSelectedJob(jobs.blm)}>Black Mage</p></li>
+            <li className='hover:bg-slate-200'>
+              <p className='px-4 block hover:text-gray-500 cursor-pointer' onClick={() => setSelectedJob(jobs.rdm)}>Red Mage</p></li>
           </ul>
         </div>
       </nav>
