@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { db } from "./firebase-config"
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import jobs from "./jobs"
+import jobsArray from './jobsArray';
 import BGSection from "./components/BGSection"
 import CommentSection from './components/CommentSection'
 import HeaderComponent from './components/HeaderComponent';
@@ -9,6 +10,8 @@ import JobComponent from './components/JobComponent';
 import TableComponent from './components/TableComponent';
 
 function App() {
+
+  console.log(jobsArray)
 
   const [selectedJob, setSelectedJob] = useState(jobs.war)
 
