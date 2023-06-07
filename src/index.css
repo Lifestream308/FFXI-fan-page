@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities; 
 
+body {
+    font-family: "Times New Roman"
+}
+
 .nav__dropdown:hover .nav__dropdown-content{
     opacity: 1;
     transform: translateY(0);
