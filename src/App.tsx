@@ -6,6 +6,7 @@ import BGSection from "./components/BGSection"
 import CommentSection from './components/CommentSection'
 import HeaderComponent from './components/HeaderComponent';
 import JobComponent from './components/JobComponent';
+import TableComponent from './components/TableComponent';
 
 function App() {
 
@@ -38,6 +39,8 @@ function App() {
       <BGSection />
 
       <CommentSection commentArray={commentArray} />
+
+      <TableComponent />
     </>
   )
 }

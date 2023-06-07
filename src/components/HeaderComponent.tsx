@@ -14,18 +14,18 @@ export default function HeaderComponent({setSelectedJob, jobs}:any) {
         <div className='nav__dropdown relative hover:bg-gray-200 transition duration-300'>
           <button type='button' className='p-4'>Jobs</button>
           <ul className='nav__dropdown-content absolute w-max bg-white shadow-md rounded-sm opacity-0 pointer-events-none -translate-y-3 transition'>
-            <li className='hover:bg-slate-200'>
-              <p className='px-4 block hover:text-gray-500 cursor-pointer' onClick={() => setSelectedJob(jobs.war)}>Warrior</p></li>
-            <li className='hover:bg-slate-200'>
-              <p className='px-4 block hover:text-gray-500 cursor-pointer' onClick={() => setSelectedJob(jobs.thf)}>Thief</p></li>
-            <li className='hover:bg-slate-200'>
-              <p className='px-4 block hover:text-gray-500 cursor-pointer' onClick={() => setSelectedJob(jobs.mnk)}>Monk</p></li>
-            <li className='hover:bg-slate-200'>
-              <p className='px-4 block hover:text-gray-500 cursor-pointer' onClick={() => setSelectedJob(jobs.whm)}>White Mage</p></li>
-            <li className='hover:bg-slate-200'>
-              <p className='px-4 block hover:text-gray-500 cursor-pointer' onClick={() => setSelectedJob(jobs.blm)}>Black Mage</p></li>
-            <li className='hover:bg-slate-200'>
-              <p className='px-4 block hover:text-gray-500 cursor-pointer' onClick={() => setSelectedJob(jobs.rdm)}>Red Mage</p></li>
+            <li className='hover:bg-gray-200'>
+              <button type="button" className='px-4 block' onClick={() => setSelectedJob(jobs.war)}>Warrior</button></li>
+            <li className='hover:bg-gray-200'>
+              <button type="button" className='px-4 block' onClick={() => setSelectedJob(jobs.thf)}>Thief</button></li>
+            <li className='hover:bg-gray-200'>
+              <button type="button" className='px-4 block' onClick={() => setSelectedJob(jobs.mnk)}>Monk</button></li>
+            <li className='hover:bg-gray-200'>
+              <button type="button" className='px-4 block' onClick={() => setSelectedJob(jobs.whm)}>White Mage</button></li>
+            <li className='hover:bg-gray-200'>
+              <button type="button" className='px-4 block' onClick={() => setSelectedJob(jobs.blm)}>Black Mage</button></li>
+            <li className='hover:bg-gray-200'>
+              <button type="button" className='px-4 block' onClick={() => setSelectedJob(jobs.rdm)}>Red Mage</button></li>
           </ul>
         </div>
       </nav>
