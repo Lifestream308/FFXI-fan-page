@@ -6,6 +6,11 @@ body {
     font-family: "Times New Roman"
 }
 
+tr:nth-child(odd) {
+    background-color: #b5b8bd;
+    background-color: #c4c5c7;
+}
+
 .nav__dropdown:hover .nav__dropdown-content{
     opacity: 1;
     transform: translateY(0);

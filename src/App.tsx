@@ -8,8 +8,6 @@ import CommentSection from './components/CommentSection'
 import HeaderComponent from './components/HeaderComponent';
 import JobComponent from './components/JobComponent';
 import TableComponent from './components/TableComponent';
-import RoundTable from './components/RoundTable';
-import RoundTable2 from './components/RoundTable2';
 
 function App() {
 
@@ -46,10 +44,6 @@ function App() {
       <CommentSection commentArray={commentArray} />
 
       <TableComponent />
-
-      <RoundTable />
-
-      <RoundTable2 />
     </>
   )
 }
