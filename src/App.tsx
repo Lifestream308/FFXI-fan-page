@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { db } from "./firebase-config"
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
-import jobs from "./jobs"
+// import jobs from "./jobs"
 import jobsArray from './jobsArray';
 import BGSection from "./components/BGSection"
 import CommentSection from './components/CommentSection'
@@ -11,9 +11,11 @@ import TableComponent from './components/TableComponent';
 
 function App() {
 
-  console.log(jobsArray)
+  const [selectedJob, setSelectedJob] = useState<number>(0)
 
-  const [selectedJob, setSelectedJob] = useState(jobs.war)
+  const handleJobClick = (index) => {
+    setSelectedJob(index)
+  }
 
   const commentArray:string[] = ["Comment1", "Comment2", "Comment3"]
 
@@ -33,11 +35,11 @@ function App() {
 
   return (
     <>
-      <HeaderComponent setSelectedJob={setSelectedJob} jobs={jobs} />
+      <HeaderComponent handleJobClick={handleJobClick} jobsArray={jobsArray} />
 
       {/* do I need a useState for selectedJob? and job inside JobComponent will rerender onchange */}
       {/* maybe add carousel wheel with selected job in bold big letters, next/prev in small text */}
-      <JobComponent job={selectedJob} />
+      <JobComponent job={jobsArray[selectedJob]} />
 
       <BGSection />
 

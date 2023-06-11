@@ -1,6 +1,6 @@
 // import React from 'react'
 
-export default function HeaderComponent({setSelectedJob, jobs}:any) {
+export default function HeaderComponent({handleJobClick, jobsArray}:any) {
   return (
     <header className='sticky top-0 bg-white z-10'>
     <div className="flex px-24 justify-between items-center">
@@ -14,18 +14,12 @@ export default function HeaderComponent({setSelectedJob, jobs}:any) {
         <div className='nav__dropdown relative hover:bg-gray-200 transition duration-300'>
           <button type='button' className='p-4'>Jobs</button>
           <ul className='nav__dropdown-content absolute w-max bg-white shadow-md rounded-sm opacity-0 pointer-events-none -translate-y-3 transition'>
-            <li className='hover:bg-gray-200'>
-              <button type="button" className='px-4 block' onClick={() => setSelectedJob(jobs.war)}>Warrior</button></li>
-            <li className='hover:bg-gray-200'>
-              <button type="button" className='px-4 block' onClick={() => setSelectedJob(jobs.thf)}>Thief</button></li>
-            <li className='hover:bg-gray-200'>
-              <button type="button" className='px-4 block' onClick={() => setSelectedJob(jobs.mnk)}>Monk</button></li>
-            <li className='hover:bg-gray-200'>
-              <button type="button" className='px-4 block' onClick={() => setSelectedJob(jobs.whm)}>White Mage</button></li>
-            <li className='hover:bg-gray-200'>
-              <button type="button" className='px-4 block' onClick={() => setSelectedJob(jobs.blm)}>Black Mage</button></li>
-            <li className='hover:bg-gray-200'>
-              <button type="button" className='px-4 block' onClick={() => setSelectedJob(jobs.rdm)}>Red Mage</button></li>
+            
+            {jobsArray.map((job, index) => {
+              return <li key={job.name} className='hover:bg-gray-200'>
+              <button type="button" className='px-4 block' onClick={() => handleJobClick(index)}>{job.name}</button></li>
+            })}    
+            
           </ul>
         </div>
       </nav>
