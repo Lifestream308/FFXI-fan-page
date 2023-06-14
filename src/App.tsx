@@ -14,6 +14,8 @@ function App() {
   const [selectedJob, setSelectedJob] = useState<number>(0)
   const [showModal, setShowModal] = useState<boolean>(true)
 
+  const modalMessage:string = "Modal Alert Active"
+
   const handleJobClick = (index) => {
     setSelectedJob(index)
   }
@@ -55,7 +57,7 @@ function App() {
     <>
       <HeaderComponent handleJobClick={handleJobClick} jobsArray={jobsArray} />
 
-      { showModal && <ModalComponent setShowModal={setShowModal} /> }
+      { showModal && <ModalComponent modalMessage={modalMessage} setShowModal={setShowModal} /> }
 
       {/* do I need a useState for selectedJob? and job inside JobComponent will rerender onchange */}
       {/* maybe add carousel wheel with selected job in bold big letters, next/prev in small text */}
