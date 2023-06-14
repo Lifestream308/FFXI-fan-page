@@ -5,6 +5,7 @@ export default function TableComponent() {
     <section className="mb-24 mx-8 overflow-hidden rounded-lg">
         <div className="min-w-full">
             <table className='min-w-full text-center bg-slate-200'>
+                <tbody>
                 <tr>
                     <th className='px-4 bg-blue-300 text-orange-500'>Topics</th>
                     <th className='px-4 bg-blue-300 text-orange-500 w-32 hidden sm:table-cell'>Author</th>
@@ -25,6 +26,7 @@ export default function TableComponent() {
                     <td className="px-4 hidden sm:table-cell">Anon</td>
                     <td className="px-4">5</td>
                 </tr>
+                </tbody>
             </table>
         </div>
     </section>
