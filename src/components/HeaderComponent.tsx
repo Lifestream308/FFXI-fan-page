@@ -3,12 +3,12 @@
 export default function HeaderComponent({handleJobClick, jobsArray}:any) {
   return (
     <header className='sticky top-0 bg-white z-10'>
-    <div className="flex px-24 justify-between items-center">
-      <div className='flex'>
-        <img src="/images/icon1.jfif" alt="" className='inline-block h-auto min-w-[7rem] max-w-full self-center sm:h-10' />
-        <h1 className='text-3xl hidden sm:block'>Final Fantasy XI</h1>
+    <div className="flex px-[5%] justify-between items-center">
+      <div className='flex max-w-[15rem] sm:max-w-full'>
+        <img src="/images/icon1.jfif" alt="" className='inline-block h-auto min-w-[7rem] self-center sm:max-w-[10rem]' />
+        <h1 className='text-3xl self-center hidden sm:flex'>Final Fantasy XI</h1>
       </div>
-      <nav className='flex text-lg'>
+      <nav className='text-lg hidden sm:flex'>
         <a href="" className='p-4 hover:bg-gray-200 transition duration-300'>Project</a>
         <a href="" className='p-4 hover:bg-gray-200 transition duration-300'>History</a>
         <div className='nav__dropdown relative hover:bg-gray-200 transition duration-300'>
@@ -23,6 +23,7 @@ export default function HeaderComponent({handleJobClick, jobsArray}:any) {
           </ul>
         </div>
       </nav>
+      <nav className="text-lg sm:hidden">X</nav>
     </div>
     <hr />
   </header>
