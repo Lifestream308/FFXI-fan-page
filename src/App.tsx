@@ -12,9 +12,14 @@ import ModalComponent from './components/ModalComponent';
 function App() {
 
   const [selectedJob, setSelectedJob] = useState<number>(0)
-  const [showModal, setShowModal] = useState<boolean>(true)
+  const [showModal, setShowModal] = useState<boolean>(false)
+  const [modalMessage, setModalMessage] = useState<string>("Modal Alert Active")
 
-  const modalMessage:string = "Modal Alert Active"
+
+  const handleCommentSubmit = () => {
+    setModalMessage("Comment Posted")
+    setShowModal(true)
+  }
 
   const handleJobClick = (index:any) => {
     setSelectedJob(index)
@@ -66,7 +71,7 @@ function App() {
 
       <BGSection />
 
-      <CommentSection commentArray={commentArray} />
+      <CommentSection commentArray={commentArray} handleCommentSubmit={handleCommentSubmit} />
 
       <TableComponent />
     </>
