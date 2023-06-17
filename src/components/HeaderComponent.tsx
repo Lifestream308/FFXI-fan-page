@@ -9,8 +9,8 @@ export default function HeaderComponent({handleJobClick, jobsArray}:any) {
         <h1 className='text-3xl self-center hidden sm:flex'>Final Fantasy XI</h1>
       </div>
       <nav className='text-lg hidden sm:flex'>
-        <a href="" className='p-4 hover:bg-gray-200 transition duration-300'>Project</a>
-        <a href="" className='p-4 hover:bg-gray-200 transition duration-300'>History</a>
+        <a href="#about" className='p-4 hover:bg-gray-200 transition duration-300'>About</a>
+        <a href="#comments" className='p-4 hover:bg-gray-200 transition duration-300'>Comments</a>
         <div className='nav__dropdown relative hover:bg-gray-200 transition duration-300'>
           <button type='button' className='p-4'>Jobs</button>
           <ul className='nav__dropdown-content absolute w-max bg-white shadow-md rounded-sm opacity-0 pointer-events-none -translate-y-3 transition'>

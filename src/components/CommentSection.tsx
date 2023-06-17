@@ -2,8 +2,8 @@
 
 export default function CommentSection({commentArray, messageRef, handleCommentSubmit}:any) {
   return (
-    <section className="flex justify-center mt-6">
-    <div className="w-3/4 m-8">
+    <section id="comments" className="flex justify-center">
+    <div className="w-3/4 m-8 mt-14">
       <h2 className="text-2xl text-center mb-6">{commentArray.length} Comments</h2>
       <hr />
       <p className='my-6'>Welcome to the comment section. Comments must be between 4-250 characters long. Read and post anonymous comments here or create an account and have discussions over on the <a href="" className="text-blue-700">Forum</a>!</p>
