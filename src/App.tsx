@@ -60,12 +60,11 @@ function App() {
   // }, [])
 
   return (
-    <>
+    <div className='max-w-7xl m-auto'>
       <HeaderComponent handleJobClick={handleJobClick} jobsArray={jobsArray} />
 
       { showModal && <ModalComponent modalMessage={modalMessage} setShowModal={setShowModal} /> }
 
-      {/* do I need a useState for selectedJob? and job inside JobComponent will rerender onchange */}
       {/* maybe add carousel wheel with selected job in bold big letters, next/prev in small text */}
       <JobComponent job={jobsArray[selectedJob]} />
 
@@ -74,7 +73,7 @@ function App() {
       <CommentSection commentArray={commentArray} handleCommentSubmit={handleCommentSubmit} />
 
       <TableComponent />
-    </>
+    </div>
   )
 }
 

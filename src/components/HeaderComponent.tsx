@@ -5,7 +5,7 @@ export default function HeaderComponent({handleJobClick, jobsArray}:any) {
     <header className='sticky top-0 bg-white z-10'>
     <div className="flex px-[5%] justify-between items-center">
       <div className='flex max-w-[15rem] sm:max-w-full'>
-        <img src="/images/icon1.jfif" alt="" className='inline-block h-auto w-[12rem] self-center' />
+        <a href=""><img src="/images/icon1.jfif" alt="" className='inline-block h-auto w-[12rem] self-center' /></a>
         <h1 className='text-3xl self-center hidden md:flex'>Final Fantasy XI</h1>
       </div>
       <nav className='text-lg hidden sm:flex'>
