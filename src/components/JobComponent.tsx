@@ -9,7 +9,7 @@ export default function JobComponent({job}:any) {
       <h2 className="text-3xl mb-7 mx-auto px-3 py-1 w-fit text-white bg-cyan-700 rounded-lg">{job.name}</h2>
       <hr />
       <p className="my-6 leading-7">{job.description}</p>
-      <div className="flex justify-center max-w-lg">
+      <div className="flex self-center max-w-xs sm:w-full">
         <img src={"/images/" + job.image} alt="Image of FFXI Job" className="mb-8 w-full h-auto p-2 bg-gray-300 border border-black rounded-md" />
       </div>
     </div>
