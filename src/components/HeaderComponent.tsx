@@ -23,7 +23,7 @@ export default function HeaderComponent({handleJobClick, jobsArray}:any) {
           </ul>
         </div>
       </nav>
-      <nav className="text-lg sm:hidden">X</nav>
+      <button type="button" className="text-3xl p-2 sm:hidden"><i className="bi bi-list"></i></button>
     </div>
     <hr />
   </header>
