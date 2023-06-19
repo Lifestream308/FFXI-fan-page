@@ -1,6 +1,10 @@
 // import React from 'react'
+import { useState } from 'react'
 
 export default function HeaderComponent({handleJobClick, jobsArray}:any) {
+
+  const [showMobileUL, setShowMobileUL] = useState<boolean>(false)
+
   return (
     <header className='sticky top-0 bg-white z-10'>
       <div className="flex px-[5%] justify-between items-center">
@@ -23,18 +27,18 @@ export default function HeaderComponent({handleJobClick, jobsArray}:any) {
             </ul>
           </div>
         </nav>
-        <button type="button" className="text-3xl p-2 sm:hidden"><i className="bi bi-list"></i></button>
+        <button type="button" onClick={()=> {setShowMobileUL(prev => !prev)}} className="text-3xl p-2 sm:hidden"><i className="bi bi-list"></i></button>
       </div>
       <hr />
       <nav className="relative">
-        <ul className="w-0 fixed bg-white right-0 top-[5rem] transition">
-          {jobsArray.map((job:any, index:any) => {
-            return <li key={job.name} className='w-full hover:bg-gray-200'>
-            <button type="button" className='w-full px-4 block' onClick={() => handleJobClick(index)}>{job.name}</button></li>
-            })}
+        { showMobileUL && <ul className="fixed bg-white right-0 top-[7rem] sm:hidden">
+            {jobsArray.map((job:any, index:any) => {
+              return <li key={job.name} className='w-full hover:bg-gray-200'>
+              <button type="button" className='w-full px-4 block' onClick={() => handleJobClick(index)}>{job.name}</button></li>
+              })}
 
 
-        </ul>
+          </ul>}
       </nav>
     </header>
   )
