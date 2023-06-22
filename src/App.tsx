@@ -22,7 +22,7 @@ function App() {
     setShowModal(true)
   }
 
-  const handleJobClick = (index:any) => {
+  const handleJobClick = (index:number) => {
     setSelectedJob(index)
   }
 
@@ -48,6 +48,7 @@ function App() {
   //   getComments()
   // }
 
+  // needs interface or type for the array of comments that are coming in from firebase
   // // Read all comments
   const getComments = async () => {
     const data = await getDocs(commentsCollectionRef);

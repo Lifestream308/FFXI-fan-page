@@ -19,7 +19,7 @@ export default function HeaderComponent({handleJobClick, jobsArray}:any) {
             <button type='button' className='p-4'>Jobs</button>
             <ul className='nav__dropdown-content absolute w-max bg-white shadow-md rounded-sm opacity-0 pointer-events-none -translate-y-3 transition'>
               
-              {jobsArray.map((job:any, index:any) => {
+              {jobsArray.map((job:any, index:number) => {
                 return <li key={job.name} className='hover:bg-gray-200'>
                 <button type="button" className='px-4 block' onClick={() => handleJobClick(index)}>{job.name}</button></li>
                 })}
@@ -32,7 +32,7 @@ export default function HeaderComponent({handleJobClick, jobsArray}:any) {
       <hr />
       <nav className="relative">
         { showMobileUL && <ul className="fixed bg-white right-0 top-[7rem] sm:hidden">
-            {jobsArray.map((job:any, index:any) => {
+            {jobsArray.map((job:any, index:number) => {
               return <li key={job.name} className='w-full hover:bg-gray-200'>
               <button type="button" className='w-full px-4 block' onClick={() => handleJobClick(index)}>{job.name}</button></li>
               })}

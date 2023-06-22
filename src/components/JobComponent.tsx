@@ -1,7 +1,5 @@
 // import React from 'react'
 
-// try to refactor so that it takes in a jobs.war or jobs.mnk and then everything else fills in correctly
-
 export default function JobComponent({job}:any) {
   return (
     <main className="flex flex-col justify-center pt-12 px-[5%] sm:flex-row">
