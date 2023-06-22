@@ -1,5 +1,6 @@
-import { useState } from 'react'
-// import { db } from "./firebase-config"
+import { useState, useEffect } from 'react'
+import { db } from "./firebase-config"
+import { collection, getDocs } from "firebase/firestore";
 // import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import jobsArray from './jobsArray';
 import BGSection from "./components/BGSection"
@@ -27,11 +28,11 @@ function App() {
 
   const commentArray:string[] = ["Comment1", "Comment2", "Comment3"]
 
-  // Commented out all firebase functionality to try to see if that fixes netlify deploy. useRef / messageRef const needs fixing
+  // useRef / messageRef const needs fixing
 
   // Firebase functionality
-  // const [firebaseItemsDB, setFirebaseItemsDB] = useState([])
-  // const commentsCollectionRef = collection(db, "commentsCollection")
+  const [firebaseItemsDB, setFirebaseItemsDB] = useState([])
+  const commentsCollectionRef = collection(db, "commentsCollection")
   // const messageRef = useRef
 
   // // Create comments
@@ -48,16 +49,17 @@ function App() {
   // }
 
   // // Read all comments
-  // const getComments = async () => {
-  //   const data = await getDocs(commentsCollectionRef);
-  //   let firebaseArray:any = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-  //   setFirebaseItemsDB(firebaseArray);
-  //   console.log(firebaseArray)
-  // }
+  const getComments = async () => {
+    const data = await getDocs(commentsCollectionRef);
+    let firebaseArray:any = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    setFirebaseItemsDB(firebaseArray);
+    console.log(firebaseArray)
+    console.log(firebaseItemsDB)
+  }
 
-  // useEffect(() => {
-  //   getComments()
-  // }, [])
+  useEffect(() => {
+    getComments()
+  }, [])
 
   return (
     <div className='max-w-7xl m-auto'>
@@ -65,7 +67,6 @@ function App() {
 
       { showModal && <ModalComponent modalMessage={modalMessage} setShowModal={setShowModal} /> }
 
-      {/* maybe add carousel wheel with selected job in bold big letters, next/prev in small text */}
       <JobComponent job={jobsArray[selectedJob]} />
 
       <BGSection />
