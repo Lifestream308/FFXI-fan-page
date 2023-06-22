@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { db } from "./firebase-config"
 import { collection, getDocs } from "firebase/firestore";
 // import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
@@ -33,7 +33,7 @@ function App() {
   // Firebase functionality
   const [firebaseItemsDB, setFirebaseItemsDB] = useState([])
   const commentsCollectionRef = collection(db, "commentsCollection")
-  // const messageRef = useRef
+  const messageRef = useRef()
 
   // // Create comments
   // const createItem = async () => {
@@ -72,7 +72,7 @@ function App() {
 
       <BGSection />
 
-      <CommentSection commentArray={commentArray} handleCommentSubmit={handleCommentSubmit} />
+      <CommentSection commentArray={commentArray} handleCommentSubmit={handleCommentSubmit} messageRef={messageRef} />
 
       <TableComponent />
     </div>
