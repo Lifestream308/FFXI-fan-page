@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { db } from "./firebase-config"
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 // import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import jobsArray from './jobsArray';
 import BGSection from "./components/BGSection"
@@ -20,6 +20,7 @@ function App() {
   const handleCommentSubmit = () => {
     setModalMessage("Comment Posted")
     setShowModal(true)
+    createItem()
   }
 
   const handleJobClick = (index:number) => {
@@ -28,25 +29,23 @@ function App() {
 
   const commentArray:string[] = ["Comment1", "Comment2", "Comment3"]
 
-  // useRef / messageRef const needs fixing
-
   // Firebase functionality
   const [firebaseItemsDB, setFirebaseItemsDB] = useState([])
   const commentsCollectionRef = collection(db, "commentsCollection")
-  const messageRef = useRef()
+  const messageRef = useRef<any>()
 
   // // Create comments
-  // const createItem = async () => {
-  //   // const filteredItems = firebaseItemsDB.filter(registerItem => registerItem.companyEmail === user.email)
-  //   // const filteredNames = Array.from(filteredItems, a => a.menuItemName)
+  const createItem = async () => {
+    // const filteredItems = firebaseItemsDB.filter(registerItem => registerItem.companyEmail === user.email)
+    // const filteredNames = Array.from(filteredItems, a => a.menuItemName)
 
-  //   if (messageRef.current.value.trim().length > 250 || messageRef.current.value.trim().length < 4) {
-  //     alert("Message must be between 4-250 Characters")
-  //     return
-  //   }
-  //   await addDoc(commentsCollectionRef, {commentMessage: messageRef.current.value.trim(), name: "Anonymous"+Math.random()*100})
-  //   getComments()
-  // }
+    if (messageRef.current.value.trim().length > 250 || messageRef.current.value.trim().length < 4) {
+      alert("Message must be between 4-250 Characters")
+      return
+    }
+    await addDoc(commentsCollectionRef, {commentMessage: messageRef.current.value.trim(), name: "Anonymous"+Math.random()*100})
+    getComments()
+  }
 
   // needs interface or type for the array of comments that are coming in from firebase
   // // Read all comments
