@@ -18,8 +18,6 @@ function App() {
 
 
   const handleCommentSubmit = () => {
-    setModalMessage("Comment Posted")
-    setShowModal(true)
     createItem()
   }
 
@@ -40,11 +38,14 @@ function App() {
     // const filteredNames = Array.from(filteredItems, a => a.menuItemName)
 
     if (messageRef.current.value.trim().length > 250 || messageRef.current.value.trim().length < 4) {
-      alert("Message must be between 4-250 Characters")
+      setModalMessage("Message must be between 4-250 Characters")
       return
     }
-    await addDoc(commentsCollectionRef, {commentMessage: messageRef.current.value.trim(), name: "Anonymous"+Math.random()*100})
+    await addDoc(commentsCollectionRef, {commentMessage: messageRef.current.value.trim(), name: "Anonymous"+Math.ceil(Math.random()*100)})
+    setModalMessage("Comment Posted")
+    messageRef.current.value = ""
     getComments()
+    setShowModal(true)
   }
 
   // needs interface or type for the array of comments that are coming in from firebase
