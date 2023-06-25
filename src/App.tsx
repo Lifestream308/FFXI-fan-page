@@ -18,7 +18,7 @@ function App() {
 
 
   const handleCommentSubmit = () => {
-    createItem()
+    createComment()
   }
 
   const handleJobClick = (index:number) => {
@@ -33,18 +33,16 @@ function App() {
   const messageRef = useRef<any>()
 
   // // Create comments
-  const createItem = async () => {
-    // const filteredItems = firebaseItemsDB.filter(registerItem => registerItem.companyEmail === user.email)
-    // const filteredNames = Array.from(filteredItems, a => a.menuItemName)
-
+  const createComment = async () => {
     if (messageRef.current.value.trim().length > 250 || messageRef.current.value.trim().length < 4) {
-      setModalMessage("Message must be between 4-250 Characters")
+      setModalMessage("Comment must be between 4-250 Characters")
+      setShowModal(true)
       return
     }
-    await addDoc(commentsCollectionRef, {commentMessage: messageRef.current.value.trim(), name: "Anonymous"+Math.ceil(Math.random()*100)})
-    setModalMessage("Comment Posted")
+    await addDoc(commentsCollectionRef, {commentMessage: messageRef.current.value.trim(), name: "Anonymous"+Math.ceil(Math.random()*100), date: new Date()})
     messageRef.current.value = ""
     getComments()
+    setModalMessage("Comment Posted")
     setShowModal(true)
   }
 
