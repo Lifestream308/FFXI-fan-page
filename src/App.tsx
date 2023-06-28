@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { db } from "./firebase-config"
 import { collection, getDocs, addDoc } from "firebase/firestore";
 // import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
+import { Route, Routes } from "react-router-dom"
 import jobsArray from './jobsArray';
 import BGSection from "./components/BGSection"
 import CommentSection from './components/CommentSection'
@@ -62,17 +63,20 @@ function App() {
 
   return (
     <div className='max-w-7xl m-auto'>
-      <HeaderComponent handleJobClick={handleJobClick} jobsArray={jobsArray} />
 
+      <HeaderComponent handleJobClick={handleJobClick} jobsArray={jobsArray} />
       { showModal && <ModalComponent modalMessage={modalMessage} setShowModal={setShowModal} /> }
 
-      <JobComponent job={jobsArray[selectedJob]} />
+      <Routes>
+        <Route path='/' element={ <JobComponent job={jobsArray[selectedJob]} /> } />
+        <Route path='/about' element={ <BGSection /> } />
+      </Routes>
 
-      <BGSection />
 
       <CommentSection commentArray={commentArray} handleCommentSubmit={handleCommentSubmit} messageRef={messageRef} />
 
       <TableComponent />
+
     </div>
   )
 }
