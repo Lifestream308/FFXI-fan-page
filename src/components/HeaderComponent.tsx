@@ -1,5 +1,6 @@
 // import React from 'react'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function HeaderComponent({handleJobClick, jobsArray}:any) {
 
@@ -9,12 +10,13 @@ export default function HeaderComponent({handleJobClick, jobsArray}:any) {
     <header className='sticky top-0 bg-white z-10'>
       <div className="flex px-[5%] justify-between items-center">
         <div className='flex max-w-[15rem] sm:max-w-full'>
-          <a href=""><img src="/images/icon1.jfif" alt="" className='inline-block h-auto w-[12rem] self-center' /></a>
+          <Link to="/"><img src="/images/icon1.jfif" alt="" className='inline-block h-auto w-[12rem] self-center' /></Link>
           <h1 className='text-3xl self-center hidden md:flex'>Final Fantasy XI</h1>
         </div>
         <nav className='text-lg hidden sm:flex'>
-          <a href="#about" className='p-4 hover:bg-gray-200 transition duration-300'>About</a>
-          <a href="#comments" className='p-4 hover:bg-gray-200 transition duration-300'>Comments</a>
+          <Link to="/" className='p-4 hover:bg-gray-200 transition duration-300'>Home</Link>
+          <Link to="/about" className='p-4 hover:bg-gray-200 transition duration-300'>About</Link>
+          <Link to="/forum" className='p-4 hover:bg-gray-200 transition duration-300'>Comments</Link>
           <div className='nav__dropdown relative hover:bg-gray-200 transition duration-300'>
             <button type='button' className='p-4'>Jobs</button>
             <ul className='nav__dropdown-content absolute w-max bg-white shadow-md rounded-sm opacity-0 pointer-events-none -translate-y-3 transition'>

@@ -61,24 +61,24 @@ function App() {
     getComments()
   }, [])
 
+  const handlePrevClick = () => {
+    console.log('click')
+  }
+
   return (
     <>
       { showModal && <ModalComponent modalMessage={modalMessage} setShowModal={setShowModal} /> }
-      
-      <div className='max-w-7xl m-auto'>
 
+      <div className='max-w-7xl m-auto'>
         <HeaderComponent handleJobClick={handleJobClick} jobsArray={jobsArray} />
 
         <Routes>
-          <Route path='/' element={ <JobComponent job={jobsArray[selectedJob]} /> } />
+          <Route path='/' element={ <JobComponent job={jobsArray[selectedJob]} handlePrevClick={handlePrevClick} /> } />
           <Route path='/about' element={ <BGSection /> } />
+          <Route path='/forum' element={ <TableComponent /> } />
         </Routes>
 
-
         <CommentSection commentArray={commentArray} handleCommentSubmit={handleCommentSubmit} messageRef={messageRef} />
-
-        <TableComponent />
-
       </div>
     </>
   )
