@@ -1,18 +1,19 @@
 // import React from 'react'
 
-export default function JobComponent({job, handlePrevClick, handleNextClick}:any) {
+export default function JobComponent({job, handleJobChange, jobsLength, selectedJob}:any) {
   return (
     <main className="flex flex-col justify-center pt-12 px-[5%] gap-12">
       <div className="flex flex-col gap-6 text-center">
         <h1 className="text-4xl text-green-800">Standard Jobs</h1>
         <p className="underline underline-offset-2">When you first start the game you are allowed to choose between 6 different jobs.</p>
       </div>
-      <div className="flex justify-between">
+      <div className="flex justify-around items-center">
         <div>
-          <button onClick={() => handlePrevClick()} className="px-4 py-2 text-white rounded-md bg-stone-500">Prev</button>
+          <button onClick={() => handleJobChange.prev()} className="px-4 py-2 text-white rounded-md bg-stone-500">Prev</button>
           {/* <img src="/images/blackmage1.webp" alt="" className="w-12 rounded-full" /> */}
         </div>
-        <button onClick={() => handleNextClick()} className="px-4 py-2 text-white rounded-md bg-stone-500">Next</button>
+        <small>{selectedJob+1} of {jobsLength}</small>
+        <button onClick={() => handleJobChange.next()} className="px-4 py-2 text-white rounded-md bg-stone-500">Next</button>
       </div>
       <div className="flex flex-col justify-center sm:flex-row">
         <div className="flex flex-col text-center sm:pr-8 sm:w-1/2">

@@ -22,8 +22,14 @@ function App() {
     createComment()
   }
 
+  // i believe this will be deleted
   const handleJobClick = (index:number) => {
     setSelectedJob(index)
+  }
+
+  const handleJobChange = {
+    prev: () => {setSelectedJob((prev) => prev > 0 ? prev-1 : jobsArray.length-1)},
+    next: () => {setSelectedJob((prev) => prev < jobsArray.length-1 ? prev+1 : 0)},
   }
 
   const commentArray:string[] = ["Comment1", "Comment2", "Comment3"]
@@ -61,10 +67,6 @@ function App() {
     getComments()
   }, [])
 
-  const handlePrevClick = () => {
-    console.log('click')
-  }
-
   return (
     <>
       { showModal && <ModalComponent modalMessage={modalMessage} setShowModal={setShowModal} /> }
@@ -73,7 +75,7 @@ function App() {
         <HeaderComponent handleJobClick={handleJobClick} jobsArray={jobsArray} />
 
         <Routes>
-          <Route path='/' element={ <JobComponent job={jobsArray[selectedJob]} handlePrevClick={handlePrevClick} /> } />
+          <Route path='/' element={ <JobComponent job={jobsArray[selectedJob]} handleJobChange={handleJobChange} jobsLength={jobsArray.length} selectedJob={selectedJob} /> } />
           <Route path='/about' element={ <BGSection /> } />
           <Route path='/forum' element={ <TableComponent /> } />
         </Routes>
