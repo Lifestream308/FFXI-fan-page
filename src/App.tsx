@@ -62,22 +62,25 @@ function App() {
   }, [])
 
   return (
-    <div className='max-w-7xl m-auto'>
-
-      <HeaderComponent handleJobClick={handleJobClick} jobsArray={jobsArray} />
+    <>
       { showModal && <ModalComponent modalMessage={modalMessage} setShowModal={setShowModal} /> }
+      
+      <div className='max-w-7xl m-auto'>
 
-      <Routes>
-        <Route path='/' element={ <JobComponent job={jobsArray[selectedJob]} /> } />
-        <Route path='/about' element={ <BGSection /> } />
-      </Routes>
+        <HeaderComponent handleJobClick={handleJobClick} jobsArray={jobsArray} />
+
+        <Routes>
+          <Route path='/' element={ <JobComponent job={jobsArray[selectedJob]} /> } />
+          <Route path='/about' element={ <BGSection /> } />
+        </Routes>
 
 
-      <CommentSection commentArray={commentArray} handleCommentSubmit={handleCommentSubmit} messageRef={messageRef} />
+        <CommentSection commentArray={commentArray} handleCommentSubmit={handleCommentSubmit} messageRef={messageRef} />
 
-      <TableComponent />
+        <TableComponent />
 
-    </div>
+      </div>
+    </>
   )
 }
 
