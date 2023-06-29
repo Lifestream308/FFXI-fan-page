@@ -13,7 +13,7 @@ import ModalComponent from './components/ModalComponent';
 
 function App() {
 
-  const [selectedJob, setSelectedJob] = useState<number>(0)
+  const [jobIndex, setJobIndex] = useState<number>(0)
   const [showModal, setShowModal] = useState<boolean>(false)
   const [modalMessage, setModalMessage] = useState<string>("Modal Alert Active")
 
@@ -24,12 +24,12 @@ function App() {
 
   // i believe this will be deleted
   const handleJobClick = (index:number) => {
-    setSelectedJob(index)
+    setJobIndex(index)
   }
 
   const handleJobChange = {
-    prev: () => {setSelectedJob((prev) => prev > 0 ? prev-1 : jobsArray.length-1)},
-    next: () => {setSelectedJob((prev) => prev < jobsArray.length-1 ? prev+1 : 0)},
+    prev: () => {setJobIndex((prev) => prev > 0 ? prev-1 : jobsArray.length-1)},
+    next: () => {setJobIndex((prev) => prev < jobsArray.length-1 ? prev+1 : 0)},
   }
 
   const commentArray:string[] = ["Comment1", "Comment2", "Comment3"]
@@ -75,7 +75,7 @@ function App() {
         <HeaderComponent handleJobClick={handleJobClick} jobsArray={jobsArray} />
 
         <Routes>
-          <Route path='/' element={ <JobComponent job={jobsArray[selectedJob]} handleJobChange={handleJobChange} jobsLength={jobsArray.length} selectedJob={selectedJob} /> } />
+          <Route path='/' element={ <JobComponent job={jobsArray[jobIndex]} handleJobChange={handleJobChange} jobIndex={jobIndex} jobsArray={jobsArray} /> } />
           <Route path='/about' element={ <BGSection /> } />
           <Route path='/forum' element={ <TableComponent /> } />
         </Routes>

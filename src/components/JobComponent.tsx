@@ -1,6 +1,6 @@
 // import React from 'react'
 
-export default function JobComponent({job, handleJobChange, jobsLength, selectedJob}:any) {
+export default function JobComponent({job, handleJobChange, jobIndex, jobsArray}:any) {
   return (
     <main className="flex flex-col justify-center pt-12 px-[5%] gap-12">
       <div className="flex flex-col gap-6 text-center">
@@ -12,7 +12,7 @@ export default function JobComponent({job, handleJobChange, jobsLength, selected
           <button onClick={() => handleJobChange.prev()} className="px-4 py-2 text-white rounded-md bg-stone-500">Prev</button>
           {/* <img src="/images/blackmage1.webp" alt="" className="w-12 rounded-full" /> */}
         </div>
-        <small>{selectedJob+1} of {jobsLength}</small>
+        <small>{jobIndex+1} of {jobsArray.length}</small>
         <button onClick={() => handleJobChange.next()} className="px-4 py-2 text-white rounded-md bg-stone-500">Next</button>
       </div>
       <div className="flex flex-col justify-center sm:flex-row">
