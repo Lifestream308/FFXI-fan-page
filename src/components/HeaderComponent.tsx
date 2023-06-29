@@ -16,14 +16,14 @@ export default function HeaderComponent({handleJobClick, jobsArray}:any) {
         <nav className='text-lg hidden sm:flex'>
           <Link to="/" className='p-4 hover:bg-gray-200 transition duration-300'>Home</Link>
           <Link to="/about" className='p-4 hover:bg-gray-200 transition duration-300'>About</Link>
-          <Link to="/forum" className='p-4 hover:bg-gray-200 transition duration-300'>Comments</Link>
+          <Link to="/forum" className='p-4 hover:bg-gray-200 transition duration-300'>Forum</Link>
           <div className='nav__dropdown relative hover:bg-gray-200 transition duration-300'>
             <button type='button' className='p-4'>Jobs</button>
             <ul className='nav__dropdown-content absolute w-max bg-white shadow-md rounded-sm opacity-0 pointer-events-none -translate-y-3 transition'>
               
               {jobsArray.map((job:any, index:number) => {
                 return <li key={job.name} className='hover:bg-gray-200'>
-                <button type="button" className='px-4 block' onClick={() => handleJobClick(index)}>{job.name}</button></li>
+                <Link to="/" className='px-4 block' onClick={() => handleJobClick(index)}>{job.name}</Link></li>
                 })}
               
             </ul>
@@ -34,10 +34,15 @@ export default function HeaderComponent({handleJobClick, jobsArray}:any) {
       <hr />
       <nav className="relative">
         { showMobileUL && <ul className="fixed bg-white right-0 top-[7rem] sm:hidden">
-            {jobsArray.map((job:any, index:number) => {
-              return <li key={job.name} className='w-full hover:bg-gray-200'>
-              <button type="button" className='w-full px-4 block' onClick={() => handleJobClick(index)}>{job.name}</button></li>
-              })}
+          
+          <li className='w-full hover:bg-gray-200'><Link to="/" className='w-full px-4 block'>Home</Link></li>
+          <li className='w-full hover:bg-gray-200'><Link to="/about" className='w-full px-4 block'>About</Link></li>
+          <li className='w-full hover:bg-gray-200'><Link to="/forum" className='w-full px-4 block'>Forum</Link></li>
+
+          {jobsArray.map((job:any, index:number) => {
+            return <li key={job.name} className='w-full hover:bg-gray-200'>
+            <Link to="/" className='w-full px-4 block' onClick={() => handleJobClick(index)}>{job.name}</Link></li>
+            })}
 
 
           </ul>}
