@@ -14,15 +14,14 @@ import ModalComponent from './components/ModalComponent';
 function App() {
 
   const [jobIndex, setJobIndex] = useState<number>(0)
-  const [showModal, setShowModal] = useState<boolean>(false)
+  const [isModalShowing, setIsModalShowing] = useState<boolean>(false)
   const [modalMessage, setModalMessage] = useState<string>("Modal Alert Active")
 
 
   const handleCommentSubmit = () => {
-    createComment()
+    isValidComment()? createComment() : rejectComment()
   }
 
-  // i believe this will be deleted
   const handleJobClick = (index:number) => {
     setJobIndex(index)
   }
@@ -40,17 +39,25 @@ function App() {
   const messageRef = useRef<any>()
 
   // // Create comments
-  const createComment = async () => {
+  const isValidComment = () => {
     if (messageRef.current.value.trim().length > 250 || messageRef.current.value.trim().length < 4) {
-      setModalMessage("Comment must be between 4-250 Characters")
-      setShowModal(true)
-      return
+      return false
+    } else {
+      return true
     }
+  }
+
+  const createComment = async () => {
     await addDoc(commentsCollectionRef, {commentMessage: messageRef.current.value.trim(), name: "Anonymous"+Math.ceil(Math.random()*100), date: new Date()})
     messageRef.current.value = ""
     getComments()
     setModalMessage("Comment Posted")
-    setShowModal(true)
+    setIsModalShowing(true)
+  }
+
+  const rejectComment = () => {
+    setModalMessage("Comment must be between 4-250 characters")
+    setIsModalShowing(true)
   }
 
   // needs interface or type for the array of comments that are coming in from firebase
@@ -69,7 +76,7 @@ function App() {
 
   return (
     <>
-      { showModal && <ModalComponent modalMessage={modalMessage} setShowModal={setShowModal} /> }
+      { isModalShowing && <ModalComponent modalMessage={modalMessage} setIsModalShowing={setIsModalShowing} /> }
 
       <div className='max-w-7xl m-auto'>
         <HeaderComponent handleJobClick={handleJobClick} jobsArray={jobsArray} />
