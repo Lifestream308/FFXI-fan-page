@@ -19,6 +19,7 @@ function App() {
   const [showMobileUL, setShowMobileUL] = useState<boolean>(false)
 
   const menuRef = useRef<any>()
+  const mobileBtnRef = useRef<any>()
 
   const handleCommentSubmit = () => {
     isValidComment()? createComment() : rejectComment()
@@ -78,11 +79,8 @@ function App() {
 
   useEffect(() => {
     let handler = (e:any)=>{
-      // mess with console logs until figure out correct code for right effect
-      if(!menuRef.current?.contains(e.target)){
-        // setShowMobileUL(false);
-        console.log(menuRef);
-        console.log(e.target);
+      if(!menuRef.current?.contains(e.target) && !mobileBtnRef.current?.contains(e.target)){
+        setShowMobileUL(false);
       }      
     }
 
@@ -98,7 +96,7 @@ function App() {
       { isModalShowing && <ModalComponent modalMessage={modalMessage} setIsModalShowing={setIsModalShowing} /> }
 
       <div className='max-w-7xl m-auto'>
-        <HeaderComponent handleJobClick={handleJobClick} jobsArray={jobsArray} menuRef={menuRef} showMobileUL={showMobileUL} setShowMobileUL={setShowMobileUL} />
+        <HeaderComponent handleJobClick={handleJobClick} jobsArray={jobsArray} menuRef={menuRef} mobileBtnRef={mobileBtnRef} showMobileUL={showMobileUL} setShowMobileUL={setShowMobileUL} />
 
         <Routes>
           <Route path='/' element={ <JobComponent job={jobsArray[jobIndex]} handleJobChange={handleJobChange} jobIndex={jobIndex} jobsArray={jobsArray} /> } />

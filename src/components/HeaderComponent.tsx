@@ -2,7 +2,7 @@
 // import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-export default function HeaderComponent({handleJobClick, jobsArray, menuRef, showMobileUL, setShowMobileUL}:any) {
+export default function HeaderComponent({handleJobClick, jobsArray, menuRef, mobileBtnRef, showMobileUL, setShowMobileUL}:any) {
 
   // const [showMobileUL, setShowMobileUL] = useState<boolean>(false)
 
@@ -29,7 +29,7 @@ export default function HeaderComponent({handleJobClick, jobsArray, menuRef, sho
             </ul>
           </div>
         </nav>
-        <button type="button" onClick={() => {setShowMobileUL((prev: any) => !prev)}} className="text-3xl p-2 sm:hidden"><i className="bi bi-list"></i></button>
+        <button type="button" ref={mobileBtnRef} onClick={() => {setShowMobileUL((prev: any) => !prev)}} className="text-3xl p-2 sm:hidden"><i className="bi bi-list"></i></button>
       </div>
       <hr />
       <nav className="relative">
