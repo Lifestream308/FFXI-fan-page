@@ -1,10 +1,10 @@
 // import React from 'react'
-import { useState } from 'react'
+// import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-export default function HeaderComponent({handleJobClick, jobsArray}:any) {
+export default function HeaderComponent({handleJobClick, jobsArray, menuRef, showMobileUL, setShowMobileUL}:any) {
 
-  const [showMobileUL, setShowMobileUL] = useState<boolean>(false)
+  // const [showMobileUL, setShowMobileUL] = useState<boolean>(false)
 
   return (
     <header className='sticky top-0 bg-white z-10'>
@@ -29,11 +29,11 @@ export default function HeaderComponent({handleJobClick, jobsArray}:any) {
             </ul>
           </div>
         </nav>
-        <button type="button" onClick={()=> {setShowMobileUL(prev => !prev)}} className="text-3xl p-2 sm:hidden"><i className="bi bi-list"></i></button>
+        <button type="button" onClick={() => {setShowMobileUL((prev: any) => !prev)}} className="text-3xl p-2 sm:hidden"><i className="bi bi-list"></i></button>
       </div>
       <hr />
       <nav className="relative">
-        { showMobileUL && <ul className="fixed bg-white right-0 top-[7rem] sm:hidden">
+        { showMobileUL && <ul ref={menuRef} className="fixed bg-white right-0 top-[7rem] sm:hidden">
           
           <li className='w-full hover:bg-gray-200'><Link to="/" className='w-full px-4 block'>Home</Link></li>
           <li className='w-full hover:bg-gray-200'><Link to="/about" className='w-full px-4 block'>About</Link></li>

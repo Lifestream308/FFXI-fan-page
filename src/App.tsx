@@ -16,7 +16,9 @@ function App() {
   const [jobIndex, setJobIndex] = useState<number>(0)
   const [isModalShowing, setIsModalShowing] = useState<boolean>(false)
   const [modalMessage, setModalMessage] = useState<string>("Modal Alert Active")
+  const [showMobileUL, setShowMobileUL] = useState<boolean>(false)
 
+  const menuRef = useRef<any>()
 
   const handleCommentSubmit = () => {
     isValidComment()? createComment() : rejectComment()
@@ -74,12 +76,27 @@ function App() {
     getComments()
   }, [])
 
+  useEffect(() => {
+    let handler = (e:any)=>{
+      if(!menuRef.current.contains(e.target)){
+        setShowMobileUL(false);
+        console.log(menuRef.current);
+      }      
+    }
+
+    document.addEventListener("mousedown", handler);
+    
+    return() =>{
+      document.removeEventListener("mousedown", handler);
+    }
+  });
+
   return (
     <>
       { isModalShowing && <ModalComponent modalMessage={modalMessage} setIsModalShowing={setIsModalShowing} /> }
 
       <div className='max-w-7xl m-auto'>
-        <HeaderComponent handleJobClick={handleJobClick} jobsArray={jobsArray} />
+        <HeaderComponent handleJobClick={handleJobClick} jobsArray={jobsArray} menuRef={menuRef} showMobileUL={showMobileUL} setShowMobileUL={setShowMobileUL} />
 
         <Routes>
           <Route path='/' element={ <JobComponent job={jobsArray[jobIndex]} handleJobChange={handleJobChange} jobIndex={jobIndex} jobsArray={jobsArray} /> } />
