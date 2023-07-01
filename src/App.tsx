@@ -78,9 +78,11 @@ function App() {
 
   useEffect(() => {
     let handler = (e:any)=>{
-      if(!menuRef.current.contains(e.target)){
-        setShowMobileUL(false);
-        console.log(menuRef.current);
+      // mess with console logs until figure out correct code for right effect
+      if(!menuRef.current?.contains(e.target)){
+        // setShowMobileUL(false);
+        console.log(menuRef);
+        console.log(e.target);
       }      
     }
 
@@ -89,7 +91,7 @@ function App() {
     return() =>{
       document.removeEventListener("mousedown", handler);
     }
-  });
+  }, []);
 
   return (
     <>
