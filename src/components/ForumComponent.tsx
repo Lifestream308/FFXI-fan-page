@@ -1,6 +1,6 @@
 // import React from 'react'
 
-export default function TableComponent() {
+export default function ForumComponent() {
   return (
     <section className="mt-8 mb-24 mx-8 overflow-hidden rounded-lg">
         <div className="min-w-full">

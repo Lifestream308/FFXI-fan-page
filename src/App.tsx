@@ -4,12 +4,13 @@ import { collection, getDocs, addDoc } from "firebase/firestore";
 // import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import { Route, Routes } from "react-router-dom"
 import jobsArray from './jobsArray';
-import BGSection from "./components/BGSection"
-import CommentSection from './components/CommentSection'
+import AboutComponent from "./components/AboutComponent"
+import CommentComponent from './components/CommentComponent'
 import HeaderComponent from './components/HeaderComponent';
 import JobComponent from './components/JobComponent';
-import TableComponent from './components/TableComponent';
+import ForumComponent from './components/ForumComponent';
 import ModalComponent from './components/ModalComponent';
+import FooterComponent from './components/FooterComponent';
 
 function App() {
 
@@ -100,12 +101,15 @@ function App() {
 
         <Routes>
           <Route path='/' element={ <JobComponent job={jobsArray[jobIndex]} handleJobChange={handleJobChange} jobIndex={jobIndex} jobsArray={jobsArray} /> } />
-          <Route path='/about' element={ <BGSection /> } />
-          <Route path='/forum' element={ <TableComponent /> } />
+          <Route path='/about' element={ <AboutComponent /> } />
+          <Route path='/forum' element={ <ForumComponent /> } />
         </Routes>
 
-        <CommentSection commentArray={commentArray} handleCommentSubmit={handleCommentSubmit} messageRef={messageRef} />
+        <CommentComponent commentArray={commentArray} handleCommentSubmit={handleCommentSubmit} messageRef={messageRef} />
+
       </div>
+
+      <FooterComponent />
     </>
   )
 }

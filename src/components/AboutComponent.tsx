@@ -1,6 +1,6 @@
 // import React from 'react'
 
-export default function BGSection() {
+export default function AboutComponent() {
   return (
     <>
       <div className="mt-6 px-6">

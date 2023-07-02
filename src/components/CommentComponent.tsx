@@ -1,6 +1,6 @@
 // import React from 'react'
 
-export default function CommentSection({commentArray, messageRef, handleCommentSubmit}:any) {
+export default function CommentComponent({commentArray, messageRef, handleCommentSubmit}:any) {
   return (
     <section id="comments" className="flex justify-center">
     <div className="w-3/4 m-8 mt-14">
