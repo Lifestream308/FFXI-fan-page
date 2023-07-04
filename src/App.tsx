@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
-import { db } from "./firebase-config"
-import { collection, getDocs, addDoc } from "firebase/firestore";
+// import { db } from "./firebase-config"
+import { addDoc, getDocs } from "firebase/firestore";
 // import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import { Route, Routes } from "react-router-dom"
 import jobsArray from './jobsArray';
-import { messageRef, isValidComment } from './util/FirebaseFunctions';
+import { isValidComment, commentsCollectionRef } from './util/FirebaseFunctions';
 import AboutComponent from "./components/AboutComponent"
 import CommentComponent from './components/CommentComponent'
 import HeaderComponent from './components/HeaderComponent';
@@ -20,11 +20,14 @@ function App() {
   const [modalMessage, setModalMessage] = useState<string>("Modal Alert Active")
   const [showMobileUL, setShowMobileUL] = useState<boolean>(false)
 
+  const [firebaseItemsDB, setFirebaseItemsDB] = useState([])
+  const messageRef = useRef<any>()
+
   const menuRef = useRef<any>()
   const mobileBtnRef = useRef<any>()
 
   const handleCommentSubmit = () => {
-    isValidComment()? createComment() : rejectComment()
+    isValidComment(messageRef)? createComment() : rejectComment()
   }
 
   const handleJobClick = (index:number) => {
@@ -39,8 +42,8 @@ function App() {
   const commentArray:string[] = ["Comment1", "Comment2", "Comment3"]
 
   // Firebase functionality
-  const [firebaseItemsDB, setFirebaseItemsDB] = useState([])
-  const commentsCollectionRef = collection(db, "commentsCollection")
+  // const [firebaseItemsDB, setFirebaseItemsDB] = useState([])
+  // const commentsCollectionRef = collection(db, "commentsCollection")
 
   // Create comments
   const createComment = async () => {
@@ -52,7 +55,7 @@ function App() {
   }
 
   const rejectComment = () => {
-    setModalMessage("Comment must be between 4-250 characters")
+    setModalMessage("Comment must be between 4-250 characters long.")
     setIsModalShowing(true)
   }
 
@@ -76,7 +79,6 @@ function App() {
         setShowMobileUL(false);
       }      
     }
-
     document.addEventListener("click", handler);
     
     return() =>{
