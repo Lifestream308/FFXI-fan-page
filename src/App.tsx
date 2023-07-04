@@ -4,6 +4,7 @@ import { collection, getDocs, addDoc } from "firebase/firestore";
 // import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import { Route, Routes } from "react-router-dom"
 import jobsArray from './jobsArray';
+import { messageRef, isValidComment } from './util/FirebaseFunctions';
 import AboutComponent from "./components/AboutComponent"
 import CommentComponent from './components/CommentComponent'
 import HeaderComponent from './components/HeaderComponent';
@@ -40,17 +41,8 @@ function App() {
   // Firebase functionality
   const [firebaseItemsDB, setFirebaseItemsDB] = useState([])
   const commentsCollectionRef = collection(db, "commentsCollection")
-  const messageRef = useRef<any>()
 
-  // // Create comments
-  const isValidComment = () => {
-    if (messageRef.current.value.trim().length > 250 || messageRef.current.value.trim().length < 4) {
-      return false
-    } else {
-      return true
-    }
-  }
-
+  // Create comments
   const createComment = async () => {
     await addDoc(commentsCollectionRef, {commentMessage: messageRef.current.value.trim(), name: "Anonymous"+Math.ceil(Math.random()*100), date: new Date()})
     messageRef.current.value = ""
