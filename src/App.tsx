@@ -77,6 +77,23 @@ function App() {
       document.removeEventListener("click", handler);
     }
   }, []);
+  
+  useEffect(() => {
+    let handler = (e:any)=>{
+      console.log(e)
+      if (e.code === "ArrowLeft") {
+        handleJobChange.prev()
+      }
+      if (e.code === "ArrowRight") {
+        handleJobChange.next()
+      }
+    }
+    document.addEventListener("keydown", handler);
+    
+    return() =>{
+      document.removeEventListener("keydown", handler);
+    }
+  }, []);
 
   const location = useLocation()  
   useEffect(() => {
