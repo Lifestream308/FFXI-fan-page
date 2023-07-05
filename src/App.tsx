@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-// import { db } from "./firebase-config"
 import { addDoc, getDocs } from "firebase/firestore";
 // import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import { Route, Routes, useLocation } from "react-router-dom"
@@ -39,13 +38,6 @@ function App() {
     next: () => {setJobIndex((prev) => prev < jobsArray.length-1 ? prev+1 : 0)},
   }
 
-  const commentArray:string[] = ["Comment1", "Comment2", "Comment3"]
-
-  // Firebase functionality
-  // const [firebaseItemsDB, setFirebaseItemsDB] = useState([])
-  // const commentsCollectionRef = collection(db, "commentsCollection")
-
-  // Create comments
   const createComment = async () => {
     await addDoc(commentsCollectionRef, {commentMessage: messageRef.current.value.trim(), name: "Anonymous"+Math.ceil(Math.random()*1000), date: new Date()})
     messageRef.current.value = ""
@@ -60,19 +52,15 @@ function App() {
   }
 
   // needs interface or type for the array of comments that are coming in from firebase
-  // // Read all comments
   const getComments = async () => {
     const data = await getDocs(commentsCollectionRef);
-    let firebaseArray:any = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-    setFirebaseItemsDB(firebaseArray);
-    // setFirebaseItemsDB(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    // let firebaseArray:any = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    // setFirebaseItemsDB(firebaseArray);
+    setFirebaseItemsDB(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     // console.log(firebaseItemsDB)
   }
 
-  useEffect(() => {
-    console.log(firebaseItemsDB)
-  }, [firebaseItemsDB])
-
+  // Below are UseEffects 
   useEffect(() => {
     getComments()
   }, [])
@@ -108,7 +96,7 @@ function App() {
           <Route path='/forum' element={ <ForumComponent /> } />
         </Routes>
 
-        <CommentComponent commentArray={commentArray} firebaseItemsDB={firebaseItemsDB} handleCommentSubmit={handleCommentSubmit} messageRef={messageRef} />
+        <CommentComponent firebaseItemsDB={firebaseItemsDB} handleCommentSubmit={handleCommentSubmit} messageRef={messageRef} />
 
       </div>
 
