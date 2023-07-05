@@ -5,15 +5,15 @@ export default function JobComponent({job, handleJobChange, jobIndex, jobsArray}
     <main className="flex flex-col justify-center pt-12 px-[5%] gap-12">
       <div className="flex flex-col gap-6 text-center">
         <h1 className="text-4xl text-green-800">Standard Jobs</h1>
-        <p className="text-lg underline underline-offset-2">When you first create a character you must choose one of the six starting jobs.</p>
+        <p className="text-lg underline underline-offset-2">When you first create a character you must choose one of the six starting jobs below.</p>
       </div>
       <div className="flex self-center items-center justify-evenly w-4/5 max-w-md">
         <div>
-          <button onClick={() => handleJobChange.prev()} className="px-4 py-2 text-white rounded-md bg-stone-500">Prev</button>
+          <button onClick={() => handleJobChange.prev()} className="px-4 py-2 text-white rounded-md bg-stone-500 hover:opacity-90">Prev</button>
           {/* <img src="/images/blackmage1.webp" alt="" className="w-12 rounded-full" /> */}
         </div>
         <small>{jobIndex+1} of {jobsArray.length}</small>
-        <button onClick={() => handleJobChange.next()} className="px-4 py-2 text-white rounded-md bg-stone-500">Next</button>
+        <button onClick={() => handleJobChange.next()} className="px-4 py-2 text-white rounded-md bg-stone-500 hover:opacity-90">Next</button>
       </div>
       <div className="flex flex-col justify-center sm:flex-row">
         <div className="flex flex-col text-center sm:pr-8 sm:w-1/2">

@@ -18,7 +18,8 @@ export default function HeaderComponent({handleJobClick, jobsArray, menuRef, mob
           <Link to="/about" className='p-4 hover:bg-gray-200 transition duration-300'>About</Link>
           <Link to="/forum" className='p-4 hover:bg-gray-200 transition duration-300'>Forum</Link>
           <div className='nav__dropdown relative hover:bg-gray-200 transition duration-300'>
-            <button type='button' className='p-4'>Jobs</button>
+            <button type='button' className='p-4'>Jobs
+            <span className='text-gray-500 text-sm'> <i className="bi bi-caret-down-fill"></i></span></button>
             <ul className='nav__dropdown-content absolute w-max bg-white shadow-md rounded-sm opacity-0 pointer-events-none -translate-y-3 transition'>
               
               {jobsArray.map((job:any, index:number) => {
