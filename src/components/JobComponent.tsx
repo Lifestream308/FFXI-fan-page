@@ -5,7 +5,7 @@ export default function JobComponent({job, handleJobChange, jobIndex, jobsArray}
     <main className="flex flex-col justify-center pt-12 px-[5%] gap-12">
       <div className="flex flex-col gap-6 text-center">
         <h1 className="text-4xl text-green-800">Standard Jobs</h1>
-        <p className="text-lg underline underline-offset-2">When you first start the game you are allowed to choose between 6 different jobs.</p>
+        <p className="text-lg underline underline-offset-2">When you first create a character you must choose one of the six starting jobs.</p>
       </div>
       <div className="flex self-center items-center justify-evenly w-4/5 max-w-md">
         <div>

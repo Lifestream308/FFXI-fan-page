@@ -9,9 +9,9 @@ export default function FooterComponent() {
             <a href='https://github.com/Lifestream308/FFXI-fan-page' target='_blank'><i className="bi bi-github"></i></a>
         </div>
         <nav className='mx-auto p-2 flex justify-center text-lg w-4/5 max-w-3xl min-w-fit border-4 border-black rounded-lg'>
-          <Link to="/" className='p-3 sm:px-8 hover:text-gray-500 transition duration-200'>Home</Link>
-          <Link to="/about" className='p-3 sm:px-8 hover:text-gray-500 transition duration-200'>About</Link>
-          <Link to="/forum" className='p-3 sm:px-8 hover:text-gray-500 transition duration-200'>Forum</Link>
+          <Link to="/" onClick={() => {window.scrollTo(0,0)}} className='p-3 sm:px-8 hover:text-gray-500 transition duration-200'>Home</Link>
+          <Link to="/about" onClick={() => {window.scrollTo(0,0)}} className='p-3 sm:px-8 hover:text-gray-500 transition duration-200'>About</Link>
+          <Link to="/forum" onClick={() => {window.scrollTo(0,0)}} className='p-3 sm:px-8 hover:text-gray-500 transition duration-200'>Forum</Link>
           <Link to="/" className='p-3 sm:px-8 hover:text-gray-500 transition duration-200'>Portfolio</Link>
         </nav>
         <div className='flex flex-col gap-5 items-center'>

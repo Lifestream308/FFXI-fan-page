@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 // import { db } from "./firebase-config"
 import { addDoc, getDocs } from "firebase/firestore";
 // import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useLocation } from "react-router-dom"
 import jobsArray from './jobsArray';
 import { isValidComment, commentsCollectionRef } from './util/FirebaseFunctions';
 import AboutComponent from "./components/AboutComponent"
@@ -85,6 +85,11 @@ function App() {
       document.removeEventListener("click", handler);
     }
   }, []);
+
+  const location = useLocation()  
+  useEffect(() => {
+    window.scrollTo(0,0)
+}, [location.pathname])
 
   return (
     <>
