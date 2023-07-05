@@ -20,7 +20,7 @@ function App() {
   const [modalMessage, setModalMessage] = useState<string>("Modal Alert Active")
   const [showMobileUL, setShowMobileUL] = useState<boolean>(false)
 
-  const [firebaseItemsDB, setFirebaseItemsDB] = useState([])
+  const [firebaseItemsDB, setFirebaseItemsDB] = useState<any>([{commentMessage:"1", id:1, name:"test"}])
   const messageRef = useRef<any>()
 
   const menuRef = useRef<any>()
@@ -47,7 +47,7 @@ function App() {
 
   // Create comments
   const createComment = async () => {
-    await addDoc(commentsCollectionRef, {commentMessage: messageRef.current.value.trim(), name: "Anonymous"+Math.ceil(Math.random()*100), date: new Date()})
+    await addDoc(commentsCollectionRef, {commentMessage: messageRef.current.value.trim(), name: "Anonymous"+Math.ceil(Math.random()*1000), date: new Date()})
     messageRef.current.value = ""
     getComments()
     setModalMessage("Comment Posted")
@@ -65,9 +65,13 @@ function App() {
     const data = await getDocs(commentsCollectionRef);
     let firebaseArray:any = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
     setFirebaseItemsDB(firebaseArray);
-    console.log(firebaseArray)
-    console.log(firebaseItemsDB)
+    // setFirebaseItemsDB(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    // console.log(firebaseItemsDB)
   }
+
+  useEffect(() => {
+    console.log(firebaseItemsDB)
+  }, [firebaseItemsDB])
 
   useEffect(() => {
     getComments()
@@ -104,7 +108,7 @@ function App() {
           <Route path='/forum' element={ <ForumComponent /> } />
         </Routes>
 
-        <CommentComponent commentArray={commentArray} handleCommentSubmit={handleCommentSubmit} messageRef={messageRef} />
+        <CommentComponent commentArray={commentArray} firebaseItemsDB={firebaseItemsDB} handleCommentSubmit={handleCommentSubmit} messageRef={messageRef} />
 
       </div>
 
