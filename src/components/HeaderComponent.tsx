@@ -24,7 +24,7 @@ export default function HeaderComponent({handleJobClick, jobsArray, menuRef, mob
               
               {jobsArray.map((job:any, index:number) => {
                 return <li key={job.name} className='hover:bg-gray-200'>
-                <Link to="/" className='px-4 block' onClick={() => handleJobClick(index)}>{job.name}</Link></li>
+                <Link to="/" className='px-3 block' onClick={() => handleJobClick(index)}>{job.name}</Link></li>
                 })}
               
             </ul>
