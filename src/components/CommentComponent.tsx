@@ -12,13 +12,13 @@ export default function CommentComponent({firebaseItemsDB, messageRef, handleCom
 
       <div className="my-6 mb-3">
         <small className="text-gray-500">Sort by </small>
-        <button className="text-gray-600 underline">Top<span className="text-xs text-gray-500"><i className="bi bi-caret-down-fill"></i></span></button>
+        <button className="text-gray-600 underline">Recent<span className="text-xs text-gray-500"><i className="bi bi-caret-down-fill"></i></span></button>
       </div>
 
       {firebaseItemsDB.map((comment:any) => {
           return (
-          <div className="mb-6" key={comment.id}>
-            <small className="text-blue-800">{comment.name}</small>
+          <div className="mb-4" key={comment.id}>
+            <small className="text-blue-800">{comment.name} on {comment.date.seconds}</small>
             <p className="mb-6">{comment.commentMessage}</p>
             <hr />
           </div>

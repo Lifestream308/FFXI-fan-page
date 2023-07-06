@@ -19,7 +19,7 @@ function App() {
   const [modalMessage, setModalMessage] = useState<string>("Modal Alert Active")
   const [showMobileUL, setShowMobileUL] = useState<boolean>(false)
 
-  const [firebaseItemsDB, setFirebaseItemsDB] = useState<any>([{commentMessage:"1", id:1, name:"test"}])
+  const [firebaseItemsDB, setFirebaseItemsDB] = useState<any>([{commentMessage:"1", id:1, name:"test", date: {seconds: 999}}])
   const messageRef = useRef<any>()
 
   const menuRef = useRef<any>()
@@ -58,8 +58,8 @@ function App() {
       setFirebaseItemsDB(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     }
     catch (err) {
-      console.error("Something went wrong.")
-      console.error(err)
+      console.log("Something went wrong.")
+      console.log(err)
     }
   }
 
