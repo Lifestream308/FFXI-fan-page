@@ -53,11 +53,14 @@ function App() {
 
   // needs interface or type for the array of comments that are coming in from firebase
   const getComments = async () => {
-    const data = await getDocs(commentsCollectionRef);
-    // let firebaseArray:any = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-    // setFirebaseItemsDB(firebaseArray);
-    setFirebaseItemsDB(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    // console.log(firebaseItemsDB)
+    try {
+      const data = await getDocs(commentsCollectionRef);
+      setFirebaseItemsDB(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    }
+    catch (err) {
+      console.error("Something went wrong.")
+      console.error(err)
+    }
   }
 
   // Below are UseEffects 
@@ -80,7 +83,6 @@ function App() {
   
   useEffect(() => {
     let handler = (e:any)=>{
-      console.log(e)
       if (e.code === "ArrowLeft") {
         handleJobChange.prev()
       }
