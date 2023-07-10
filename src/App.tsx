@@ -119,7 +119,7 @@ function App() {
           <Route path='/forum' element={ <ForumComponent /> } />
         </Routes>
 
-        <CommentComponent firebaseItemsDB={firebaseItemsDB} handleCommentSubmit={handleCommentSubmit} messageRef={messageRef} />
+        <CommentComponent firebaseItemsDB={firebaseItemsDB} handleCommentSubmit={handleCommentSubmit} isSortedByRecent={isSortedByRecent} messageRef={messageRef} />
 
       </div>
 
