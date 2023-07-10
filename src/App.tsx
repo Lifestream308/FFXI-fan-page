@@ -22,7 +22,8 @@ function App() {
   const [firebaseItemsDB, setFirebaseItemsDB] = useState<any>([{commentMessage:"1", id:1, name:"test", date: {seconds: 999}}])
   const messageRef = useRef<any>()
 
-  let isSortedByRecent = true
+  const [isSortedByRecent, setIsSortedByRecent] = useState<boolean>(true)
+  // let isSortedByRecent = true
 
   const menuRef = useRef<any>()
   const mobileBtnRef = useRef<any>()
@@ -33,6 +34,13 @@ function App() {
 
   const handleJobClick = (index:number) => {
     setJobIndex(index)
+  }
+
+  const handleSortButton = () => {
+    setIsSortedByRecent(prev => !prev)
+    // isSortedByRecent = false
+    console.log(isSortedByRecent)
+    getComments()
   }
 
   const handleJobChange = {
@@ -60,6 +68,7 @@ function App() {
       let comments = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       isSortedByRecent ? comments.sort((a:any, b:any) => b.date.seconds - a.date.seconds) : comments.sort((a:any, b:any) => a.date.seconds - b.date.seconds)
       setFirebaseItemsDB(comments)
+      console.log(isSortedByRecent)
     }
     catch (err) {
       console.log("Something went wrong.")
@@ -119,7 +128,7 @@ function App() {
           <Route path='/forum' element={ <ForumComponent /> } />
         </Routes>
 
-        <CommentComponent firebaseItemsDB={firebaseItemsDB} handleCommentSubmit={handleCommentSubmit} isSortedByRecent={isSortedByRecent} messageRef={messageRef} />
+        <CommentComponent firebaseItemsDB={firebaseItemsDB} handleCommentSubmit={handleCommentSubmit} isSortedByRecent={isSortedByRecent} messageRef={messageRef} handleSortButton={handleSortButton} />
 
       </div>
 

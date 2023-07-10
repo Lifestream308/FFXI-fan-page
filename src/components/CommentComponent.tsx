@@ -1,7 +1,7 @@
 // import React from 'react'
 import { Link } from "react-router-dom"
 
-export default function CommentComponent({firebaseItemsDB, messageRef, isSortedByRecent, handleCommentSubmit}:any) {
+export default function CommentComponent({firebaseItemsDB, messageRef, isSortedByRecent, handleSortButton, handleCommentSubmit}:any) {
   return (
     <section id="comments" className="flex justify-center">
       <div className="w-3/4 m-8 mt-14">
@@ -13,7 +13,7 @@ export default function CommentComponent({firebaseItemsDB, messageRef, isSortedB
 
         <div className="my-6 mb-3">
           <small className="text-gray-500">Sort by </small>
-          <button className="text-gray-600 underline">{isSortedByRecent ? "Recent" : "Oldest"}<span className="text-xs text-gray-500"><i className="bi bi-caret-down-fill"></i></span></button>
+          <button className="text-gray-600 underline" onClick={handleSortButton}>{isSortedByRecent ? "Recent" : "Oldest"}<span className="text-xs text-gray-500"><i className="bi bi-caret-down-fill"></i></span></button>
         </div>
 
         {firebaseItemsDB.map((comment:any) => {
