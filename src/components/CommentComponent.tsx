@@ -1,7 +1,13 @@
 // import React from 'react'
+import { useState } from 'react'
 import { Link } from "react-router-dom"
 
 export default function CommentComponent({firebaseItemsDB, messageRef, isSortedByRecent, handleSortButton, handleCommentSubmit}:any) {
+
+  const [page, setPage] = useState<number>(1)
+  
+  const commentsPerPage:number = 5
+
   return (
     <section id="comments" className="flex justify-center">
       <div className="w-3/4 m-8 mt-14">
@@ -16,16 +22,20 @@ export default function CommentComponent({firebaseItemsDB, messageRef, isSortedB
           <button className="text-gray-600 underline" onClick={handleSortButton}>{isSortedByRecent ? "Recent" : "Oldest"}<span className="text-xs text-gray-500"><i className="bi bi-caret-down-fill"></i></span></button>
         </div>
 
-        {firebaseItemsDB.map((comment:any) => {
+        {firebaseItemsDB.slice(commentsPerPage*(page-1), commentsPerPage*page).map((comment:any) => {
             return (
             <div className="mb-4" key={comment.id}>
-              <small className="text-blue-800">{comment.name} on {comment.date.seconds}</small>
+              <small className="text-blue-800">{comment.name}</small>
               <p className="mb-6">{comment.commentMessage}</p>
               <hr />
             </div>
         )})}
 
-      <div className="">PaginationComponent</div>
+      <div className="mt-6">
+        <button>1</button>
+        <button onClick={() => setPage(2)}>2</button>
+        <button>3</button>
+      </div>
 
       </div>
     </section>
