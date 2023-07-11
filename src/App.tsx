@@ -18,12 +18,10 @@ function App() {
   const [isModalShowing, setIsModalShowing] = useState<boolean>(false)
   const [modalMessage, setModalMessage] = useState<string>("Modal Alert Active")
   const [showMobileUL, setShowMobileUL] = useState<boolean>(false)
+  const [isSortedByRecent, setIsSortedByRecent] = useState<boolean>(true)
 
   const [firebaseItemsDB, setFirebaseItemsDB] = useState<any>([{commentMessage:"1", id:1, name:"test", date: {seconds: 999}}])
   const messageRef = useRef<any>()
-
-  const [isSortedByRecent, setIsSortedByRecent] = useState<boolean>(true)
-  // let isSortedByRecent = true
 
   const menuRef = useRef<any>()
   const mobileBtnRef = useRef<any>()
@@ -38,9 +36,6 @@ function App() {
 
   const handleSortButton = () => {
     setIsSortedByRecent(prev => !prev)
-    // isSortedByRecent = false
-    console.log(isSortedByRecent)
-    getComments()
   }
 
   const handleJobChange = {
@@ -68,7 +63,6 @@ function App() {
       let comments = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       isSortedByRecent ? comments.sort((a:any, b:any) => b.date.seconds - a.date.seconds) : comments.sort((a:any, b:any) => a.date.seconds - b.date.seconds)
       setFirebaseItemsDB(comments)
-      console.log(isSortedByRecent)
     }
     catch (err) {
       console.log("Something went wrong.")
@@ -82,6 +76,10 @@ function App() {
   }, [])
 
   useEffect(() => {
+    getComments()
+  }, [isSortedByRecent])
+
+  useEffect(() => {
     let handler = (e:any)=>{
       if(!menuRef.current?.contains(e.target) && !mobileBtnRef.current?.contains(e.target)){
         setShowMobileUL(false);
@@ -89,7 +87,7 @@ function App() {
     }
     document.addEventListener("click", handler);
     
-    return() =>{
+    return () =>{
       document.removeEventListener("click", handler);
     }
   }, []);
