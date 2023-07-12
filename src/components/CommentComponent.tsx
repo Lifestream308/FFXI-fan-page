@@ -6,7 +6,9 @@ export default function CommentComponent({firebaseItemsDB, messageRef, isSortedB
 
   const [page, setPage] = useState<number>(1)
   
-  const commentsPerPage:number = 5
+  const commentsPerPage :number = 5
+  const divisibleComments :number = Math.ceil((firebaseItemsDB.length / commentsPerPage))
+  const pagination :number[] = [...Array(divisibleComments).keys()]
 
   return (
     <section id="comments" className="flex justify-center">
@@ -31,11 +33,13 @@ export default function CommentComponent({firebaseItemsDB, messageRef, isSortedB
             </div>
         )})}
 
-      <div className="mt-6">
-        <button>1</button>
-        <button onClick={() => setPage(2)}>2</button>
-        <button>3</button>
-      </div>
+              <br />
+
+      {pagination.map((num) => {
+        return (
+          <button key={num} onClick={() => setPage(num+1)} className='m-2 p-2'>{num+1}</button>
+        )
+      })}
 
       </div>
     </section>
