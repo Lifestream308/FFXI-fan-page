@@ -33,8 +33,8 @@ export default function HeaderComponent({handleJobClick, jobsArray, menuRef, mob
         <button type="button" ref={mobileBtnRef} onClick={() => {setShowMobileUL((prev: any) => !prev)}} className="text-3xl p-2 sm:hidden"><i className="bi bi-list"></i></button>
       </div>
       <hr />
-      <nav className="relative">
-        { showMobileUL && <ul ref={menuRef} className="fixed bg-white right-0 top-[7rem] sm:hidden">
+      <nav className="relative text-lg">
+        { showMobileUL && <ul ref={menuRef} className="fixed bg-white right-0 top-[6.75rem] sm:hidden">
           
           <li className='w-full hover:bg-gray-200'><Link to="/" className='w-full px-4 block'>Home</Link></li>
           <li className='w-full hover:bg-gray-200'><Link to="/about" className='w-full px-4 block'>About</Link></li>
