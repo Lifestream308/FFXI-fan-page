@@ -33,13 +33,14 @@ export default function CommentComponent({firebaseItemsDB, messageRef, isSortedB
             </div>
         )})}
 
-              <br />
-
-      {pagination.map((num) => {
-        return (
-          <button key={num} onClick={() => setPage(num+1)} className='m-2 p-2'>{num+1}</button>
-        )
-      })}
+      <div className='flex justify-center'>
+        {pagination.map((num) => {
+          return (
+            // add in a ternary in classnames if num+1 = page ? output border-blue : border gray 300
+            <button key={num} onClick={() => setPage(num+1)} className='m-1 px-4 py-2 bg-stone-50 border border-gray-300 rounded-md shadow-md shadow-gray-500'>{num+1}</button>
+          )
+        })}
+      </div>
 
       </div>
     </section>
