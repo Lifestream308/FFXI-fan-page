@@ -6,11 +6,12 @@ export default function AboutComponent() {
       <div className="mt-6 px-6 sm:px-[5%] max-w-5xl">
         <div className="">
           <h2 className="mb-3 text-4xl font-bold">About Website</h2>
-          <p className="leading-8 text-gray-700">This site was created using React, Typescript, Tailwind, and Firebase. This project also makes use of environment variables, react-router-dom, and is hosted on Netlify. After more than 100 commits you can see the code for yourself on <a href="https://github.com/Lifestream308/FFXI-fan-page/tree/main" target="_blank" className="text-blue-700 underline">Github</a>.</p>
+          <p className="leading-8 text-gray-700">This site was created using React, Typescript, Tailwind, and Firebase. This project also makes use of environment variables, react-router-dom, and is hosted on Netlify. After more than 100 commits you can see the code for yourself on <a href="https://github.com/Lifestream308/FFXI-fan-page/tree/main" target="_blank" className="text-blue-700 underline">Github</a>. The ability descriptions come from the official Final Fantasy XI Strategy Guide.</p>
+          <img src="/images/strategyGuide.jfif" alt="Picture of FFXI Strategy Guide" className="mt-4 h-auto w-40" />
         </div>
         <div className="mt-10">
           <h2 className="mb-3 text-4xl font-bold">About Final Fantasy XI</h2>
-          <p className="leading-8 text-gray-700">This Final Fantasy was the first MMO in the series and goes back over 20 years! It has been succeeded by Final Fantasy XIV, but FFXI is still my personal favorite. Whenever I hear the music from FFXI I'm immediately filled with nostalgia.</p>
+          <p className="leading-8 text-gray-700">This Final Fantasy was the first MMO in the series and goes back over 20 years! It has been succeeded by Final Fantasy XIV, but FFXI is still my personal favorite. Whenever I hear the music from FFXI I'm immediately filled with nostalgia. The combat in FFXI is much slower than modern MMO's, but I highly prefer it to memorizing optimal ability rotations.</p>
         </div>
       </div>
       <section id="about" className='w-full mt-4 relative'>

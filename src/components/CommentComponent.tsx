@@ -10,6 +10,15 @@ export default function CommentComponent({firebaseItemsDB, messageRef, isSortedB
   const divisibleComments :number = Math.ceil((firebaseItemsDB.length / commentsPerPage))
   const pagination :number[] = [...Array(divisibleComments).keys()]
 
+  const prevPage = () => {
+    if (page <= 1) return
+    setPage(prev => prev-1)
+  }
+  const nextPage = () => {
+    if (page >= divisibleComments) return
+    setPage(prev => prev+1)
+  }
+
   return (
     <section id="comments" className="flex justify-center">
       <div className="w-3/4 m-8 mt-14">
@@ -33,13 +42,17 @@ export default function CommentComponent({firebaseItemsDB, messageRef, isSortedB
             </div>
         )})}
 
-      <div className='flex justify-center'>
+      <div className='mt-12 flex justify-center'>
+
+        <button onClick={() => prevPage()} className='m-1 px-3 py-2 text-xs text-gray-600 bg-stone-50 border border-gray-100 rounded-md shadow-md shadow-gray-500'><i className="bi bi-caret-left-fill"></i></button>
+
         {pagination.map((num) => {
           return (
-            // add in a ternary in classnames if num+1 = page ? output border-blue : border gray 300
-            <button key={num} onClick={() => setPage(num+1)} className='m-1 px-4 py-2 bg-stone-50 border border-gray-300 rounded-md shadow-md shadow-gray-500'>{num+1}</button>
+            <button key={num} onClick={() => setPage(num+1)} className={'m-1 px-4 py-2 text-gray-600 bg-stone-50 border rounded-md shadow-md shadow-gray-500' + (num+1 == page ? ' border-blue-700' : ' border-gray-100')}>{num+1}</button>
           )
         })}
+
+        <button onClick={() => nextPage()} className='m-1 px-3 py-2 text-xs text-gray-600 bg-stone-50 border border-gray-100 rounded-md shadow-md shadow-gray-500'><i className="bi bi-caret-right-fill"></i></button>
       </div>
 
       </div>
