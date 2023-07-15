@@ -12,7 +12,7 @@ export default function AboutComponent() {
         <div className="mt-10">
           <h2 className="mb-3 text-4xl font-bold">About Final Fantasy XI</h2>
           <p className="leading-8 text-gray-700">This Final Fantasy was the first MMO in the series and goes back over 20 years! It has been succeeded by Final Fantasy XIV, but FFXI is still my personal favorite. Whenever I hear the music from FFXI I'm immediately filled with nostalgia. The combat in FFXI is much slower than modern MMO's, but I highly prefer it to spamming ability rotations and looking at ground indicators.</p>
-          <img src="/images/group1.webp" alt="Group photo of all job classes" className="mt-4 h-auto max-w-xl" />
+          <img src="/images/group1.webp" alt="Group photo of all job classes" className="mt-4 h-auto w-11/12 max-w-xl" />
         </div>
       </div>
       <section id="about" className='w-full mt-4 relative'>
