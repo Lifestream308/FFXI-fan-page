@@ -48,7 +48,7 @@ export default function CommentComponent({firebaseItemsDB, messageRef, isSortedB
 
         {pagination.map((num) => {
           return (
-            <button key={num} onClick={() => setPage(num+1)} className={'m-1 px-4 py-2 text-gray-600 bg-stone-50 border rounded-md shadow-md shadow-gray-500' + (num+1 == page ? ' border-blue-700' : ' border-gray-100')}>{num+1}</button>
+            <button key={num} onClick={() => setPage(num+1)} className={'m-1 px-4 py-2 text-gray-600 bg-stone-50 border-2 rounded-md shadow-md shadow-gray-500' + (num+1 == page ? ' border-blue-700' : ' border-gray-100')}>{num+1}</button>
           )
         })}
 
