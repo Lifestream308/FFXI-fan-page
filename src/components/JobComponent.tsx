@@ -10,7 +10,7 @@ export default function JobComponent({job, handleJobChange, jobIndex, jobsArray}
       </div>
 
       <div className="flex flex-col gap-6 text-center">
-        <h1 className="text-4xl text-green-800">Standard Jobs</h1>
+        <h2 className="text-4xl text-green-800">Standard Jobs</h2>
         <p className="text-lg underline underline-offset-2">When you first create a character you must choose one of the six starting jobs below.</p>
       </div>
       <div className="flex self-center items-center justify-evenly w-4/5 max-w-md">

@@ -11,7 +11,6 @@ export default function HeaderComponent({handleJobClick, jobsArray, menuRef, mob
       <div className="flex px-[5%] justify-between items-center">
         <div className='flex max-w-[15rem] sm:max-w-full'>
           <Link to="/"><img src="/images/icon1.jfif" alt="" className='inline-block h-auto w-[12rem] self-center' /></Link>
-          <h1 className='text-3xl self-center hidden lg:flex'>Final Fantasy XI</h1>
         </div>
         <nav className='text-lg hidden sm:flex'>
           <Link to="/" className='p-4 hover:bg-gray-200 transition duration-300'>Home</Link>
