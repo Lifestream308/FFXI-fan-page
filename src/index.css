@@ -21,3 +21,7 @@ tr:nth-child(odd) {
     transform: translateY(0);
     pointer-events: auto;
 }
+
+.custom-img {
+    background-image: url("images/wallpaperA.jpg");
+}

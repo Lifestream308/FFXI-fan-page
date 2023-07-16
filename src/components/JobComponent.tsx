@@ -3,6 +3,11 @@
 export default function JobComponent({job, handleJobChange, jobIndex, jobsArray}:any) {
   return (
     <main className="flex flex-col justify-center pt-12 px-[5%] gap-12">
+
+      <div className="flex justify-center items-center h-[30rem] bg-fixed bg-center bg-cover custom-img">
+        <h2 className="p-3 text-4xl text-teal-900 rounded-lg bg-white">Welcome to Vanadiel</h2>
+      </div>
+
       <div className="flex flex-col gap-6 text-center">
         <h1 className="text-4xl text-green-800">Standard Jobs</h1>
         <p className="text-lg underline underline-offset-2">When you first create a character you must choose one of the six starting jobs below.</p>
