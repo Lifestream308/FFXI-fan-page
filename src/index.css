@@ -23,5 +23,5 @@ tr:nth-child(odd) {
 }
 
 .custom-img {
-    background-image: url("images/wallpaperA.jpg");
+    background-image: url("./images/wallpaperA.jpg");
 }
