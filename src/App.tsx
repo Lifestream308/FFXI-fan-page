@@ -21,7 +21,7 @@ function App() {
   const [isSortedByRecent, setIsSortedByRecent] = useState<boolean>(true)
 
   const [firebaseItemsDB, setFirebaseItemsDB] = useState<any>([{commentMessage:"1", id:1, name:"test", date: {seconds: 999}}])
-  const messageRef = useRef<any>()
+  const messageRef = useRef<HTMLInputElement | null>(null)
 
   const menuRef = useRef<any>()
   const mobileBtnRef = useRef<any>()
@@ -44,8 +44,10 @@ function App() {
   }
 
   const createComment = async () => {
-    await addDoc(commentsCollectionRef, {commentMessage: messageRef.current.value.trim(), name: "Anonymous"+Math.ceil(Math.random()*1000), date: new Date()})
-    messageRef.current.value = ""
+    await addDoc(commentsCollectionRef, {commentMessage: messageRef.current?.value.trim(), name: "Anonymous"+Math.ceil(Math.random()*1000), date: new Date()})
+    if (messageRef.current) {
+      messageRef.current.value = ""
+    } 
     getComments()
     setModalMessage("Comment Posted")
     setIsModalShowing(true)
@@ -80,7 +82,7 @@ function App() {
   }, [isSortedByRecent])
 
   useEffect(() => {
-    let handler = (e:any)=>{
+    let handler = (e: Event) => {
       if(!menuRef.current?.contains(e.target) && !mobileBtnRef.current?.contains(e.target)){
         setShowMobileUL(false);
       }      
@@ -93,7 +95,7 @@ function App() {
   }, []);
   
   useEffect(() => {
-    let handler = (e:any)=>{
+    let handler = (e: KeyboardEvent) => {
       if (e.code === "ArrowLeft") {
         handleJobChange.prev()
       }
