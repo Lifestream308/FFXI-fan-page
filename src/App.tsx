@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef,  } from 'react'
 import { addDoc, getDocs } from "firebase/firestore";
 // import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import { Route, Routes, useLocation } from "react-router-dom"
@@ -21,10 +21,10 @@ function App() {
   const [isSortedByRecent, setIsSortedByRecent] = useState<boolean>(true)
 
   const [firebaseItemsDB, setFirebaseItemsDB] = useState<any>([{commentMessage:"1", id:1, name:"test", date: {seconds: 999}}])
-  const messageRef = useRef<HTMLInputElement | null>(null)
+  const messageRef = useRef<HTMLInputElement>()
 
-  const menuRef = useRef<any>()
-  const mobileBtnRef = useRef<any>()
+  const menuRef = useRef<HTMLUListElement>()
+  const mobileBtnRef = useRef<HTMLButtonElement>()
 
   const handleCommentSubmit = () => {
     isValidComment(messageRef)? createComment() : rejectComment()
@@ -82,8 +82,8 @@ function App() {
   }, [isSortedByRecent])
 
   useEffect(() => {
-    let handler = (e: Event) => {
-      if(!menuRef.current?.contains(e.target) && !mobileBtnRef.current?.contains(e.target)){
+    let handler = (e: MouseEvent) => {
+      if(!menuRef.current?.contains(e.target as HTMLUListElement) && !mobileBtnRef.current?.contains(e.target as HTMLButtonElement)){
         setShowMobileUL(false);
       }      
     }
