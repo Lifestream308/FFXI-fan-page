@@ -42,7 +42,7 @@ export default function CommentComponent({firebaseItemsDB, messageRef, isSortedB
             </div>
         )})}
 
-      <div className='mt-12 flex justify-center'>
+      <div className='mt-12 flex flex-wrap justify-center'>
 
         <button onClick={() => prevPage()} className='m-1 px-3 py-2 text-xs text-gray-600 bg-stone-50 border border-gray-100 rounded-md shadow-md shadow-gray-500'><i className="bi bi-caret-left-fill"></i></button>
 
