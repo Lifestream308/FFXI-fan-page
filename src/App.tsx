@@ -20,7 +20,14 @@ function App() {
   const [showMobileUL, setShowMobileUL] = useState<boolean>(false)
   const [isSortedByRecent, setIsSortedByRecent] = useState<boolean>(true)
 
-  const [firebaseItemsDB, setFirebaseItemsDB] = useState<any>([{commentMessage:"1", id:1, name:"test", date: {seconds: 999}}])
+  type comment = {
+    commentMessage: string, 
+    id: string,
+    name: string, 
+    date: Date
+  }[]
+
+  const [firebaseItemsDB, setFirebaseItemsDB] = useState<comment>([{commentMessage:"1", id: "4abcd", name:"test", date: new Date()}])
   const messageRef = useRef<HTMLInputElement>()
 
   const menuRef = useRef<HTMLUListElement>()
@@ -62,9 +69,10 @@ function App() {
   const getComments = async () => {
     try {
       const data = await getDocs(commentsCollectionRef);
-      let comments = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      let comments:any = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       isSortedByRecent ? comments.sort((a:any, b:any) => b.date.seconds - a.date.seconds) : comments.sort((a:any, b:any) => a.date.seconds - b.date.seconds)
       setFirebaseItemsDB(comments)
+      console.log(comments)
     }
     catch (err) {
       console.log("Something went wrong.")
