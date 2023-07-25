@@ -2,13 +2,13 @@
 
 export default function ForumComponent() {
   return (
-    <section className="mt-8 mb-24 mx-8 overflow-hidden rounded-lg">
+    <section className="mt-8 mb-24 mx-auto max-w-5xl overflow-hidden rounded-lg">
         <div className="min-w-full">
             <table className='min-w-full text-left bg-slate-100'>
                 <tbody>
                 <tr className="border-t">
-                    <th className='px-6 py-4 text-sm bg-blue-100 text-indigo-500'>TOPICS</th>
-                    <th className='px-6 py-4 text-sm bg-blue-100 text-indigo-500 w-32 hidden sm:table-cell'>AUTHOR</th>
+                    <th className='px-6 py-4 text-sm bg-blue-100 text-indigo-500'>TOPIC</th>
+                    <th className='px-6 py-4 text-sm bg-blue-100 text-indigo-500 w-36 hidden sm:table-cell'>AUTHOR</th>
                     <th className='px-6 py-4 text-sm bg-blue-100 text-indigo-500 w-16'>POSTS</th>
                 </tr>
                 <tr>
