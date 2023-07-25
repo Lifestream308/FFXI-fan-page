@@ -4,6 +4,7 @@ import { collection } from "firebase/firestore"
 import { db } from "../firebase-config"
 
 const commentsCollectionRef = collection(db, "commentsCollection")
+const forumPostsCollectionRef = collection(db, "forumPosts")
 
 // const [firebaseItemsDB, setFirebaseItemsDB] = useState([])
 // const messageRef = useRef<any>()
@@ -24,4 +25,4 @@ const isValidComment = (ref:any) => {
     }
   }
 
-  export { isValidComment, commentsCollectionRef }
+  export { isValidComment, commentsCollectionRef, forumPostsCollectionRef }

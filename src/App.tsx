@@ -3,7 +3,7 @@ import { addDoc, getDocs } from "firebase/firestore";
 // import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import { Route, Routes, useLocation } from "react-router-dom"
 import jobsArray from './jobsArray';
-import { isValidComment, commentsCollectionRef } from './util/FirebaseFunctions';
+import { isValidComment, commentsCollectionRef, forumPostsCollectionRef } from './util/FirebaseFunctions';
 import AboutComponent from "./components/AboutComponent"
 import CommentComponent from './components/CommentComponent'
 import HeaderComponent from './components/HeaderComponent';
@@ -28,6 +28,7 @@ function App() {
   }[]
 
   const [firebaseItemsDB, setFirebaseItemsDB] = useState<comment>([{commentMessage:"1", id: "4abcd", name:"test", date: new Date()}])
+  const [forumPosts, setForumPosts] = useState<any>()
   const messageRef = useRef<HTMLInputElement>()
 
   const menuRef = useRef<HTMLUListElement>()
@@ -75,7 +76,21 @@ function App() {
       console.log(comments)
     }
     catch (err) {
-      console.log("Something went wrong.")
+      console.log("Something went wrong retrieving comments.")
+      console.log(err)
+    }
+  }
+
+  const getForumPosts = async () => {
+    try {
+      const data = await getDocs(forumPostsCollectionRef);
+      let posts:any = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      isSortedByRecent ? posts.sort((a:any, b:any) => b.date.seconds - a.date.seconds) : posts.sort((a:any, b:any) => a.date.seconds - b.date.seconds)
+      setForumPosts(posts)
+      console.log(posts, forumPosts)
+    }
+    catch (err) {
+      console.log("Something went wrong retrieving Forum posts.")
       console.log(err)
     }
   }
@@ -83,6 +98,7 @@ function App() {
   // Below are UseEffects 
   useEffect(() => {
     getComments()
+    getForumPosts()
   }, [])
 
   useEffect(() => {
