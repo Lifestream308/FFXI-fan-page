@@ -1,7 +1,12 @@
 // import React from 'react'
 
-export default function ForumComponent() {
+export default function ForumComponent({handleTopicSubmit, topicTitleRef, topicContentRef}: any) {
+
+
+
+
   return (
+    <>
     <section className="mt-8 mb-24 mx-auto max-w-5xl overflow-hidden rounded-lg">
         <div className="min-w-full">
             <table className='min-w-full text-left bg-slate-100'>
@@ -30,5 +35,15 @@ export default function ForumComponent() {
             </table>
         </div>
     </section>
+
+    <div>
+        <input type="text" placeholder="Title" ref={topicTitleRef} className="m-4 border border-black" />
+        <br />
+        <input type="text" placeholder="Content" ref={topicContentRef} className="m-4 border border-black" />
+        <br />
+        <button type="button" onClick={()=> handleTopicSubmit()} className="m-4 p-2 text-white bg-green-700 rounded-md">Submit Topic</button>
+    </div>
+
+    </>
   )
 }

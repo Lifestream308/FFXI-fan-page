@@ -29,13 +29,21 @@ function App() {
 
   const [firebaseItemsDB, setFirebaseItemsDB] = useState<comment>([{commentMessage:"1", id: "4abcd", name:"test", date: new Date()}])
   const [forumPosts, setForumPosts] = useState<any>()
+
   const messageRef = useRef<HTMLInputElement>()
+  const topicTitleRef = useRef<HTMLInputElement>()
+  const topicContentRef = useRef<HTMLInputElement>()
 
   const menuRef = useRef<HTMLUListElement>()
   const mobileBtnRef = useRef<HTMLButtonElement>()
 
   const handleCommentSubmit = () => {
     isValidComment(messageRef)? createComment() : rejectComment()
+  }
+
+  const handleTopicSubmit = () => {
+    // isValidComment(messageRef)? createComment() : rejectComment()
+    createForumPost()
   }
 
   const handleJobClick = (index:number) => {
@@ -52,12 +60,34 @@ function App() {
   }
 
   const createComment = async () => {
-    await addDoc(commentsCollectionRef, {commentMessage: messageRef.current?.value.trim(), name: "Anonymous"+Math.ceil(Math.random()*1000), date: new Date()})
+    await addDoc(commentsCollectionRef, {
+      commentMessage: messageRef.current?.value.trim(), 
+      name: "Anonymous"+Math.ceil(Math.random()*1000), 
+      date: new Date()})
     if (messageRef.current) {
       messageRef.current.value = ""
     } 
     getComments()
     setModalMessage("Comment Posted")
+    setIsModalShowing(true)
+  }
+
+  const createForumPost = async () => {
+    await addDoc(forumPostsCollectionRef, {
+      title: topicTitleRef.current?.value.trim(), 
+      content: topicContentRef.current?.value.trim(), 
+      author: "Anonymous"+Math.ceil(Math.random()*1000), 
+      date: new Date(),
+      numOfPosts: 0
+    })
+    if (topicTitleRef.current) {
+      topicTitleRef.current.value = ""
+    } 
+    if (topicContentRef.current) {
+      topicContentRef.current.value = ""
+    } 
+    getForumPosts()
+    setModalMessage("Topic Posted")
     setIsModalShowing(true)
   }
 
@@ -73,7 +103,6 @@ function App() {
       let comments:any = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       isSortedByRecent ? comments.sort((a:any, b:any) => b.date.seconds - a.date.seconds) : comments.sort((a:any, b:any) => a.date.seconds - b.date.seconds)
       setFirebaseItemsDB(comments)
-      console.log(comments)
     }
     catch (err) {
       console.log("Something went wrong retrieving comments.")
@@ -149,7 +178,7 @@ function App() {
         <Routes>
           <Route path='/' element={ <JobComponent job={jobsArray[jobIndex]} handleJobChange={handleJobChange} jobIndex={jobIndex} jobsArray={jobsArray} /> } />
           <Route path='/about' element={ <AboutComponent /> } />
-          <Route path='/forum' element={ <ForumComponent /> } />
+          <Route path='/forum' element={ <ForumComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} /> } />
         </Routes>
 
         <CommentComponent firebaseItemsDB={firebaseItemsDB} handleCommentSubmit={handleCommentSubmit} isSortedByRecent={isSortedByRecent} messageRef={messageRef} handleSortButton={handleSortButton} />
