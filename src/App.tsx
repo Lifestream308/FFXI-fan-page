@@ -132,22 +132,6 @@ function App() {
   useEffect(() => {
     getComments()
   }, [isSortedByRecent])
-  
-  useEffect(() => {
-    let handler = (e: KeyboardEvent) => {
-      if (e.code === "ArrowLeft") {
-        handleJobChange.prev()
-      }
-      if (e.code === "ArrowRight") {
-        handleJobChange.next()
-      }
-    }
-    document.addEventListener("keydown", handler);
-    
-    return() =>{
-      document.removeEventListener("keydown", handler);
-    }
-  }, []);
 
   const location = useLocation()  
   useEffect(() => {

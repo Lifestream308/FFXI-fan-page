@@ -1,7 +1,25 @@
-// import React from 'react'
+import { useEffect } from 'react'
 import jobsArray from "../jobsArray"
 
 export default function JobComponent({job, handleJobChange, jobIndex }:any) {
+
+
+  useEffect(() => {
+    let handler = (e: KeyboardEvent) => {
+      if (e.code === "ArrowLeft") {
+        handleJobChange.prev()
+      }
+      if (e.code === "ArrowRight") {
+        handleJobChange.next()
+      }
+    }
+    document.addEventListener("keydown", handler);
+    
+    return() =>{
+      document.removeEventListener("keydown", handler);
+    }
+  }, []);
+
   return (
     <main className="flex flex-col justify-center pt-8 px-[5%] gap-12">
 
