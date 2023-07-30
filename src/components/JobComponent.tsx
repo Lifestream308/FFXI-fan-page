@@ -1,6 +1,7 @@
 // import React from 'react'
+import jobsArray from "../jobsArray"
 
-export default function JobComponent({job, handleJobChange, jobIndex, jobsArray}:any) {
+export default function JobComponent({job, handleJobChange, jobIndex }:any) {
   return (
     <main className="flex flex-col justify-center pt-8 px-[5%] gap-12">
 

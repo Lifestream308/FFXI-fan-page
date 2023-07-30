@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import jobsArray from '../jobsArray';
 
-export default function HeaderComponent({ handleJobClick, jobsArray, menuRef, mobileBtnRef }:any) {
+export default function HeaderComponent({ handleJobClick, menuRef, mobileBtnRef }:any) {
 
   const [showMobileUL, setShowMobileUL] = useState<boolean>(false)
 

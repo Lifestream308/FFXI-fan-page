@@ -159,10 +159,10 @@ function App() {
       { isModalShowing && <ModalComponent modalMessage={modalMessage} setIsModalShowing={setIsModalShowing} /> }
 
       <div className='max-w-7xl m-auto'>
-        <HeaderComponent handleJobClick={handleJobClick} jobsArray={jobsArray} menuRef={menuRef} mobileBtnRef={mobileBtnRef} />
+        <HeaderComponent handleJobClick={handleJobClick} menuRef={menuRef} mobileBtnRef={mobileBtnRef} />
 
         <Routes>
-          <Route path='/' element={ <JobComponent job={jobsArray[jobIndex]} handleJobChange={handleJobChange} jobIndex={jobIndex} jobsArray={jobsArray} /> } />
+          <Route path='/' element={ <JobComponent job={jobsArray[jobIndex]} handleJobChange={handleJobChange} jobIndex={jobIndex} /> } />
           <Route path='/about' element={ <AboutComponent /> } />
           <Route path='/forum' element={ <ForumComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} /> } />
         </Routes>
