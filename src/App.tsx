@@ -133,19 +133,6 @@ function App() {
   useEffect(() => {
     getComments()
   }, [isSortedByRecent])
-
-  useEffect(() => {
-    let handler = (e: MouseEvent) => {
-      if(!menuRef.current?.contains(e.target as HTMLUListElement) && !mobileBtnRef.current?.contains(e.target as HTMLButtonElement)){
-        setShowMobileUL(false);
-      }      
-    }
-    document.addEventListener("click", handler);
-    
-    return () =>{
-      document.removeEventListener("click", handler);
-    }
-  }, []);
   
   useEffect(() => {
     let handler = (e: KeyboardEvent) => {

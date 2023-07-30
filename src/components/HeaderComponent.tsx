@@ -1,10 +1,23 @@
-// import React from 'react'
-// import { useState } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function HeaderComponent({handleJobClick, jobsArray, menuRef, mobileBtnRef, showMobileUL, setShowMobileUL}:any) {
 
   // const [showMobileUL, setShowMobileUL] = useState<boolean>(false)
+
+  useEffect(() => {
+    let handler = (e: MouseEvent) => {
+      if(!menuRef.current?.contains(e.target as HTMLUListElement) && !mobileBtnRef.current?.contains(e.target as HTMLButtonElement)){
+        setShowMobileUL(false);
+      }      
+    }
+    document.addEventListener("click", handler);
+    
+    return () =>{
+      setShowMobileUL(false);
+      document.removeEventListener("click", handler);
+    }
+  }, []);
 
   return (
     <header className='sticky top-0 bg-white z-10'>
