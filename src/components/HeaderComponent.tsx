@@ -1,9 +1,9 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-export default function HeaderComponent({handleJobClick, jobsArray, menuRef, mobileBtnRef, showMobileUL, setShowMobileUL}:any) {
+export default function HeaderComponent({ handleJobClick, jobsArray, menuRef, mobileBtnRef }:any) {
 
-  // const [showMobileUL, setShowMobileUL] = useState<boolean>(false)
+  const [showMobileUL, setShowMobileUL] = useState<boolean>(false)
 
   useEffect(() => {
     let handler = (e: MouseEvent) => {

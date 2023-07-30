@@ -17,7 +17,6 @@ function App() {
   const [jobIndex, setJobIndex] = useState<number>(0)
   const [isModalShowing, setIsModalShowing] = useState<boolean>(false)
   const [modalMessage, setModalMessage] = useState<string>("Modal Alert Active")
-  const [showMobileUL, setShowMobileUL] = useState<boolean>(false)
   const [isSortedByRecent, setIsSortedByRecent] = useState<boolean>(true)
 
   type comment = {
@@ -160,7 +159,7 @@ function App() {
       { isModalShowing && <ModalComponent modalMessage={modalMessage} setIsModalShowing={setIsModalShowing} /> }
 
       <div className='max-w-7xl m-auto'>
-        <HeaderComponent handleJobClick={handleJobClick} jobsArray={jobsArray} menuRef={menuRef} mobileBtnRef={mobileBtnRef} showMobileUL={showMobileUL} setShowMobileUL={setShowMobileUL} />
+        <HeaderComponent handleJobClick={handleJobClick} jobsArray={jobsArray} menuRef={menuRef} mobileBtnRef={mobileBtnRef} />
 
         <Routes>
           <Route path='/' element={ <JobComponent job={jobsArray[jobIndex]} handleJobChange={handleJobChange} jobIndex={jobIndex} jobsArray={jobsArray} /> } />
