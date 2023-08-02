@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 import jobsArray from "../jobsArray"
 
-export default function JobComponent({job, jobIndex, setJobIndex }:any) {
+export default function JobComponent({ jobIndex, setJobIndex }:any) {
 
+  let job = jobsArray[jobIndex]
 
   const handleJobChange = {
     prev: () => {setJobIndex((prev:number) => prev > 0 ? prev-1 : jobsArray.length-1)},

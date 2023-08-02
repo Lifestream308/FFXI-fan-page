@@ -2,7 +2,6 @@ import { useState, useEffect, useRef,  } from 'react'
 import { addDoc, getDocs } from "firebase/firestore";
 // import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import { Route, Routes, useLocation } from "react-router-dom"
-import jobsArray from './jobsArray';
 import { isValidComment, commentsCollectionRef, forumPostsCollectionRef } from './util/FirebaseFunctions';
 import AboutComponent from "./components/AboutComponent"
 import CommentComponent from './components/CommentComponent'
@@ -141,7 +140,7 @@ function App() {
         <HeaderComponent handleJobClick={handleJobClick} menuRef={menuRef} mobileBtnRef={mobileBtnRef} />
 
         <Routes>
-          <Route path='/' element={ <JobComponent job={jobsArray[jobIndex]} setJobIndex={setJobIndex} jobIndex={jobIndex} /> } />
+          <Route path='/' element={ <JobComponent setJobIndex={setJobIndex} jobIndex={jobIndex} /> } />
           <Route path='/about' element={ <AboutComponent /> } />
           <Route path='/forum' element={ <ForumComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} /> } />
         </Routes>
