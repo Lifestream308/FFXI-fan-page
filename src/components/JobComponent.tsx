@@ -1,8 +1,13 @@
 import { useEffect } from 'react'
 import jobsArray from "../jobsArray"
 
-export default function JobComponent({job, handleJobChange, jobIndex }:any) {
+export default function JobComponent({job, jobIndex, setJobIndex }:any) {
 
+
+  const handleJobChange = {
+    prev: () => {setJobIndex((prev:number) => prev > 0 ? prev-1 : jobsArray.length-1)},
+    next: () => {setJobIndex((prev:number) => prev < jobsArray.length-1 ? prev+1 : 0)},
+  }
 
   useEffect(() => {
     let handler = (e: KeyboardEvent) => {

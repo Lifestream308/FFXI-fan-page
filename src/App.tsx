@@ -53,11 +53,6 @@ function App() {
     setIsSortedByRecent(prev => !prev)
   }
 
-  const handleJobChange = {
-    prev: () => {setJobIndex((prev) => prev > 0 ? prev-1 : jobsArray.length-1)},
-    next: () => {setJobIndex((prev) => prev < jobsArray.length-1 ? prev+1 : 0)},
-  }
-
   const createComment = async () => {
     await addDoc(commentsCollectionRef, {
       commentMessage: messageRef.current?.value.trim(), 
@@ -146,7 +141,7 @@ function App() {
         <HeaderComponent handleJobClick={handleJobClick} menuRef={menuRef} mobileBtnRef={mobileBtnRef} />
 
         <Routes>
-          <Route path='/' element={ <JobComponent job={jobsArray[jobIndex]} handleJobChange={handleJobChange} jobIndex={jobIndex} /> } />
+          <Route path='/' element={ <JobComponent job={jobsArray[jobIndex]} setJobIndex={setJobIndex} jobIndex={jobIndex} /> } />
           <Route path='/about' element={ <AboutComponent /> } />
           <Route path='/forum' element={ <ForumComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} /> } />
         </Routes>
