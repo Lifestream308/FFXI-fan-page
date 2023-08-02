@@ -1,10 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import jobsArray from '../jobsArray';
 
-export default function HeaderComponent({ handleJobClick, menuRef, mobileBtnRef }:any) {
+export default function HeaderComponent({ setJobIndex }:any) {
 
   const [showMobileUL, setShowMobileUL] = useState<boolean>(false)
+
+  const menuRef = useRef<any>()
+  const mobileBtnRef = useRef<any>()
+
+  const handleJobClick = (index:number) => {
+    setJobIndex(index)
+  }
 
   useEffect(() => {
     let handler = (e: MouseEvent) => {

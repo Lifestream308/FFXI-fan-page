@@ -13,6 +13,7 @@ import FooterComponent from './components/FooterComponent';
 
 function App() {
 
+  // jobIndex is passed to both JobComponent and to HeaderComponent. IsModalShowing and modalMessage passed multiple places so many components can activate the modal
   const [jobIndex, setJobIndex] = useState<number>(0)
   const [isModalShowing, setIsModalShowing] = useState<boolean>(false)
   const [modalMessage, setModalMessage] = useState<string>("Modal Alert Active")
@@ -32,9 +33,6 @@ function App() {
   const topicTitleRef = useRef<HTMLInputElement>()
   const topicContentRef = useRef<HTMLInputElement>()
 
-  const menuRef = useRef<HTMLUListElement>()
-  const mobileBtnRef = useRef<HTMLButtonElement>()
-
   const handleCommentSubmit = () => {
     isValidComment(messageRef)? createComment() : rejectComment()
   }
@@ -42,10 +40,6 @@ function App() {
   const handleTopicSubmit = () => {
     // isValidComment(messageRef)? createComment() : rejectComment()
     createForumPost()
-  }
-
-  const handleJobClick = (index:number) => {
-    setJobIndex(index)
   }
 
   const handleSortButton = () => {
@@ -137,7 +131,7 @@ function App() {
       { isModalShowing && <ModalComponent modalMessage={modalMessage} setIsModalShowing={setIsModalShowing} /> }
 
       <div className='max-w-7xl m-auto'>
-        <HeaderComponent handleJobClick={handleJobClick} menuRef={menuRef} mobileBtnRef={mobileBtnRef} />
+        <HeaderComponent setJobIndex={setJobIndex} />
 
         <Routes>
           <Route path='/' element={ <JobComponent setJobIndex={setJobIndex} jobIndex={jobIndex} /> } />
