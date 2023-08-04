@@ -2,7 +2,7 @@ import { useState, useEffect, useRef,  } from 'react'
 import { addDoc, getDocs } from "firebase/firestore";
 // import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import { Route, Routes, useLocation } from "react-router-dom"
-import { isCorrectLength, commentsCollectionRef, forumPostsCollectionRef } from './util/FirebaseFunctions';
+import { isCorrectLength, commentsCollectionRef, forumTopicsCollectionRef } from './util/FirebaseFunctions';
 import { comment } from './util/types';
 import AboutComponent from "./components/AboutComponent"
 import HeaderComponent from './components/HeaderComponent';
@@ -21,7 +21,7 @@ function App() {
   const [isSortedByRecent, setIsSortedByRecent] = useState<boolean>(true)
 
   const [firebaseItemsDB, setFirebaseItemsDB] = useState<comment>([{commentMessage:"1", id: "4abcd", name:"test", date: new Date()}])
-  const [forumPosts, setForumPosts] = useState<any>()
+  const [forumTopics, setForumTopics] = useState<any>()
 
   const messageRef = useRef<HTMLInputElement>()
   const topicTitleRef = useRef<HTMLInputElement>()
@@ -38,7 +38,7 @@ function App() {
   const handleTopicSubmit = () => {
     if (topicTitleRef.current && isCorrectLength(topicTitleRef.current.value, 4, 150)) {
       if (topicContentRef.current && isCorrectLength(topicContentRef.current.value, 4, 1000)) {
-        createForumPost()
+        createForumTopic()
         return
       }
     } else {
@@ -59,13 +59,13 @@ function App() {
     setIsModalShowing(true)
   }
 
-  const createForumPost = async () => {
-    await addDoc(forumPostsCollectionRef, {
+  const createForumTopic = async () => {
+    await addDoc(forumTopicsCollectionRef, {
       title: topicTitleRef.current?.value.trim(), 
       content: topicContentRef.current?.value.trim(), 
       author: "Anonymous"+Math.ceil(Math.random()*1000), 
       date: new Date(),
-      numOfPosts: 0
+      numOfComments: 0
     })
     if (topicTitleRef.current) {
       topicTitleRef.current.value = ""
@@ -73,7 +73,7 @@ function App() {
     if (topicContentRef.current) {
       topicContentRef.current.value = ""
     } 
-    getForumPosts()
+    getForumTopics()
     setModalMessage("Topic Posted")
     setIsModalShowing(true)
   }
@@ -102,16 +102,16 @@ function App() {
     }
   }
 
-  const getForumPosts = async () => {
+  const getForumTopics = async () => {
     try {
-      const data = await getDocs(forumPostsCollectionRef);
-      let posts:any = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-      isSortedByRecent ? posts.sort((a:any, b:any) => b.date.seconds - a.date.seconds) : posts.sort((a:any, b:any) => a.date.seconds - b.date.seconds)
-      setForumPosts(posts)
-      console.log(posts, forumPosts)
+      const data = await getDocs(forumTopicsCollectionRef);
+      let topics:any = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      isSortedByRecent ? topics.sort((a:any, b:any) => b.date.seconds - a.date.seconds) : topics.sort((a:any, b:any) => a.date.seconds - b.date.seconds)
+      setForumTopics(topics)
+      console.log(topics, forumTopics)
     }
     catch (err) {
-      console.log("Something went wrong retrieving Forum posts.")
+      console.log("Something went wrong retrieving Forum Topics.")
       console.log(err)
     }
   }
@@ -119,7 +119,7 @@ function App() {
   // Below are UseEffects 
   useEffect(() => {
     getComments()
-    getForumPosts()
+    getForumTopics()
   }, [])
 
   useEffect(() => {
