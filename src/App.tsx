@@ -43,8 +43,14 @@ function App() {
   }
 
   const handleTopicSubmit = () => {
-    // isCorrectLength(messageRef)? createComment() : rejectComment()
-    createForumPost()
+    if (topicTitleRef.current && isCorrectLength(topicTitleRef.current.value, 4, 150)) {
+      if (topicContentRef.current && isCorrectLength(topicContentRef.current.value, 4, 1000)) {
+        createForumPost()
+        return
+      }
+    } else {
+      rejectTopic(4, 150, 4, 1000)
+    }
   }
 
   const handleSortButton = () => {
@@ -85,6 +91,11 @@ function App() {
 
   const rejectComment = (min:number, max:number) => {
     setModalMessage(`Comment must be between ${min}-${max} characters long.`)
+    setIsModalShowing(true)
+  }
+
+  const rejectTopic = (minTitle:number, maxTitle:number, minContent: number, maxContent: number) => {
+    setModalMessage(`Title must be between ${minTitle}-${maxTitle} characters long. Content must be between ${minContent}-${maxContent} characters long.`)
     setIsModalShowing(true)
   }
 
