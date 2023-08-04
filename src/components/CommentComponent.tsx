@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { Link } from "react-router-dom"
 
-export default function CommentComponent({firebaseItemsDB, messageRef, isSortedByRecent, handleSortButton, handleCommentSubmit}:any) {
+export default function CommentComponent({firebaseItemsDB, messageRef, isSortedByRecent, setIsSortedByRecent, handleCommentSubmit}:any) {
 
   const [page, setPage] = useState<number>(1)
   
@@ -30,7 +30,7 @@ export default function CommentComponent({firebaseItemsDB, messageRef, isSortedB
 
         <div className="my-6 mb-3">
           <small className="text-gray-500">Sort by </small>
-          <button className="text-gray-600 underline" onClick={handleSortButton}>{isSortedByRecent ? "Recent" : "Oldest"}<span className="text-xs text-gray-500"><i className="bi bi-caret-down-fill"></i></span></button>
+          <button className="text-gray-600 underline" onClick={() => setIsSortedByRecent((prev: boolean) => !prev)}>{isSortedByRecent ? "Recent" : "Oldest"}<span className="text-xs text-gray-500"><i className="bi bi-caret-down-fill"></i></span></button>
         </div>
 
         {firebaseItemsDB.slice(commentsPerPage*(page-1), commentsPerPage*page).map((comment:any) => {

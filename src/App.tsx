@@ -3,6 +3,7 @@ import { addDoc, getDocs } from "firebase/firestore";
 // import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import { Route, Routes, useLocation } from "react-router-dom"
 import { isCorrectLength, commentsCollectionRef, forumPostsCollectionRef } from './util/FirebaseFunctions';
+import { comment } from './util/types';
 import AboutComponent from "./components/AboutComponent"
 import HeaderComponent from './components/HeaderComponent';
 import JobComponent from './components/JobComponent';
@@ -13,19 +14,11 @@ import CommentLayout from './components/CommentLayout';
 
 function App() {
 
-  // jobIndex is passed to both JobComponent and to HeaderComponent. IsModalShowing and modalMessage passed multiple places so many components can activate the modal
-  // isSortedByRecent is used in useEffect to getComments and the function getComment
+  // This grouping needs to be in redux store
   const [jobIndex, setJobIndex] = useState<number>(0)
   const [isModalShowing, setIsModalShowing] = useState<boolean>(false)
   const [modalMessage, setModalMessage] = useState<string>("Modal Alert Active")
   const [isSortedByRecent, setIsSortedByRecent] = useState<boolean>(true)
-
-  type comment = {
-    commentMessage: string, 
-    id: string,
-    name: string, 
-    date: Date
-  }[]
 
   const [firebaseItemsDB, setFirebaseItemsDB] = useState<comment>([{commentMessage:"1", id: "4abcd", name:"test", date: new Date()}])
   const [forumPosts, setForumPosts] = useState<any>()
@@ -51,10 +44,6 @@ function App() {
     } else {
       rejectTopic(4, 150, 4, 1000)
     }
-  }
-
-  const handleSortButton = () => {
-    setIsSortedByRecent(prev => !prev)
   }
 
   const createComment = async () => {
@@ -150,7 +139,7 @@ function App() {
         <HeaderComponent setJobIndex={setJobIndex} />
 
         <Routes>
-          <Route element={ <CommentLayout firebaseItemsDB={firebaseItemsDB} handleCommentSubmit={handleCommentSubmit} isSortedByRecent={isSortedByRecent} messageRef={messageRef} handleSortButton={handleSortButton} />} >
+          <Route element={ <CommentLayout firebaseItemsDB={firebaseItemsDB} handleCommentSubmit={handleCommentSubmit} isSortedByRecent={isSortedByRecent} messageRef={messageRef} setIsSortedByRecent={setIsSortedByRecent} />} >
             <Route path='/' element={ <JobComponent setJobIndex={setJobIndex} jobIndex={jobIndex} /> } />
             <Route path='/about' element={ <AboutComponent /> } />
           </Route>
