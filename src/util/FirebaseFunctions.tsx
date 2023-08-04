@@ -17,12 +17,12 @@ const forumPostsCollectionRef = collection(db, "forumPosts")
 //     console.log(firebaseItemsDB)
 //   }
 
-const isValidComment = (ref:any) => {
-    if (ref.current.value.trim().length > 250 || ref.current.value.trim().length < 4) {
+const isCorrectLength = (message: string, minimum: number, maximum: number) => {
+    if (message.trim().length < minimum || message.trim().length > maximum) {
       return false
     } else {
       return true
     }
   }
 
-  export { isValidComment, commentsCollectionRef, forumPostsCollectionRef }
+  export { isCorrectLength, commentsCollectionRef, forumPostsCollectionRef }

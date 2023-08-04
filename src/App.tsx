@@ -2,7 +2,7 @@ import { useState, useEffect, useRef,  } from 'react'
 import { addDoc, getDocs } from "firebase/firestore";
 // import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import { Route, Routes, useLocation } from "react-router-dom"
-import { isValidComment, commentsCollectionRef, forumPostsCollectionRef } from './util/FirebaseFunctions';
+import { isCorrectLength, commentsCollectionRef, forumPostsCollectionRef } from './util/FirebaseFunctions';
 import AboutComponent from "./components/AboutComponent"
 import HeaderComponent from './components/HeaderComponent';
 import JobComponent from './components/JobComponent';
@@ -14,6 +14,7 @@ import CommentLayout from './components/CommentLayout';
 function App() {
 
   // jobIndex is passed to both JobComponent and to HeaderComponent. IsModalShowing and modalMessage passed multiple places so many components can activate the modal
+  // isSortedByRecent is used in useEffect to getComments and the function getComment
   const [jobIndex, setJobIndex] = useState<number>(0)
   const [isModalShowing, setIsModalShowing] = useState<boolean>(false)
   const [modalMessage, setModalMessage] = useState<string>("Modal Alert Active")
@@ -34,11 +35,15 @@ function App() {
   const topicContentRef = useRef<HTMLInputElement>()
 
   const handleCommentSubmit = () => {
-    isValidComment(messageRef)? createComment() : rejectComment()
+    if (messageRef.current && isCorrectLength(messageRef.current.value, 4, 250)) {
+      createComment()
+    } else {
+      rejectComment(4, 250)
+    }
   }
 
   const handleTopicSubmit = () => {
-    // isValidComment(messageRef)? createComment() : rejectComment()
+    // isCorrectLength(messageRef)? createComment() : rejectComment()
     createForumPost()
   }
 
@@ -78,8 +83,8 @@ function App() {
     setIsModalShowing(true)
   }
 
-  const rejectComment = () => {
-    setModalMessage("Comment must be between 4-250 characters long.")
+  const rejectComment = (min:number, max:number) => {
+    setModalMessage(`Comment must be between ${min}-${max} characters long.`)
     setIsModalShowing(true)
   }
 
