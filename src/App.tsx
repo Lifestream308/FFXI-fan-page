@@ -4,12 +4,12 @@ import { addDoc, getDocs } from "firebase/firestore";
 import { Route, Routes, useLocation } from "react-router-dom"
 import { isValidComment, commentsCollectionRef, forumPostsCollectionRef } from './util/FirebaseFunctions';
 import AboutComponent from "./components/AboutComponent"
-import CommentComponent from './components/CommentComponent'
 import HeaderComponent from './components/HeaderComponent';
 import JobComponent from './components/JobComponent';
 import ForumComponent from './components/ForumComponent';
 import ModalComponent from './components/ModalComponent';
 import FooterComponent from './components/FooterComponent';
+import CommentLayout from './components/CommentLayout';
 
 function App() {
 
@@ -134,12 +134,14 @@ function App() {
         <HeaderComponent setJobIndex={setJobIndex} />
 
         <Routes>
-          <Route path='/' element={ <JobComponent setJobIndex={setJobIndex} jobIndex={jobIndex} /> } />
-          <Route path='/about' element={ <AboutComponent /> } />
+          <Route element={ <CommentLayout firebaseItemsDB={firebaseItemsDB} handleCommentSubmit={handleCommentSubmit} isSortedByRecent={isSortedByRecent} messageRef={messageRef} handleSortButton={handleSortButton} />} >
+            <Route path='/' element={ <JobComponent setJobIndex={setJobIndex} jobIndex={jobIndex} /> } />
+            <Route path='/about' element={ <AboutComponent /> } />
+          </Route>
+
+
           <Route path='/forum' element={ <ForumComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} /> } />
         </Routes>
-
-        <CommentComponent firebaseItemsDB={firebaseItemsDB} handleCommentSubmit={handleCommentSubmit} isSortedByRecent={isSortedByRecent} messageRef={messageRef} handleSortButton={handleSortButton} />
 
       </div>
 
