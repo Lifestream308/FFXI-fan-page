@@ -1,5 +1,7 @@
 // import React from 'react'
 
+import CounterComponent from "./CounterComponent";
+
 export default function ForumComponent({handleTopicSubmit, topicTitleRef, topicContentRef}: any) {
 
 
@@ -43,6 +45,8 @@ export default function ForumComponent({handleTopicSubmit, topicTitleRef, topicC
         <br />
         <button type="button" onClick={()=> handleTopicSubmit()} className="m-4 p-2 text-white bg-green-700 rounded-md">Submit Topic</button>
     </div>
+
+    <CounterComponent />
 
     </>
   )
