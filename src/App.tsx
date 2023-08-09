@@ -46,6 +46,7 @@ function App() {
     }
   }
 
+  // createAnonymousComment?
   const createComment = async () => {
     await addDoc(commentsCollectionRef, {
       commentMessage: messageRef.current?.value.trim(), 
