@@ -63,7 +63,7 @@ export default function HeaderComponent({ setJobIndex }:any) {
 
           {jobsArray.map((job:any, index:number) => {
             return <li key={job.name} className='w-full hover:bg-gray-200'>
-            <Link to="/" className='w-full px-4 block' onClick={() => handleJobClick(index)}>{job.name}</Link></li>
+            <Link to="/" className='w-full px-4 text-gray-600 block' onClick={() => handleJobClick(index)}>{job.name}</Link></li>
             })}
 
 
