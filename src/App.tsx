@@ -21,7 +21,7 @@ function App() {
   const [modalMessage, setModalMessage] = useState<string>("Modal Alert Active")
   const [isSortedByRecent, setIsSortedByRecent] = useState<boolean>(true)
 
-  const [firebaseItemsDB, setFirebaseItemsDB] = useState<comment>([{commentMessage:"1", id: "4abcd", name:"test", date: new Date()}])
+  const [anonymousComments, setAnonymousComments] = useState<comment>([{commentMessage:"1", id: "4abcd", name:"test", date: new Date()}])
   const [forumTopics, setForumTopics] = useState<any>()
 
   const messageRef = useRef<HTMLInputElement>()
@@ -96,7 +96,7 @@ function App() {
       const data = await getDocs(commentsCollectionRef);
       let comments:any = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       isSortedByRecent ? comments.sort((a:any, b:any) => b.date.seconds - a.date.seconds) : comments.sort((a:any, b:any) => a.date.seconds - b.date.seconds)
-      setFirebaseItemsDB(comments)
+      setAnonymousComments(comments)
     }
     catch (err) {
       console.log("Something went wrong retrieving comments.")
@@ -141,7 +141,7 @@ function App() {
         <HeaderComponent setJobIndex={setJobIndex} />
 
         <Routes>
-          <Route element={ <CommentLayout firebaseItemsDB={firebaseItemsDB} handleCommentSubmit={handleCommentSubmit} isSortedByRecent={isSortedByRecent} messageRef={messageRef} setIsSortedByRecent={setIsSortedByRecent} />} >
+          <Route element={ <CommentLayout anonymousComments={anonymousComments} handleCommentSubmit={handleCommentSubmit} isSortedByRecent={isSortedByRecent} messageRef={messageRef} setIsSortedByRecent={setIsSortedByRecent} />} >
             <Route path='/' element={ <JobComponent setJobIndex={setJobIndex} jobIndex={jobIndex} /> } />
             <Route path='/about' element={ <AboutComponent /> } />
           </Route>
