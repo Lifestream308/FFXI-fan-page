@@ -11,6 +11,7 @@ import ForumComponent from './components/ForumComponent';
 import ModalComponent from './components/ModalComponent';
 import FooterComponent from './components/FooterComponent';
 import CommentLayout from './components/CommentLayout';
+import TopicComponent from './components/TopicComponent';
 
 function App() {
 
@@ -144,11 +145,9 @@ function App() {
             <Route path='/' element={ <JobComponent setJobIndex={setJobIndex} jobIndex={jobIndex} /> } />
             <Route path='/about' element={ <AboutComponent /> } />
           </Route>
-
-
           <Route path='/forum' element={ <ForumComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} /> } />
+          <Route path='/forum/:id' element={ <TopicComponent /> } />
         </Routes>
-
       </div>
 
       <FooterComponent />
