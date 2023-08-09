@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import jobsArray from '../jobsArray';
+import jobsArray from '../util/jobsArray';
 
 export default function HeaderComponent({ setJobIndex }:any) {
 

@@ -1,7 +1,7 @@
-import type { RootState } from '../store'
+import type { RootState } from '../redux/store'
 import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment } from '../reduxSlices/testSlice'
-import { switchBool, setBool } from '../reduxSlices/test2Slice'
+import { decrement, increment } from '../redux/slices/testSlice'
+import { switchBool, setBool } from '../redux/slices/test2Slice'
 
 export default function Counter() {
   const count = useSelector((state: RootState) => state.counter.value)

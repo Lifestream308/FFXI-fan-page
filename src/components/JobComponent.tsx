@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import jobsArray from "../jobsArray"
+import jobsArray from "../util/jobsArray"
 
 export default function JobComponent({ jobIndex, setJobIndex }:any) {
 
