@@ -11,6 +11,7 @@ export default function HeaderComponent({ setJobIndex }:any) {
 
   const handleJobClick = (index:number) => {
     setJobIndex(index)
+    window.scrollTo(0, 550)
   }
 
   useEffect(() => {
