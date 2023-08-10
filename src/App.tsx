@@ -3,7 +3,7 @@ import { addDoc, getDocs } from "firebase/firestore";
 // import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import { Route, Routes, useLocation } from "react-router-dom"
 import { isCorrectLength, commentsCollectionRef, forumTopicsCollectionRef } from './util/FirebaseFunctions';
-import { comment } from './util/types';
+import { comment, topic } from './util/types';
 import AboutComponent from "./components/AboutComponent"
 import HeaderComponent from './components/HeaderComponent';
 import JobComponent from './components/JobComponent';
@@ -22,7 +22,7 @@ function App() {
   const [isSortedByRecent, setIsSortedByRecent] = useState<boolean>(true)
 
   const [anonymousComments, setAnonymousComments] = useState<comment>([{commentMessage:"1", id: "4abcd", name:"test", date: new Date()}])
-  const [forumTopics, setForumTopics] = useState<any>()
+  const [forumTopics, setForumTopics] = useState<topic>([{title:'Test', content: 'Testing', id: '1234', author: "John Doe", date: new Date(), numOfComments: 0}])
 
   const messageRef = useRef<HTMLInputElement>()
   const topicTitleRef = useRef<HTMLInputElement>()
@@ -110,7 +110,7 @@ function App() {
       let topics:any = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       isSortedByRecent ? topics.sort((a:any, b:any) => b.date.seconds - a.date.seconds) : topics.sort((a:any, b:any) => a.date.seconds - b.date.seconds)
       setForumTopics(topics)
-      console.log(topics, forumTopics)
+      console.log(topics)
     }
     catch (err) {
       console.log("Something went wrong retrieving Forum Topics.")
@@ -145,7 +145,7 @@ function App() {
             <Route path='/' element={ <JobComponent setJobIndex={setJobIndex} jobIndex={jobIndex} /> } />
             <Route path='/about' element={ <AboutComponent /> } />
           </Route>
-          <Route path='/forum' element={ <ForumComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} /> } />
+          <Route path='/forum' element={ <ForumComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} forumTopics={forumTopics} /> } />
           <Route path='/forum/:id' element={ <TopicComponent /> } />
         </Routes>
       </div>
