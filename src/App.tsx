@@ -146,7 +146,7 @@ function App() {
             <Route path='/about' element={ <AboutComponent /> } />
           </Route>
           <Route path='/forum' element={ <ForumComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} forumTopics={forumTopics} /> } />
-          <Route path='/forum/:id' element={ <TopicComponent /> } />
+          <Route path='/forum/:id' element={ <TopicComponent forumTopics={forumTopics} /> } />
         </Routes>
       </div>
 
