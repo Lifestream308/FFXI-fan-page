@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef,  } from 'react'
 import { addDoc, getDocs } from "firebase/firestore";
 // import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 import { Route, Routes, useLocation } from "react-router-dom"
 import { isCorrectLength, commentsCollectionRef, forumTopicsCollectionRef } from './util/FirebaseFunctions';
+import { auth } from './util/firebase-config'
 import { comment, topic } from './util/types';
 import AboutComponent from "./components/AboutComponent"
 import HeaderComponent from './components/HeaderComponent';
@@ -27,6 +29,57 @@ function App() {
   const messageRef = useRef<HTMLInputElement>()
   const topicTitleRef = useRef<HTMLInputElement>()
   const topicContentRef = useRef<HTMLInputElement>()
+
+
+  // Firebase Create/Register User, Login User, Guest Login, Logout User
+  const [user, setUser] = useState<any>('initialUserState')
+
+  const credentials = {
+    emailRef : useRef({value:'initialEmailRef'}),
+    passwordRef : useRef({value:'initialPasswordRef'})
+  }
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser)
+
+      // temporarily to get rid of errors with TS and what came with bringing in Firebase authentication functions
+      console.log(user, register, login, logout,)
+    })
+  }, [])
+
+  const register = async () => {
+    try {
+      // const user = await createUserWithEmailAndPassword(
+      await createUserWithEmailAndPassword(
+        auth,
+        credentials.emailRef.current.value,
+        credentials.passwordRef.current.value
+      )
+    } catch (error:any) {
+      console.log(error.message)
+    }
+  }
+
+  const login = async () => {
+    try {
+      // const user = await signInWithEmailAndPassword(
+      await signInWithEmailAndPassword(
+        auth,
+        credentials.emailRef.current.value,
+        credentials.passwordRef.current.value
+      )
+    } catch (error:any) {
+      console.log(error.message)
+    }
+  }
+
+  const logout = async () => {
+    await signOut(auth)
+  }
+  // End of Firebase Register/Login/GuestLogin/Logout
+
+
 
   const handleCommentSubmit = () => {
     if (messageRef.current && isCorrectLength(messageRef.current.value, 4, 250)) {
