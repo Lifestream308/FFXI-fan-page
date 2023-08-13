@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from './slices/testSlice'
 import booleanReducer from './slices/test2Slice'
+import jobIndexReducer from './slices/jobIndexSlice'
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     bool: booleanReducer,
+    jobIndex: jobIndexReducer
   },
 })
 
