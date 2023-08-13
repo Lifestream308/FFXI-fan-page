@@ -5,6 +5,7 @@ import { db } from "./firebase-config"
 
 const commentsCollectionRef = collection(db, "commentsCollection")
 const forumTopicsCollectionRef = collection(db, "forumTopics")
+const topicCommentsCollectionRef = collection(db, "topicComments")
 
 const isCorrectLength = (message: string, minimum: number, maximum: number) => {
     if (message.trim().length < minimum || message.trim().length > maximum) {
@@ -14,4 +15,4 @@ const isCorrectLength = (message: string, minimum: number, maximum: number) => {
     }
   }
 
-  export { isCorrectLength, commentsCollectionRef, forumTopicsCollectionRef }
+  export { isCorrectLength, commentsCollectionRef, forumTopicsCollectionRef, topicCommentsCollectionRef }
