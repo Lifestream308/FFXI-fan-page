@@ -1,10 +1,12 @@
 // import React from 'react'
-import { useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useParams, Link } from "react-router-dom"
-import { addDoc } from "firebase/firestore"
+import { addDoc, getDocs, query, where, } from "firebase/firestore"
 import { topicCommentsCollectionRef } from "../util/FirebaseFunctions"
 
 export default function TopicComponent({ forumTopics }:any) {
+
+  const [topicComments, setTopicComments] = useState<any>()
 
   const { id } = useParams()
 
@@ -21,10 +23,29 @@ export default function TopicComponent({ forumTopics }:any) {
     if (commentRef.current) {
       commentRef.current.value = ""
     } 
-    // getTopicComments()
+    getTopicComments()
     // setModalMessage("Comment Posted")
     // setIsModalShowing(true)
   }
+  
+  const getTopicComments = async () => {
+    const queryComments = query(topicCommentsCollectionRef, where("topicID", "==", id))
+
+    try {
+      const data = await getDocs(queryComments);
+      let comments:any = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      // isSortedByRecent ? comments.sort((a:any, b:any) => b.date.seconds - a.date.seconds) : comments.sort((a:any, b:any) => a.date.seconds - b.date.seconds)
+      setTopicComments(comments)
+    }
+    catch (err) {
+      console.log("Something went wrong retrieving topic comments.")
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    getTopicComments()
+  }, [])
 
   return (
     <div className="mt-12 mx-auto px-4 max-w-5xl sm:px-0">
@@ -32,18 +53,18 @@ export default function TopicComponent({ forumTopics }:any) {
         <div className="flex flex-col gap-8">
           <Link to={'/forum'} className="text-blue-800 self-center underline underline-offset-4">Back to Forum</Link>
           <div>
-            <h1 className="text-3xl text-neutral-700">{topic.title}</h1>
+            <h1 className="text-3xl text-neutral-700">{topic?.title}</h1>
             <small className="text-gray-500">{ id }</small>
             <br />
-            <small className="text-gray-500">3 Comments</small>
+            <small className="text-gray-500">{topicComments && topicComments.length} Comments</small>
           </div>
           <hr />
-          <p className="text-xl">{topic.content}</p>
+          <p className="text-xl">{topic?.content}</p>
         </div>
       </div>
 
       <div className="my-10 pl-8 flex flex-col">
-        <h3 className="text-stone-500">All 3 Comments</h3>
+        <h3 className="text-stone-500">All {topicComments && topicComments.length} Comments</h3>
         <p className="text-stone-700">Sort By Recent</p>
       </div>
 
@@ -54,9 +75,20 @@ export default function TopicComponent({ forumTopics }:any) {
         </div>
       </div>
 
+      { topicComments?.map((comment:any) => {
+        return (
+          <div className="mt-8 p-4 border-2 border-blue-200 rounded-xl" key={comment.id} >
+              <div>
+                <small className="text-gray-500">{comment.author}</small>
+                <p className="text-lg">{comment.content}</p>
+              </div>
+          </div>
+        )
+      })}
+
       <div className="mt-8 px-4 flex flex-col gap-4 sm:px-0">
         <input type="text" className="px-4 py-2 max-w-2xl border rounded-md" ref={commentRef} placeholder="What Do You Think?" />
-        <button className="px-2 py-2 text-white bg-green-600 w-fit border rounded-md" onClick={() => createTopicComment} >Submit Comment</button>
+        <button className="px-2 py-2 text-white bg-green-600 w-fit border rounded-md" onClick={() => createTopicComment()} >Submit Comment</button>
       </div>
     </div>
   )
