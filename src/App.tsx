@@ -198,7 +198,7 @@ function App() {
             <Route path='/' element={ <JobComponent setJobIndex={setJobIndex} jobIndex={jobIndex} /> } />
             <Route path='/about' element={ <AboutComponent /> } />
           </Route>
-          <Route path='/forum' element={ <ForumComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} forumTopics={forumTopics} /> } />
+          <Route path='/forum' element={ <ForumComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} forumTopics={forumTopics} getForumTopics={getForumTopics} /> } />
           <Route path='/forum/:id' element={ <TopicComponent forumTopics={forumTopics} /> } />
         </Routes>
       </div>

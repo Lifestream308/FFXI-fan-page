@@ -1,8 +1,9 @@
 // import React from 'react'
 import { useState, useRef, useEffect } from 'react'
 import { useParams, Link } from "react-router-dom"
-import { addDoc, getDocs, query, where, } from "firebase/firestore"
+import { doc, addDoc, updateDoc, getDocs, query, where, } from "firebase/firestore"
 import { topicCommentsCollectionRef } from "../util/FirebaseFunctions"
+import { db } from '../util/firebase-config'
 
 export default function TopicComponent({ forumTopics }:any) {
 
@@ -24,13 +25,13 @@ export default function TopicComponent({ forumTopics }:any) {
       commentRef.current.value = ""
     } 
     getTopicComments()
+    updateNumberOfTopicComments(id)
     // setModalMessage("Comment Posted")
     // setIsModalShowing(true)
   }
   
   const getTopicComments = async () => {
     const queryComments = query(topicCommentsCollectionRef, where("topicID", "==", id))
-
     try {
       const data = await getDocs(queryComments);
       let comments:any = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
@@ -41,6 +42,13 @@ export default function TopicComponent({ forumTopics }:any) {
       console.log("Something went wrong retrieving topic comments.")
       console.log(err)
     }
+  }
+
+  const updateNumberOfTopicComments = async (id:any) => {
+
+    const topicDoc = doc(db, "forumTopics", id)
+    const newFields = { numOfComments: topicComments.length + 1 }
+    await updateDoc(topicDoc, newFields)
   }
 
   useEffect(() => {
@@ -68,12 +76,12 @@ export default function TopicComponent({ forumTopics }:any) {
         <p className="text-stone-700">Sort By Recent</p>
       </div>
 
-      <div className="mt-8 p-4 border-2 border-blue-200 rounded-xl">
+      {/* <div className="mt-8 p-4 border-2 border-blue-200 rounded-xl">
         <div>
           <small className="text-gray-500">Author2342</small>
           <p className="text-lg">Content Goes here</p>
         </div>
-      </div>
+      </div> */}
 
       { topicComments?.map((comment:any) => {
         return (

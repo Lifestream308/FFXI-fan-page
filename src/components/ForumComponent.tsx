@@ -1,9 +1,13 @@
 // import React from 'react'
-
+import { useEffect } from "react";
 import CounterComponent from "./CounterComponent";
 import { Link } from "react-router-dom";
 
-export default function ForumComponent({handleTopicSubmit, topicTitleRef, topicContentRef, forumTopics}: any) {
+export default function ForumComponent({handleTopicSubmit, topicTitleRef, topicContentRef, forumTopics, getForumTopics}: any) {
+
+    useEffect(() => {
+        getForumTopics()
+    }, [])
 
   return (
     <>
