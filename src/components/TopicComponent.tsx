@@ -7,7 +7,7 @@ import { db } from '../util/firebase-config'
 
 export default function TopicComponent({ forumTopics }:any) {
 
-  const [topicComments, setTopicComments] = useState<any>()
+  const [topicComments, setTopicComments] = useState<any>([])
 
   const { id } = useParams()
 
@@ -64,7 +64,7 @@ export default function TopicComponent({ forumTopics }:any) {
             <h1 className="text-3xl text-neutral-700">{topic?.title}</h1>
             <small className="text-gray-500">{ id }</small>
             <br />
-            <small className="text-gray-500">{topicComments && topicComments.length} Comments</small>
+            <small className="text-gray-500">{topicComments && topicComments.length} {topicComments.length == 1 ? 'Comment':'Comments'}</small>
           </div>
           <hr />
           <p className="text-xl">{topic?.content}</p>
@@ -72,7 +72,7 @@ export default function TopicComponent({ forumTopics }:any) {
       </div>
 
       <div className="my-10 pl-8 flex flex-col">
-        <h3 className="text-stone-500">All {topicComments && topicComments.length} Comments</h3>
+        <h3 className="text-stone-500">{ topicComments.length > 1 ? `${topicComments.length} comments below` : 'Comment below!' }</h3>
         <p className="text-stone-700">Sort By Recent</p>
       </div>
 
