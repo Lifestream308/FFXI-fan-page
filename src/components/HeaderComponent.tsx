@@ -1,8 +1,14 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import jobsArray from '../util/jobsArray';
+// import { RootState } from '../redux/store'
+// import { useSelector, useDispatch } from 'react-redux'
+// import { prev, next, setJobIndex } from '../redux/slices/jobIndexSlice'
 
 export default function HeaderComponent({ setJobIndex }:any) {
+
+  // const jobIndex = useSelector((state: RootState) => state.counter.value)
+  // const dispatch = useDispatch()
 
   const [showMobileUL, setShowMobileUL] = useState<boolean>(false)
 

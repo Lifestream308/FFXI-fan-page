@@ -191,11 +191,11 @@ function App() {
       { isModalShowing && <ModalComponent modalMessage={modalMessage} setIsModalShowing={setIsModalShowing} /> }
 
       <div className='max-w-7xl m-auto'>
-        <HeaderComponent setJobIndex={setJobIndex} />
+        <HeaderComponent setJobIndex={setJobIndex} jobIndex={jobIndex} />
 
         <Routes>
           <Route element={ <CommentLayout anonymousComments={anonymousComments} handleCommentSubmit={handleCommentSubmit} isSortedByRecent={isSortedByRecent} messageRef={messageRef} setIsSortedByRecent={setIsSortedByRecent} />} >
-            <Route path='/' element={ <JobComponent setJobIndex={setJobIndex} jobIndex={jobIndex} /> } />
+            <Route path='/' element={ <JobComponent /> } />
             <Route path='/about' element={ <AboutComponent /> } />
           </Route>
           <Route path='/forum' element={ <ForumComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} forumTopics={forumTopics} getForumTopics={getForumTopics} /> } />

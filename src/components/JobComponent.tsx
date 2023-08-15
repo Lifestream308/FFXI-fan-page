@@ -1,19 +1,31 @@
 import { useEffect } from 'react'
 import jobsArray from "../util/jobsArray"
+import { RootState } from '../redux/store'
+import { useSelector, useDispatch } from 'react-redux'
+import { prev, next, } from '../redux/slices/jobIndexSlice'
 
-export default function JobComponent({ jobIndex, setJobIndex }:any) {
+export default function JobComponent() {
+
+  const jobIndex = useSelector((state: RootState) => state.jobIndex.value)
+  const dispatch = useDispatch()
 
   let job = jobsArray[jobIndex]
 
   const handleJobChange = {
-    prev: () => {setJobIndex((prev:number) => prev > 0 ? prev-1 : jobsArray.length-1)},
-    next: () => {setJobIndex((prev:number) => prev < jobsArray.length-1 ? prev+1 : 0)},
+    prev: () => dispatch(prev()),
+    next: () => dispatch(next()),
   }
+  // const handleJobChange = {
+  //   prev: () => {setJobIndex((prev:number) => prev > 0 ? prev-1 : jobsArray.length-1)},
+  //   next: () => {setJobIndex((prev:number) => prev < jobsArray.length-1 ? prev+1 : 0)},
+  // }
+
 
   useEffect(() => {
     let handler = (e: KeyboardEvent) => {
       if (e.code === "ArrowLeft") {
-        handleJobChange.prev()
+        // handleJobChange.prev()
+        dispatch(prev())
       }
       if (e.code === "ArrowRight") {
         handleJobChange.next()
