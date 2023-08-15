@@ -95,8 +95,8 @@ export default function TopicComponent({ forumTopics }:any) {
       })}
 
       <div className="mt-8 px-4 flex flex-col gap-4 sm:px-0">
-        <input type="text" className="px-4 py-2 max-w-2xl border rounded-md" ref={commentRef} placeholder="What Do You Think?" />
-        <button className="px-2 py-2 text-white bg-green-600 w-fit border rounded-md" onClick={() => createTopicComment()} >Submit Comment</button>
+        <input type="text" className="px-2 py-1 max-w-2xl placeholder-gray-500 bg-slate-200 border border-gray-500 rounded-md" ref={commentRef} placeholder="What Do You Think?" />
+        <button className="px-2 py-2 text-white bg-green-700 w-fit rounded-md" onClick={() => createTopicComment()} >Submit Comment</button>
       </div>
     </div>
   )
