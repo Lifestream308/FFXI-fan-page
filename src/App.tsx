@@ -18,7 +18,6 @@ import TopicComponent from './components/TopicComponent';
 function App() {
 
   // This grouping needs to be in redux store
-  const [jobIndex, setJobIndex] = useState<number>(0)
   const [isModalShowing, setIsModalShowing] = useState<boolean>(false)
   const [modalMessage, setModalMessage] = useState<string>("Modal Alert Active")
   const [isSortedByRecent, setIsSortedByRecent] = useState<boolean>(true)
@@ -191,7 +190,7 @@ function App() {
       { isModalShowing && <ModalComponent modalMessage={modalMessage} setIsModalShowing={setIsModalShowing} /> }
 
       <div className='max-w-7xl m-auto'>
-        <HeaderComponent setJobIndex={setJobIndex} jobIndex={jobIndex} />
+        <HeaderComponent />
 
         <Routes>
           <Route element={ <CommentLayout anonymousComments={anonymousComments} handleCommentSubmit={handleCommentSubmit} isSortedByRecent={isSortedByRecent} messageRef={messageRef} setIsSortedByRecent={setIsSortedByRecent} />} >

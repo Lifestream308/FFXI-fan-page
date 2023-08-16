@@ -1,14 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import jobsArray from '../util/jobsArray';
-// import { RootState } from '../redux/store'
-// import { useSelector, useDispatch } from 'react-redux'
-// import { prev, next, setJobIndex } from '../redux/slices/jobIndexSlice'
+import { useDispatch } from 'react-redux'
+import { setJobIndex } from '../redux/slices/jobIndexSlice'
 
-export default function HeaderComponent({ setJobIndex }:any) {
+export default function HeaderComponent() {
 
   // const jobIndex = useSelector((state: RootState) => state.counter.value)
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   const [showMobileUL, setShowMobileUL] = useState<boolean>(false)
 
@@ -16,7 +15,8 @@ export default function HeaderComponent({ setJobIndex }:any) {
   const mobileBtnRef = useRef<any>()
 
   const handleJobClick = (index:number) => {
-    setJobIndex(index)
+    // setJobIndex(index)
+    dispatch(setJobIndex(index))
     window.scrollTo(0, 550)
   }
 
