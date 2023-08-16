@@ -20,11 +20,10 @@ import { modalShowingTrue } from './redux/slices/isModalShowingSlice';
 
 function App() {
 
-  // This grouping needs to be in redux store
   const isModalShowing = useSelector((state: RootState) => state.isModalShowing.value)
   const dispatch = useDispatch()
-  // const [isModalShowing, setIsModalShowing] = useState<boolean>(false)
-
+  
+  // This grouping needs to be in redux store
   const [modalMessage, setModalMessage] = useState<string>("Modal Alert Active")
   const [isSortedByRecent, setIsSortedByRecent] = useState<boolean>(true)
 
@@ -105,7 +104,6 @@ function App() {
     }
   }
 
-  // createAnonymousComment?
   const createComment = async () => {
     await addDoc(commentsCollectionRef, {
       commentMessage: messageRef.current?.value.trim(), 
@@ -116,7 +114,6 @@ function App() {
     } 
     getComments()
     setModalMessage("Comment Posted")
-    // setIsModalShowing(true)
     dispatch(modalShowingTrue())
   }
 
@@ -136,19 +133,16 @@ function App() {
     } 
     getForumTopics()
     setModalMessage("Topic Posted")
-    // setIsModalShowing(true)
     dispatch(modalShowingTrue())
   }
 
   const rejectComment = (min:number, max:number) => {
     setModalMessage(`Comment must be between ${min}-${max} characters long.`)
-    // setIsModalShowing(true)
     dispatch(modalShowingTrue())
   }
 
   const rejectTopic = (minTitle:number, maxTitle:number, minContent: number, maxContent: number) => {
     setModalMessage(`Title must be between ${minTitle}-${maxTitle} characters long. Content must be between ${minContent}-${maxContent} characters long.`)
-    // setIsModalShowing(true)
     dispatch(modalShowingTrue())
   }
 
