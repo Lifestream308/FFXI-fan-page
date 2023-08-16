@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from './slices/testSlice'
 import booleanReducer from './slices/test2Slice'
 import jobIndexReducer from './slices/jobIndexSlice'
+import isModalShowingReducer from './slices/isModalShowingSlice'
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     bool: booleanReducer,
-    jobIndex: jobIndexReducer
+    jobIndex: jobIndexReducer,
+    isModalShowing: isModalShowingReducer,
   },
 })
 
