@@ -12,12 +12,15 @@ export const isModalShowingSlice = createSlice({
   name: 'isModalShowing',
   initialState,
   reducers: {
-    switchModalShowing: (state) => {
-      state.value = !state.value
+    modalShowingTrue: (state) => {
+      state.value = true
+    },
+    modalShowingFalse: (state) => {
+      state.value = false
     },
   },
 })
 
-export const { switchModalShowing } = isModalShowingSlice.actions
+export const { modalShowingTrue, modalShowingFalse } = isModalShowingSlice.actions
 
 export default isModalShowingSlice.reducer

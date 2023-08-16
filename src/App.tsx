@@ -14,11 +14,17 @@ import ModalComponent from './components/ModalComponent';
 import FooterComponent from './components/FooterComponent';
 import CommentLayout from './components/CommentLayout';
 import TopicComponent from './components/TopicComponent';
+import { RootState } from './redux/store';
+import { useSelector, useDispatch } from 'react-redux';
+import { modalShowingTrue } from './redux/slices/isModalShowingSlice';
 
 function App() {
 
   // This grouping needs to be in redux store
-  const [isModalShowing, setIsModalShowing] = useState<boolean>(false)
+  const isModalShowing = useSelector((state: RootState) => state.isModalShowing.value)
+  const dispatch = useDispatch()
+  // const [isModalShowing, setIsModalShowing] = useState<boolean>(false)
+
   const [modalMessage, setModalMessage] = useState<string>("Modal Alert Active")
   const [isSortedByRecent, setIsSortedByRecent] = useState<boolean>(true)
 
@@ -110,7 +116,8 @@ function App() {
     } 
     getComments()
     setModalMessage("Comment Posted")
-    setIsModalShowing(true)
+    // setIsModalShowing(true)
+    dispatch(modalShowingTrue())
   }
 
   const createForumTopic = async () => {
@@ -129,17 +136,20 @@ function App() {
     } 
     getForumTopics()
     setModalMessage("Topic Posted")
-    setIsModalShowing(true)
+    // setIsModalShowing(true)
+    dispatch(modalShowingTrue())
   }
 
   const rejectComment = (min:number, max:number) => {
     setModalMessage(`Comment must be between ${min}-${max} characters long.`)
-    setIsModalShowing(true)
+    // setIsModalShowing(true)
+    dispatch(modalShowingTrue())
   }
 
   const rejectTopic = (minTitle:number, maxTitle:number, minContent: number, maxContent: number) => {
     setModalMessage(`Title must be between ${minTitle}-${maxTitle} characters long. Content must be between ${minContent}-${maxContent} characters long.`)
-    setIsModalShowing(true)
+    // setIsModalShowing(true)
+    dispatch(modalShowingTrue())
   }
 
   // needs interface or type for the array of comments that are coming in from firebase
@@ -187,7 +197,7 @@ function App() {
 
   return (
     <>
-      { isModalShowing && <ModalComponent modalMessage={modalMessage} setIsModalShowing={setIsModalShowing} /> }
+      { isModalShowing && <ModalComponent modalMessage={modalMessage} /> }
 
       <div className='max-w-7xl m-auto'>
         <HeaderComponent />
