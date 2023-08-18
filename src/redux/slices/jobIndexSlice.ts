@@ -7,7 +7,7 @@ export interface jobIndexState {
 }
 
 const initialState: jobIndexState = {
-  value: 3,
+  value: 0,
 }
 
 export const jobIndexSlice = createSlice({
