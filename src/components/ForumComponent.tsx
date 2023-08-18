@@ -19,21 +19,6 @@ export default function ForumComponent({handleTopicSubmit, topicTitleRef, topicC
                     <th className='px-6 py-4 text-sm bg-blue-100 text-indigo-500 w-36 hidden sm:table-cell'>AUTHOR</th>
                     <th className='px-6 py-4 text-sm bg-blue-100 text-indigo-500 w-16'>POSTS</th>
                 </tr>
-                {/* <tr>
-                    <td className="px-6 py-4 text-gray-700 text-left">First Topic</td>
-                    <td className="px-6 py-4 text-gray-700 hidden sm:table-cell">NameHere</td>
-                    <td className="px-6 py-4 text-gray-700 text-center">8</td>
-                </tr>
-                <tr className="border-t">
-                    <td className="px-6 py-4 text-gray-700 text-left">Second Topic</td>
-                    <td className="px-6 py-4 text-gray-700 hidden sm:table-cell">Anonymous</td>
-                    <td className="px-6 py-4 text-gray-700 text-center">25</td>
-                </tr>
-                <tr className="border-t">
-                    <td className="px-6 py-4 text-gray-700 text-left">Third Topic</td>
-                    <td className="px-6 py-4 text-gray-700 hidden sm:table-cell">Anon</td>
-                    <td className="px-6 py-4 text-gray-700 text-center">5</td>
-                </tr> */}
                 
                 {forumTopics.map((topic:any) => {
                     return (
