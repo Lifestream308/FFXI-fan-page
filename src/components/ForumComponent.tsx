@@ -11,7 +11,7 @@ export default function ForumComponent({handleTopicSubmit, topicTitleRef, topicC
   return (
     <div className="mt-8 max-w-5xl">
         <div className="flex">
-            <button className="m-4 p-2 text-white bg-green-700 rounded-md">New Topic <span className="py-1"><i className="bi bi-plus-lg"></i></span></button>
+            <Link to={'/forum/NewTopic'} className="m-4 p-2 text-white bg-green-700 rounded-md">New Topic <span className="py-1"><i className="bi bi-plus-lg"></i></span></Link>
         </div>
         <section className="mt-4 mb-16 mx-auto max-w-5xl overflow-hidden rounded-lg">
             <div className="min-w-full">

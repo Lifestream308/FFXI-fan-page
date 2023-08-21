@@ -17,6 +17,7 @@ import TopicComponent from './components/TopicComponent';
 import { RootState } from './redux/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { modalShowingTrue } from './redux/slices/isModalShowingSlice';
+import TopicFormComponent from './components/TopicFormComponent';
 
 function App() {
 
@@ -201,6 +202,7 @@ function App() {
           </Route>
           <Route path='/forum' element={ <ForumComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} forumTopics={forumTopics} getForumTopics={getForumTopics} /> } />
           <Route path='/forum/:id' element={ <TopicComponent forumTopics={forumTopics} /> } />
+          <Route path='/forum/NewTopic' element={ <TopicFormComponent /> } />
         </Routes>
       </div>
 
