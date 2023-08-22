@@ -2,7 +2,7 @@ import { useState, useEffect, useRef,  } from 'react'
 import { addDoc, getDocs } from "firebase/firestore";
 // import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
-import { Route, Routes, useLocation } from "react-router-dom"
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom"
 import { isCorrectLength, commentsCollectionRef, forumTopicsCollectionRef } from './util/FirebaseFunctions';
 import { auth } from './util/firebase-config'
 import { comment, topic } from './util/types';
@@ -35,6 +35,7 @@ function App() {
   const topicTitleRef = useRef<HTMLInputElement>()
   const topicContentRef = useRef<HTMLInputElement>()
 
+  const navigate = useNavigate()
 
   // Firebase Create/Register User, Login User, Guest Login, Logout User
   const [user, setUser] = useState<any>('initialUserState')
@@ -130,9 +131,10 @@ function App() {
     if (topicContentRef.current) {
       topicContentRef.current.value = ""
     } 
-    getForumTopics()
+    // getForumTopics()
     setModalMessage("Topic Posted")
     dispatch(modalShowingTrue())
+    navigate("/forum")
   }
 
   const rejectComment = (min:number, max:number) => {
@@ -202,7 +204,7 @@ function App() {
           </Route>
           <Route path='/forum' element={ <ForumComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} forumTopics={forumTopics} getForumTopics={getForumTopics} /> } />
           <Route path='/forum/:id' element={ <TopicComponent forumTopics={forumTopics} /> } />
-          <Route path='/forum/NewTopic' element={ <TopicFormComponent /> } />
+          <Route path='/forum/NewTopic' element={ <TopicFormComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} /> } />
         </Routes>
       </div>
 

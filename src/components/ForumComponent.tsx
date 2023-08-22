@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export default function ForumComponent({handleTopicSubmit, topicTitleRef, topicContentRef, forumTopics, getForumTopics}: any) {
+export default function ForumComponent({forumTopics, getForumTopics}: any) {
 
     useEffect(() => {
         getForumTopics()
@@ -39,13 +39,13 @@ export default function ForumComponent({handleTopicSubmit, topicTitleRef, topicC
             </div>
         </section>
 
-        <div className="mb-12 text-center">
+        {/* <div className="mb-12 text-center">
             <input type="text" placeholder="Title" ref={topicTitleRef} className="m-4 border border-black" />
             <br />
             <input type="text" placeholder="Content" ref={topicContentRef} className="m-4 border border-black" />
             <br />
             <button type="button" onClick={()=> handleTopicSubmit()} className="m-4 p-2 text-white bg-green-700 rounded-md">Submit Topic</button>
-        </div>
+        </div> */}
     </div>
   )
 }
