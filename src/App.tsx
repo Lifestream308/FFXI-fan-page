@@ -2,7 +2,7 @@ import { useState, useEffect, useRef,  } from 'react'
 import { addDoc, getDocs } from "firebase/firestore";
 // import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
-import { Route, Routes, useLocation } from "react-router-dom"
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom"
 import { isCorrectLength, commentsCollectionRef, forumTopicsCollectionRef } from './util/FirebaseFunctions';
 import { auth } from './util/firebase-config'
 import { comment, topic } from './util/types';
@@ -17,6 +17,7 @@ import TopicComponent from './components/TopicComponent';
 import { RootState } from './redux/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { modalShowingTrue } from './redux/slices/isModalShowingSlice';
+import TopicFormComponent from './components/TopicFormComponent';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
   const topicTitleRef = useRef<HTMLInputElement>()
   const topicContentRef = useRef<HTMLInputElement>()
 
+  const navigate = useNavigate()
 
   // Firebase Create/Register User, Login User, Guest Login, Logout User
   const [user, setUser] = useState<any>('initialUserState')
@@ -54,7 +56,6 @@ function App() {
 
   const register = async () => {
     try {
-      // const user = await createUserWithEmailAndPassword(
       await createUserWithEmailAndPassword(
         auth,
         credentials.emailRef.current.value,
@@ -67,7 +68,6 @@ function App() {
 
   const login = async () => {
     try {
-      // const user = await signInWithEmailAndPassword(
       await signInWithEmailAndPassword(
         auth,
         credentials.emailRef.current.value,
@@ -131,9 +131,10 @@ function App() {
     if (topicContentRef.current) {
       topicContentRef.current.value = ""
     } 
-    getForumTopics()
+    // getForumTopics()
     setModalMessage("Topic Posted")
     dispatch(modalShowingTrue())
+    navigate("/forum")
   }
 
   const rejectComment = (min:number, max:number) => {
@@ -203,6 +204,7 @@ function App() {
           </Route>
           <Route path='/forum' element={ <ForumComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} forumTopics={forumTopics} getForumTopics={getForumTopics} /> } />
           <Route path='/forum/:id' element={ <TopicComponent forumTopics={forumTopics} /> } />
+          <Route path='/forum/NewTopic' element={ <TopicFormComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} /> } />
         </Routes>
       </div>
 

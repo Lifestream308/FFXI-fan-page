@@ -76,13 +76,6 @@ export default function TopicComponent({ forumTopics }:any) {
         <p className="text-stone-700">Sort By Recent</p>
       </div>
 
-      {/* <div className="mt-8 p-4 border-2 border-blue-200 rounded-xl">
-        <div>
-          <small className="text-gray-500">Author2342</small>
-          <p className="text-lg">Content Goes here</p>
-        </div>
-      </div> */}
-
       { topicComments?.map((comment:any) => {
         return (
           <div className="mt-8 p-4 border-2 border-blue-200 rounded-xl" key={comment.id} >
