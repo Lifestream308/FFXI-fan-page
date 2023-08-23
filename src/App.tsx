@@ -18,6 +18,7 @@ import { RootState } from './redux/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { modalShowingTrue } from './redux/slices/isModalShowingSlice';
 import TopicFormComponent from './components/TopicFormComponent';
+import SignInPageComponent from './components/SignInPageComponent';
 
 function App() {
 
@@ -48,9 +49,6 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser)
-
-      // temporarily to get rid of errors with TS and what came with bringing in Firebase authentication functions
-      console.log(user, register, login, logout,)
     })
   }, [])
 
@@ -205,6 +203,7 @@ function App() {
           <Route path='/forum' element={ <ForumComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} forumTopics={forumTopics} getForumTopics={getForumTopics} /> } />
           <Route path='/forum/:id' element={ <TopicComponent forumTopics={forumTopics} /> } />
           <Route path='/forum/NewTopic' element={ <TopicFormComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} /> } />
+          <Route path='/SignIn' element={ <SignInPageComponent user={user} credentials={credentials} register={register} login={login} logout={logout} /> } />
         </Routes>
       </div>
 
