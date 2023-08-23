@@ -14,7 +14,7 @@ export default function ForumComponent({forumTopics, getForumTopics}: any) {
             <Link to={'/forum/NewTopic'} className="m-4 p-2 text-white bg-green-700 rounded-md">New Topic <span className="py-1"><i className="bi bi-plus-lg"></i></span></Link>
             <Link to={'/SignIn'} className="m-4 p-2 text-white bg-blue-800 rounded-md">Sign In <span className="py-1"><i className="bi bi-person-fill"></i></span></Link>
         </div>
-        <section className="mt-4 mb-16 mx-auto max-w-5xl overflow-hidden rounded-lg">
+        <section className="mt-4 mb-16 mx-auto max-w-5xl overflow-hidden rounded-lg shadow-xl">
             <div className="min-w-full">
                 <table className='min-w-full text-left bg-slate-100'>
                     <tbody>
