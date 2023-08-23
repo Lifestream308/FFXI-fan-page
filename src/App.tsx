@@ -49,6 +49,7 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser)
+      console.log(currentUser)
     })
   }, [])
 
@@ -165,7 +166,6 @@ function App() {
       let topics:any = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       isSortedByRecent ? topics.sort((a:any, b:any) => b.date.seconds - a.date.seconds) : topics.sort((a:any, b:any) => a.date.seconds - b.date.seconds)
       setForumTopics(topics)
-      console.log(topics)
     }
     catch (err) {
       console.log("Something went wrong retrieving Forum Topics.")
