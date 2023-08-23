@@ -201,7 +201,7 @@ function App() {
             <Route path='/about' element={ <AboutComponent /> } />
           </Route>
           <Route path='/forum' element={ <ForumComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} forumTopics={forumTopics} getForumTopics={getForumTopics} /> } />
-          <Route path='/forum/:id' element={ <TopicComponent forumTopics={forumTopics} /> } />
+          <Route path='/forum/:id' element={ <TopicComponent forumTopics={forumTopics} setModalMessage={setModalMessage} /> } />
           <Route path='/forum/NewTopic' element={ <TopicFormComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} /> } />
           <Route path='/SignIn' element={ <SignInPageComponent user={user} credentials={credentials} register={register} login={login} logout={logout} /> } />
         </Routes>

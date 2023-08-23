@@ -4,8 +4,12 @@ import { useParams, Link } from "react-router-dom"
 import { doc, addDoc, updateDoc, getDocs, query, where, } from "firebase/firestore"
 import { topicCommentsCollectionRef } from "../util/FirebaseFunctions"
 import { db } from '../util/firebase-config'
+import { useDispatch } from 'react-redux'
+import { modalShowingTrue } from '../redux/slices/isModalShowingSlice'
 
-export default function TopicComponent({ forumTopics }:any) {
+export default function TopicComponent({ forumTopics, setModalMessage }:any) {
+
+  const dispatch = useDispatch()
 
   const [topicComments, setTopicComments] = useState<any>([])
 
@@ -26,8 +30,8 @@ export default function TopicComponent({ forumTopics }:any) {
     } 
     getTopicComments()
     updateNumberOfTopicComments(id)
-    // setModalMessage("Comment Posted")
-    // setIsModalShowing(true)
+    setModalMessage("Comment Posted")
+    dispatch(modalShowingTrue())
   }
   
   const getTopicComments = async () => {
@@ -36,6 +40,7 @@ export default function TopicComponent({ forumTopics }:any) {
       const data = await getDocs(queryComments);
       let comments:any = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       // isSortedByRecent ? comments.sort((a:any, b:any) => b.date.seconds - a.date.seconds) : comments.sort((a:any, b:any) => a.date.seconds - b.date.seconds)
+      comments.sort((a:any, b:any) => b.date.seconds - a.date.seconds)
       setTopicComments(comments)
     }
     catch (err) {
