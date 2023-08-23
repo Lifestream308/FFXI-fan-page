@@ -1,5 +1,6 @@
 // import React from 'react'
 import { Link } from "react-router-dom"
+import RegisterComponent from "./RegisterComponent"
 
 export default function SignInPageComponent({user, credentials, register, login, logout}:any) {
   return (
@@ -15,11 +16,11 @@ export default function SignInPageComponent({user, credentials, register, login,
             <input type="text" ref={credentials.emailRef} placeholder="Email" className="px-2 py-1 max-w-md placeholder-gray-500 bg-slate-200 border-gray-500 border-[1px] rounded-md" />
             <input type="password" ref={credentials.passwordRef} placeholder="Password" className="px-2 py-1 max-w-md placeholder-gray-500 bg-slate-200 border-gray-500 border-[1px] rounded-md" />
         </div>
-        <div className="mt-8 flex gap-4">
+        <div className="mt-8 flex flex-col items-center gap-4">
             { !user && 
             <>
-                <button onClick={register} className="px-4 py-2 w-fit text-white bg-blue-600 rounded-md" >Register</button>
                 <button onClick={login} className="px-4 py-2 w-fit text-white bg-green-700 rounded-md" >Login</button>
+                <RegisterComponent register={register} />
             </> }
             { user && 
                 <button onClick={logout} className="px-4 py-2 w-fit text-white bg-orange-600 rounded-md" >Logout</button>
