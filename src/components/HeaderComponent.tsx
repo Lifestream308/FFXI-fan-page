@@ -67,6 +67,8 @@ export default function HeaderComponent() {
           <li className='w-full hover:bg-gray-200'><Link to="/about" className='w-full px-4 block'>About</Link></li>
           <li className='w-full hover:bg-gray-200'><Link to="/forum" className='w-full px-4 block'>Forum</Link></li>
 
+          <hr />
+
           {jobsArray.map((job:any, index:number) => {
             return <li key={job.name} className='w-full hover:bg-gray-200'>
             <Link to="/" className='w-full px-4 text-gray-600 block' onClick={() => handleJobClick(index)}>{job.name}</Link></li>
