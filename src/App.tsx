@@ -56,9 +56,9 @@ function App() {
     onAuthStateChanged(auth, (currentUser:any) => {
       setUser(currentUser)
       console.log(currentUser)
-      if (currentUser?.displayName == null) {
+      if (currentUser?.displayName == null && usernameRef.current?.value) {
         updateProfile(currentUser, {
-          displayName: usernameRef?.current.value
+          displayName: usernameRef.current.value
         })
         dispatch(newUserFalse)
       }
