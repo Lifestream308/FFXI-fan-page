@@ -8,8 +8,9 @@ export default function SignInPageComponent({user, credentials, register, login,
         <Link to={'/forum'} className="text-blue-800 self-center underline underline-offset-4">Back to Forum</Link>
         { user && 
         <div>
-            <p className="mt-4 text-xl">Email: {user?.email}</p>
-            <p className="mt-4 text-xl">UID: {user.uid}</p>
+            <p className="mt-4 text-xl">Email: {user.email}</p>
+            <p className="mt-4 text-xl">UID: {user.uid}</p> 
+            <p className="mt-4 text-xl">DisplayName: {user.displayName}</p> 
         </div>
         }
         <div className="mt-8 flex flex-col gap-4">
