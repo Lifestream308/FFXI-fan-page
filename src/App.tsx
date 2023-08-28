@@ -14,15 +14,18 @@ import ModalComponent from './components/ModalComponent';
 import FooterComponent from './components/FooterComponent';
 import CommentLayout from './components/CommentLayout';
 import TopicComponent from './components/TopicComponent';
+import TopicFormComponent from './components/TopicFormComponent';
+import SignInPageComponent from './components/SignInPageComponent';
 import { RootState } from './redux/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { modalShowingTrue } from './redux/slices/isModalShowingSlice';
-import TopicFormComponent from './components/TopicFormComponent';
-import SignInPageComponent from './components/SignInPageComponent';
+import { newUserFalse, newUserTrue } from './redux/slices/isNewUserSlice';
 
 function App() {
 
   const isModalShowing = useSelector((state: RootState) => state.isModalShowing.value)
+  // may just delete isNewUser. may be unnecessary and will just check if displayName == null
+  // const isNewUser = useSelector((state: RootState) => state.isNewUser.value)
   const dispatch = useDispatch()
   
   // This grouping needs to be in redux store
@@ -40,7 +43,9 @@ function App() {
 
   // Firebase Create/Register User, Login User, Guest Login, Logout User
   const [user, setUser] = useState<any>('initialUserState')
-  const [isNewUser, setIsNewUser] = useState<boolean>(false)
+  // const [isNewUser, setIsNewUser] = useState<boolean>(false)
+
+  const usernameRef = useRef<any>()
 
   const credentials = {
     emailRef : useRef({value:'initialEmailRef'}),
@@ -51,16 +56,22 @@ function App() {
     onAuthStateChanged(auth, (currentUser:any) => {
       setUser(currentUser)
       console.log(currentUser)
-      if (isNewUser) {
+      if (currentUser?.displayName == null) {
         updateProfile(currentUser, {
-          displayName: "Jane"
+          displayName: usernameRef?.current.value
         })
-        setIsNewUser(false)
+        dispatch(newUserFalse)
       }
     })
   }, [])
 
   const register = async () => {
+    // need to set up validation for username and put into a function
+    if (usernameRef.current.value.trim() == '') {
+      alert('no username entered')
+      return
+    }
+    dispatch(newUserTrue)
     try {
       await createUserWithEmailAndPassword(
         auth,
@@ -210,7 +221,7 @@ function App() {
           <Route path='/forum' element={ <ForumComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} forumTopics={forumTopics} getForumTopics={getForumTopics} /> } />
           <Route path='/forum/:id' element={ <TopicComponent forumTopics={forumTopics} setModalMessage={setModalMessage} /> } />
           <Route path='/forum/NewTopic' element={ <TopicFormComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} /> } />
-          <Route path='/SignIn' element={ <SignInPageComponent user={user} credentials={credentials} register={register} login={login} logout={logout} /> } />
+          <Route path='/SignIn' element={ <SignInPageComponent user={user} credentials={credentials} register={register} login={login} logout={logout} usernameRef={usernameRef} /> } />
         </Routes>
       </div>
 

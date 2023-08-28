@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom"
 import RegisterComponent from "./RegisterComponent"
 
-export default function SignInPageComponent({user, credentials, register, login, logout}:any) {
+export default function SignInPageComponent({user, credentials, register, login, logout, usernameRef}:any) {
   return (
       <div className="mt-8 flex flex-col items-center">
         <Link to={'/forum'} className="text-blue-800 self-center underline underline-offset-4">Back to Forum</Link>
@@ -10,7 +10,7 @@ export default function SignInPageComponent({user, credentials, register, login,
         <div>
             <p className="mt-4 text-xl">Email: {user.email}</p>
             <p className="mt-4 text-xl">UID: {user.uid}</p> 
-            <p className="mt-4 text-xl">DisplayName: {user.displayName}</p> 
+            <p className="mt-4 text-xl">DisplayName: {user?.displayName? user.displayName : ''}</p> 
         </div>
         }
         <div className="mt-8 flex flex-col gap-4">
@@ -21,7 +21,7 @@ export default function SignInPageComponent({user, credentials, register, login,
             { !user && 
             <>
                 <button onClick={login} className="px-4 py-2 w-fit text-white bg-green-700 rounded-md" >Login</button>
-                <RegisterComponent register={register} credentials={credentials} />
+                <RegisterComponent register={register} credentials={credentials} usernameRef={usernameRef} />
             </> }
             { user && 
                 <button onClick={logout} className="px-4 py-2 w-fit text-white bg-orange-600 rounded-md" >Logout</button>

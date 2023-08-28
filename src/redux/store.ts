@@ -3,6 +3,7 @@ import counterReducer from './slices/testSlice'
 import booleanReducer from './slices/test2Slice'
 import jobIndexReducer from './slices/jobIndexSlice'
 import isModalShowingReducer from './slices/isModalShowingSlice'
+import isNewUserReducer from './slices/isNewUserSlice'
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     bool: booleanReducer,
     jobIndex: jobIndexReducer,
     isModalShowing: isModalShowingReducer,
+    isNewUser: isNewUserReducer,
   },
 })
 
