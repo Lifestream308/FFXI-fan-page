@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef,  } from 'react'
 import { addDoc, getDocs } from "firebase/firestore";
 // import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from 'firebase/auth';
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom"
 import { isCorrectLength, commentsCollectionRef, forumTopicsCollectionRef } from './util/FirebaseFunctions';
 import { auth } from './util/firebase-config'
@@ -40,6 +40,7 @@ function App() {
 
   // Firebase Create/Register User, Login User, Guest Login, Logout User
   const [user, setUser] = useState<any>('initialUserState')
+  const [isNewUser, setIsNewUser] = useState<boolean>(false)
 
   const credentials = {
     emailRef : useRef({value:'initialEmailRef'}),
@@ -47,9 +48,15 @@ function App() {
   }
 
   useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
+    onAuthStateChanged(auth, (currentUser:any) => {
       setUser(currentUser)
       console.log(currentUser)
+      if (isNewUser) {
+        updateProfile(currentUser, {
+          displayName: "Jane"
+        })
+        setIsNewUser(false)
+      }
     })
   }, [])
 
