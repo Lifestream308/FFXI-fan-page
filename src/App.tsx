@@ -19,12 +19,12 @@ import SignInPageComponent from './components/SignInPageComponent';
 import { RootState } from './redux/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { modalShowingTrue } from './redux/slices/isModalShowingSlice';
-import { newUserFalse, newUserTrue } from './redux/slices/isNewUserSlice';
+// import { newUserFalse, newUserTrue } from './redux/slices/isNewUserSlice';
 
 function App() {
 
   const isModalShowing = useSelector((state: RootState) => state.isModalShowing.value)
-  // may just delete isNewUser. may be unnecessary and will just check if displayName == null
+  // may just delete isNewUser. may be unnecessary and will just check if displayName == null. Edit* yeah doesn't look like I can make that work at the moment.
   // const isNewUser = useSelector((state: RootState) => state.isNewUser.value)
   const dispatch = useDispatch()
   
@@ -60,7 +60,6 @@ function App() {
         updateProfile(currentUser, {
           displayName: usernameRef.current.value
         })
-        dispatch(newUserFalse)
       }
     })
   }, [])
@@ -71,7 +70,6 @@ function App() {
       alert('no username entered')
       return
     }
-    dispatch(newUserTrue)
     try {
       await createUserWithEmailAndPassword(
         auth,
