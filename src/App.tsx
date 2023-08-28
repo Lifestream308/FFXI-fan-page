@@ -54,12 +54,13 @@ function App() {
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser:any) => {
-      setUser(currentUser)
-      console.log(currentUser)
       if (currentUser?.displayName == null && usernameRef.current?.value) {
         updateProfile(currentUser, {
           displayName: usernameRef.current.value
         })
+        setUser({...currentUser, displayName: usernameRef.current.value})
+      } else {
+        setUser(currentUser)
       }
     })
   }, [])
