@@ -20,7 +20,7 @@ export default function SignInPageComponent({user, credentials, register, login,
             { !user && 
             <>
                 <button onClick={login} className="px-4 py-2 w-fit text-white bg-green-700 rounded-md" >Login</button>
-                <RegisterComponent register={register} />
+                <RegisterComponent register={register} credentials={credentials} />
             </> }
             { user && 
                 <button onClick={logout} className="px-4 py-2 w-fit text-white bg-orange-600 rounded-md" >Logout</button>
