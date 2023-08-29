@@ -217,9 +217,9 @@ function App() {
             <Route path='/' element={ <JobComponent /> } />
             <Route path='/about' element={ <AboutComponent /> } />
           </Route>
-          <Route path='/forum' element={ <ForumComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} forumTopics={forumTopics} getForumTopics={getForumTopics} /> } />
-          <Route path='/forum/:id' element={ <TopicComponent forumTopics={forumTopics} setModalMessage={setModalMessage} /> } />
-          <Route path='/forum/NewTopic' element={ <TopicFormComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} /> } />
+          <Route path='/forum' element={ <ForumComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} forumTopics={forumTopics} getForumTopics={getForumTopics} user={user} /> } />
+          <Route path='/forum/:id' element={ <TopicComponent forumTopics={forumTopics} setModalMessage={setModalMessage} user={user} /> } />
+          <Route path='/forum/NewTopic' element={ <TopicFormComponent handleTopicSubmit={handleTopicSubmit} topicTitleRef={topicTitleRef} topicContentRef={topicContentRef} user={user} /> } />
           <Route path='/SignIn' element={ <SignInPageComponent user={user} credentials={credentials} register={register} login={login} logout={logout} usernameRef={usernameRef} /> } />
         </Routes>
       </div>

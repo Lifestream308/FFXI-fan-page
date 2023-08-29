@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export default function ForumComponent({forumTopics, getForumTopics}: any) {
+export default function ForumComponent({forumTopics, getForumTopics, user}: any) {
 
     useEffect(() => {
         getForumTopics()
@@ -10,6 +10,7 @@ export default function ForumComponent({forumTopics, getForumTopics}: any) {
 
   return (
     <div className="mt-8 mx-auto max-w-5xl">
+        { user?.displayName && <p className="text-2xl text-center">Welcome {user.displayName}</p>}
         <div className="flex justify-between">
             <Link to={'/forum/NewTopic'} className="m-4 p-2 text-white bg-green-700 rounded-md">New Topic <span className="py-1"><i className="bi bi-plus-lg"></i></span></Link>
             <Link to={'/SignIn'} className="m-4 p-2 text-white bg-blue-800 rounded-md">Sign In <span className="py-1"><i className="bi bi-person-fill"></i></span></Link>
