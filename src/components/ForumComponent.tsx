@@ -13,14 +13,12 @@ export default function ForumComponent({forumTopics, getForumTopics, user, logou
         { user?.displayName && <p className="text-2xl text-center">Welcome {user.displayName}</p>}
         <div className="flex justify-between">
             <Link to={'/forum/NewTopic'} className="m-4 p-2 text-white bg-green-700 rounded-md">New Topic <span className="py-1"><i className="bi bi-plus-lg"></i></span></Link>
-            <div>
-                { !user &&
-                <Link to={'/SignIn'} className="m-4 p-2 text-white bg-blue-800 rounded-md">Sign In <span className="py-1"><i className="bi bi-person-fill"></i></span></Link>
-                }
-                { user && 
-                <button onClick={logout} className="px-4 py-2 w-fit text-white bg-orange-600 rounded-md" >Logout</button>
-                }
-            </div>
+            { !user &&
+            <Link to={'/SignIn'} className="m-4 p-2 text-white bg-blue-800 rounded-md">Sign In <span className="py-1"><i className="bi bi-person-fill"></i></span></Link>
+            }
+            { user && 
+            <button onClick={logout} className="m-4 px-4 py-2 text-white bg-orange-600 rounded-md" >Logout</button>
+            }
         </div>
         <section className="mt-4 mb-16 mx-auto max-w-5xl overflow-hidden rounded-lg shadow-xl">
             <div className="min-w-full">
