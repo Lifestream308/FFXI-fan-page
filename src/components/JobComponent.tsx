@@ -41,7 +41,7 @@ export default function JobComponent() {
   return (
     <main className="flex flex-col justify-center pt-8 px-[5%] gap-12">
 
-      <div className="flex flex-col gap-12 justify-center items-center h-[30rem] w-full bg-blue-500 bg-fixed bg-center bg-cover bg-no-repeat custom-img sm:bg-contain">
+      <div className="flex flex-col gap-12 justify-center items-center h-[30rem] w-full bg-blue-500 bg-fixed bg-center bg-cover bg-no-repeat custom-img">
         <h1 className="hidden text-5xl text-white underline sm:flex">Final Fantasy XI Online</h1>
         <h2 className="text-4xl text-neutral-300 sm:text-5xl">Discover Vana'diel</h2>
       </div>
