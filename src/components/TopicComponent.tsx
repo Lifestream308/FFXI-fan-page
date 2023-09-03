@@ -7,7 +7,7 @@ import { db } from '../util/firebase-config'
 import { useDispatch } from 'react-redux'
 import { modalShowingTrue } from '../redux/slices/isModalShowingSlice'
 
-export default function TopicComponent({ forumTopics, setModalMessage }:any) {
+export default function TopicComponent({ forumTopics, setModalMessage, user }:any) {
 
   const dispatch = useDispatch()
 
@@ -22,7 +22,7 @@ export default function TopicComponent({ forumTopics, setModalMessage }:any) {
   const createTopicComment = async () => {
     await addDoc(topicCommentsCollectionRef, {
       content: commentRef.current?.value.trim(), 
-      author: "Anonymous"+Math.ceil(Math.random()*1000), 
+      author: user? user.displayName : "Anonymous"+Math.ceil(Math.random()*1000), 
       topicID: id,
       date: new Date()})
     if (commentRef.current) {
@@ -93,7 +93,7 @@ export default function TopicComponent({ forumTopics, setModalMessage }:any) {
       })}
 
       <div className="mt-8 px-4 flex flex-col gap-4 sm:px-0">
-        <input type="text" className="px-2 py-1 max-w-2xl placeholder-gray-500 bg-slate-200 border border-gray-500 rounded-md" ref={commentRef} placeholder="What Do You Think?" />
+        <input type="text" className="px-2 py-1 max-w-2xl placeholder-gray-500 bg-slate-200 border border-gray-500 rounded-md" ref={commentRef} placeholder={ user? `What do you think ${user.displayName}?` : "Submit anonymous comment?"} />
         <button className="mt-4 px-2 py-2 text-white bg-green-700 w-fit rounded-md" onClick={() => createTopicComment()} >Submit Comment</button>
       </div>
     </div>
