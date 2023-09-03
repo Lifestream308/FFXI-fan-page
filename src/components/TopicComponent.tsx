@@ -67,7 +67,7 @@ export default function TopicComponent({ forumTopics, setModalMessage }:any) {
           <Link to={'/forum'} className="text-blue-800 self-center underline underline-offset-4">Back to Forum</Link>
           <div>
             <h1 className="text-3xl text-neutral-700">{topic?.title}</h1>
-            <small className="text-gray-500">{ id }</small>
+            <small className="text-gray-500">{ topic?.author }</small>
             <br />
             <small className="text-gray-500">{topicComments && topicComments.length} {topicComments.length == 1 ? 'Comment':'Comments'}</small>
           </div>
