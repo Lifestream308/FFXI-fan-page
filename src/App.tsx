@@ -137,8 +137,7 @@ function App() {
     await addDoc(forumTopicsCollectionRef, {
       title: topicTitleRef.current?.value.trim(), 
       content: topicContentRef.current?.value.trim(), 
-      // try user? user.displayName : "anon+Math.ceil*random"
-      author: "Anonymous"+Math.ceil(Math.random()*1000), 
+      author: user? user.displayName : "Anonymous"+Math.ceil(Math.random()*1000), 
       date: new Date(),
       numOfComments: 0
     })
