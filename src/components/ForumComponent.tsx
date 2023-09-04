@@ -11,6 +11,9 @@ export default function ForumComponent({forumTopics, getForumTopics, user, logou
   return (
     <div className="mt-8 mx-auto max-w-5xl">
         { user?.displayName && <p className="text-2xl text-center">Welcome {user.displayName}</p>}
+        { !user &&
+            <p className="mx-auto my-2 px-2 max-w-xl text-2xl text-center">Welcome to the forum! Submit topics anonymously or sign in to submit topics under your username. Click any topic to view the discussion.</p>
+        }
         <div className="flex justify-between">
             <Link to={'/forum/NewTopic'} className="m-4 p-2 text-white bg-green-700 rounded-md">New Topic <span className="py-1"><i className="bi bi-plus-lg"></i></span></Link>
             { !user &&
