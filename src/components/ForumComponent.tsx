@@ -17,7 +17,7 @@ export default function ForumComponent({forumTopics, getForumTopics, user, logou
             <Link to={'/SignIn'} className="m-4 p-2 text-white bg-blue-800 rounded-md">Sign In <span className="py-1"><i className="bi bi-person-fill"></i></span></Link>
             }
             { user && 
-            <button onClick={logout} className="m-4 px-4 py-2 text-white bg-orange-600 rounded-md" >Logout</button>
+            <button onClick={logout} className="m-4 px-4 py-2 text-white bg-orange-600 rounded-md" >Logout <i className="bi bi-person-fill-slash"></i></button>
             }
         </div>
         <section className="mt-4 mb-16 mx-auto max-w-5xl overflow-hidden rounded-lg shadow-xl">
