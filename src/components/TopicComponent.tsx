@@ -7,7 +7,7 @@ import { db } from '../util/firebase-config'
 import { useDispatch } from 'react-redux'
 import { modalShowingTrue } from '../redux/slices/isModalShowingSlice'
 
-export default function TopicComponent({ forumTopics, setModalMessage, user }:any) {
+export default function TopicComponent({ forumTopics, setModalMessage, user, logout }:any) {
 
   const dispatch = useDispatch()
 
@@ -61,7 +61,14 @@ export default function TopicComponent({ forumTopics, setModalMessage, user }:an
   }, [])
 
   return (
-    <div className="mt-12 mx-auto px-4 max-w-5xl sm:px-0">
+    <div className="mt-12 mx-auto px-4 max-w-5xl">
+
+      { user && 
+        <div className='mt-[-1rem] flex gap-2 justify-end'>
+          <p className='text-xl'>{ user.displayName }</p>
+          <button onClick={logout} className="px-4 py-2 w-fit text-xs text-white bg-orange-600 rounded-md" >Logout <i className="bi bi-person-fill-slash"></i></button>
+        </div>
+      }
       <div className="mt-8 p-8 border-2 border-blue-200 rounded-xl">
         <div className="flex flex-col gap-8">
           <Link to={'/forum'} className="text-blue-800 self-center underline underline-offset-4">Back to Forum</Link>
