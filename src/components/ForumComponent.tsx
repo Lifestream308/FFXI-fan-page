@@ -34,7 +34,10 @@ export default function ForumComponent({forumTopics, getForumTopics, user, logou
                         return (
                             <tr className="border-t" key={topic.id}>
                                 <td className="px-6 py-4 text-gray-700 text-left">
-                                    <Link to={`/forum/${topic.id}`} className="text-blue-800 underline">{topic.title}</Link>
+                                    <Link to={`/forum/${topic.id}`} className="flex flex-nowrap gap-1">
+                                        <span className="text-gray-500 no-underline"><i className="bi bi-journal-text"></i></span>
+                                        <span className="text-blue-800 underline">{topic.title}</span>
+                                    </Link>
                                 </td>
                                 <td className="px-6 py-4 text-gray-700 hidden sm:table-cell">{topic.author}</td>
                                 <td className="px-6 py-4 text-gray-700 text-center">{topic.numOfComments}</td>
