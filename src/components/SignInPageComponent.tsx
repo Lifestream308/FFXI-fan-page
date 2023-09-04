@@ -20,11 +20,11 @@ export default function SignInPageComponent({user, credentials, register, login,
         <div className="mt-8 flex flex-col items-center gap-4">
             { !user && 
             <>
-                <button onClick={login} className="px-4 py-2 w-fit text-white bg-green-700 rounded-md" >Login</button>
+                <button onClick={login} className="px-4 py-2 w-fit text-white bg-green-700 rounded-md" >Login <span className="py-1"><i className="bi bi-person-fill"></i></span></button>
                 <RegisterComponent register={register} credentials={credentials} usernameRef={usernameRef} />
             </> }
             { user && 
-                <button onClick={logout} className="px-4 py-2 w-fit text-white bg-orange-600 rounded-md" >Logout</button>
+                <button onClick={logout} className="px-4 py-2 w-fit text-white bg-orange-600 rounded-md" >Logout <i className="bi bi-person-fill-slash"></i></button>
             }
         </div>
     </div>
