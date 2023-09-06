@@ -61,7 +61,7 @@ export default function TopicComponent({ forumTopics, setModalMessage, user, log
   }, [])
 
   return (
-    <div className="mt-12 mx-auto px-4 max-w-5xl">
+    <div className="mt-12 mb-16 mx-auto px-4 max-w-5xl">
 
       { user && 
         <div className='mt-[-1rem] flex gap-2 justify-end'>
