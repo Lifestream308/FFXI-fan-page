@@ -181,7 +181,8 @@ function App() {
     try {
       const data = await getDocs(forumTopicsCollectionRef);
       let topics:any = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-      isSortedByRecent ? topics.sort((a:any, b:any) => b.date.seconds - a.date.seconds) : topics.sort((a:any, b:any) => a.date.seconds - b.date.seconds)
+      // isSortedByRecent ? topics.sort((a:any, b:any) => b.date.seconds - a.date.seconds) : topics.sort((a:any, b:any) => a.date.seconds - b.date.seconds)
+      topics.sort((a:any, b:any) => b.date.seconds - a.date.seconds)
       setForumTopics(topics)
     }
     catch (err) {
