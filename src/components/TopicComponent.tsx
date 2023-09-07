@@ -78,6 +78,11 @@ export default function TopicComponent({ forumTopics, setModalMessage, user, log
   return (
     <div className="mt-12 mb-16 mx-auto px-4 max-w-5xl">
 
+      { !user && 
+        <div className='mt-[-1rem] flex justify-end'>
+          <Link to={'/SignIn'} className="p-2 text-white bg-blue-800 rounded-md">Sign In <span className="py-1"><i className="bi bi-person-fill"></i></span></Link>
+        </div>
+      }
       { user && 
         <div className='mt-[-1rem] flex gap-2 justify-end'>
           <p className='text-xl'>{ user.displayName }</p>
