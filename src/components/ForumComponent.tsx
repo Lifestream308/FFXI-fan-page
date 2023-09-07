@@ -1,15 +1,30 @@
 // import React from 'react'
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function ForumComponent({forumTopics, getForumTopics, user, logout}: any) {
+
+    const [forumPage, setForumPage] = useState<number>(1)
+  
+    const commentsPerPage :number = 5
+    const divisibleComments :number = Math.ceil((forumTopics.length / commentsPerPage))
+    const pagination :number[] = [...Array(divisibleComments).keys()]
+  
+    const prevPage = () => {
+      if (forumPage <= 1) return
+      setForumPage(prev => prev-1)
+    }
+    const nextPage = () => {
+      if (forumPage >= divisibleComments) return
+      setForumPage(prev => prev+1)
+    }
 
     useEffect(() => {
         getForumTopics()
     }, [])
 
   return (
-    <div className="mx-1">
+    <div className="mx-1 mb-16">
     <div className="mt-8 mx-auto max-w-5xl">
         { user?.displayName && <p className="text-2xl text-center">Welcome {user.displayName}</p>}
         { !user &&
@@ -34,7 +49,7 @@ export default function ForumComponent({forumTopics, getForumTopics, user, logou
                         <th className='px-6 py-4 text-sm bg-blue-100 text-indigo-500 w-16'>POSTS</th>
                     </tr>
                     
-                    {forumTopics.map((topic:any) => {
+                    {forumTopics.slice(commentsPerPage*(forumPage-1), commentsPerPage*forumPage).map((topic:any) => {
                         return (
                             <tr className="border-t" key={topic.id}>
                                 <td className="px-6 py-4 text-gray-700 text-left">
@@ -52,15 +67,17 @@ export default function ForumComponent({forumTopics, getForumTopics, user, logou
                 </table>
             </div>
         </section>
-
-        {/* <div className="mb-12 text-center">
-            <input type="text" placeholder="Title" ref={topicTitleRef} className="m-4 border border-black" />
-            <br />
-            <input type="text" placeholder="Content" ref={topicContentRef} className="m-4 border border-black" />
-            <br />
-            <button type="button" onClick={()=> handleTopicSubmit()} className="m-4 p-2 text-white bg-green-700 rounded-md">Submit Topic</button>
-        </div> */}
     </div>
+    <div className='mt-8 flex flex-wrap justify-center'>
+        <button onClick={() => prevPage()} className='m-1 px-3 py-2 text-xs text-gray-600 bg-stone-50 border border-gray-100 rounded-md shadow-md shadow-gray-500'><i className="bi bi-caret-left-fill"></i></button>
+        
+        {pagination.map((num) => {
+          return (
+            <button key={num} onClick={() => setForumPage(num+1)} className={'m-1 px-4 py-2 text-gray-600 bg-stone-50 border-2 rounded-md shadow-md shadow-gray-500' + (num+1 == forumPage ? ' border-blue-700' : ' border-gray-100')}>{num+1}</button>
+          )
+        })}
+        <button onClick={() => nextPage()} className='m-1 px-3 py-2 text-xs text-gray-600 bg-stone-50 border border-gray-100 rounded-md shadow-md shadow-gray-500'><i className="bi bi-caret-right-fill"></i></button>
+      </div>
     </div>
   )
 }

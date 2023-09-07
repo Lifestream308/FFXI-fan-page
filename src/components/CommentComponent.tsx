@@ -43,15 +43,13 @@ export default function CommentComponent({anonymousComments, messageRef, isSorte
         )})}
 
       <div className='mt-12 flex flex-wrap justify-center'>
-
         <button onClick={() => prevPage()} className='m-1 px-3 py-2 text-xs text-gray-600 bg-stone-50 border border-gray-100 rounded-md shadow-md shadow-gray-500'><i className="bi bi-caret-left-fill"></i></button>
-
+        
         {pagination.map((num) => {
           return (
             <button key={num} onClick={() => setPage(num+1)} className={'m-1 px-4 py-2 text-gray-600 bg-stone-50 border-2 rounded-md shadow-md shadow-gray-500' + (num+1 == page ? ' border-blue-700' : ' border-gray-100')}>{num+1}</button>
           )
         })}
-
         <button onClick={() => nextPage()} className='m-1 px-3 py-2 text-xs text-gray-600 bg-stone-50 border border-gray-100 rounded-md shadow-md shadow-gray-500'><i className="bi bi-caret-right-fill"></i></button>
       </div>
 
