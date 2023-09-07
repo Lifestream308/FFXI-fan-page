@@ -56,6 +56,21 @@ export default function TopicComponent({ forumTopics, setModalMessage, user, log
     await updateDoc(topicDoc, newFields)
   }
 
+  const [page, setPage] = useState<number>(1)
+  
+  const commentsPerPage :number = 5
+  const divisibleComments :number = Math.ceil((topicComments.length / commentsPerPage))
+  const pagination :number[] = [...Array(divisibleComments).keys()]
+
+  const prevPage = () => {
+    if (page <= 1) return
+    setPage(prev => prev-1)
+  }
+  const nextPage = () => {
+    if (page >= divisibleComments) return
+    setPage(prev => prev+1)
+  }
+
   useEffect(() => {
     getTopicComments()
   }, [])
@@ -88,7 +103,7 @@ export default function TopicComponent({ forumTopics, setModalMessage, user, log
         <p className="text-stone-700">Sort By Recent</p>
       </div>
 
-      { topicComments?.map((comment:any) => {
+      { topicComments?.slice(commentsPerPage*(page-1), commentsPerPage*page).map((comment:any) => {
         return (
           <div className="mt-8 p-4 border-2 border-blue-200 rounded-xl" key={comment.id} >
               <div>
@@ -98,8 +113,18 @@ export default function TopicComponent({ forumTopics, setModalMessage, user, log
           </div>
         )
       })}
+      <div className='mt-8 flex flex-wrap justify-center'>
+        <button onClick={() => prevPage()} className='m-1 px-3 py-2 text-xs text-gray-600 bg-stone-50 border border-gray-100 rounded-md shadow-md shadow-gray-500'><i className="bi bi-caret-left-fill"></i></button>
+        
+        {pagination.map((num) => {
+          return (
+            <button key={num} onClick={() => setPage(num+1)} className={'m-1 px-4 py-2 text-gray-600 bg-stone-50 border-2 rounded-md shadow-md shadow-gray-500' + (num+1 == page ? ' border-blue-700' : ' border-gray-100')}>{num+1}</button>
+          )
+        })}
+        <button onClick={() => nextPage()} className='m-1 px-3 py-2 text-xs text-gray-600 bg-stone-50 border border-gray-100 rounded-md shadow-md shadow-gray-500'><i className="bi bi-caret-right-fill"></i></button>
+      </div>
 
-      <div className="mt-8 px-4 flex flex-col gap-4 sm:px-0">
+      <div className="mt-12 px-4 flex flex-col gap-4 sm:px-0">
         <input type="text" className="px-2 py-1 max-w-2xl placeholder-gray-500 bg-slate-200 border border-gray-500 rounded-md" ref={commentRef} placeholder={ user? `What do you think ${user.displayName}?` : "Submit anonymous comment?"} />
         <button className="mt-4 px-2 py-2 text-white bg-green-700 w-fit rounded-md" onClick={() => createTopicComment()} >Submit Comment</button>
       </div>
