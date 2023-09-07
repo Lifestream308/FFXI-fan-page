@@ -17,6 +17,8 @@ export default function TopicComponent({ forumTopics, setModalMessage, user, log
 
   const topic = forumTopics.find((topic: any) => topic.id == id)
 
+  const [isSortedByRecent, setIsSortedByRecent] = useState<boolean>(true)
+
   const commentRef = useRef<any>()
 
   const createTopicComment = async () => {
@@ -39,8 +41,8 @@ export default function TopicComponent({ forumTopics, setModalMessage, user, log
     try {
       const data = await getDocs(queryComments);
       let comments:any = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-      // isSortedByRecent ? comments.sort((a:any, b:any) => b.date.seconds - a.date.seconds) : comments.sort((a:any, b:any) => a.date.seconds - b.date.seconds)
-      comments.sort((a:any, b:any) => b.date.seconds - a.date.seconds)
+      isSortedByRecent ? comments.sort((a:any, b:any) => b.date.seconds - a.date.seconds) : comments.sort((a:any, b:any) => a.date.seconds - b.date.seconds)
+      // comments.sort((a:any, b:any) => b.date.seconds - a.date.seconds)
       setTopicComments(comments)
     }
     catch (err) {
@@ -75,6 +77,10 @@ export default function TopicComponent({ forumTopics, setModalMessage, user, log
     getTopicComments()
   }, [])
 
+  useEffect(() => {
+    getTopicComments()
+  }, [isSortedByRecent])
+
   return (
     <div className="mt-12 mb-16 mx-auto px-4 max-w-5xl">
 
@@ -103,9 +109,12 @@ export default function TopicComponent({ forumTopics, setModalMessage, user, log
         </div>
       </div>
 
-      <div className="my-10 pl-8 flex flex-col">
+      <div className="my-8 pl-8 flex flex-col">
         <h3 className="text-stone-500">{ topicComments.length > 1 ? `${topicComments.length} comments below` : 'Comment below!' }</h3>
-        <p className="text-stone-700">Sort By Recent</p>
+        <div className="mt-2">
+          <small className="text-gray-500">Sort by </small>
+          <button className="text-gray-600 underline" onClick={() => setIsSortedByRecent((prev: boolean) => !prev)}>{isSortedByRecent ? "Recent" : "Oldest"}<span className="text-xs text-gray-500"><i className="bi bi-caret-down-fill"></i></span></button>
+        </div>
       </div>
 
       { topicComments?.slice(commentsPerPage*(page-1), commentsPerPage*page).map((comment:any) => {
