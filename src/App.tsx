@@ -96,6 +96,8 @@ function App() {
 
   const logout = async () => {
     await signOut(auth)
+    setModalMessage("User logged out")
+    dispatch(modalShowingTrue())
   }
   // End of Firebase Register/Login/GuestLogin/Logout
 
