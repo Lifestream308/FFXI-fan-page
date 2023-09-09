@@ -22,6 +22,11 @@ export default function TopicComponent({ forumTopics, setModalMessage, user, log
   const commentRef = useRef<any>()
 
   const createTopicComment = async () => {
+    if (commentRef.current.value.trim() == "") {
+      setModalMessage("Enter message to submit")
+      dispatch(modalShowingTrue())
+      return
+    }
     await addDoc(topicCommentsCollectionRef, {
       content: commentRef.current?.value.trim(), 
       author: user? user.displayName : "Anonymous"+Math.ceil(Math.random()*1000), 
