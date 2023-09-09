@@ -68,7 +68,8 @@ function App() {
   const register = async () => {
     // need to set up validation for username and put into a function
     if (usernameRef.current.value.trim() == '') {
-      alert('no username entered')
+      setModalMessage('No username entered')
+      dispatch(modalShowingTrue())
       return
     }
     try {
@@ -78,7 +79,8 @@ function App() {
         credentials.passwordRef.current.value
       )
     } catch (error:any) {
-      console.log(error.message)
+      setModalMessage(error.message)
+      dispatch(modalShowingTrue())
     }
   }
 
@@ -90,7 +92,8 @@ function App() {
         credentials.passwordRef.current.value
       )
     } catch (error:any) {
-      console.log(error.message)
+      setModalMessage(error.message)
+      dispatch(modalShowingTrue())
     }
   }
 
