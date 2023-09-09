@@ -120,9 +120,8 @@ function App() {
         createForumTopic()
         return
       }
-    } else {
-      rejectTopic(4, 150, 4, 1000)
     }
+    rejectTopic(4, 150, 4, 1000)
   }
 
   const createComment = async () => {
