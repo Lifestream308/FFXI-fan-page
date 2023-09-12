@@ -20,3 +20,70 @@ body {
 .custom-img {
     background-image: url("../images/wallpaperA.jpg");
 }
+
+.hamburgerContainer {
+    width: 40px;
+    height: 40px;
+    background-color: blue;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    visibility: hidden; 
+    display: none;
+}
+
+.bar {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.bar .middle {
+    height: 6px;
+    width: 80px;
+    background: #fff;
+    border-radius: 50px;
+    position: absolute;
+    transition: 0.3s ease;
+}
+
+.bar .top {
+    bottom: 14px;
+    height: 6px;
+    width: 80px;
+    background: #fff;
+    border-radius: 50px;
+    position: absolute;
+    transition: 0.3s ease;
+}
+
+.bar .bottom {
+    top: 20px;
+    height: 6px;
+    width: 80px;
+    background: #fff;
+    border-radius: 50px;
+    position: absolute;
+    transition: 0.3s ease;
+}
+
+input[type="checkbox"]: checked ~ .bar .top {
+    transform: rotate(-45deg);
+    width: 70px;
+    transform-origin: right;
+    top: -25px;
+}
+
+input[type="checkbox"]: checked ~ .bar .bottom {
+    transform: rotate(45deg);
+    width: 70px;
+    transform-origin: right;
+    top: 25px;
+}
+
+input[type="checkbox"]: checked ~ .bar .middle {
+    transform: translate(20px);
+    opacity: 0;
+}
