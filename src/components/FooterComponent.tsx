@@ -1,6 +1,5 @@
 // import React from 'react'
 import { Link } from 'react-router-dom'
-// import HamburgerComponent from './HamburgerComponent'
 
 export default function FooterComponent() {
   return (
@@ -19,7 +18,6 @@ export default function FooterComponent() {
             <p className='text-center max-w-2xl text-gray-500'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse nesciunt illum accusamus suscipit molestiae, dolorum consectetur ipsam minima mollitia quo ut, commodi, reprehenderit aliquam nobis minus amet quis! Alias sequi commodi vel distinctio officiis.</p>
             <p className='text-gray-700 underline'>2023 John Doe</p>
         </div>
-        {/* <HamburgerComponent /> */}
     </div>
   )
 }
